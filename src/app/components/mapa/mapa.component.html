@@ -1,0 +1,13 @@
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeId]="mapTypeId" [fitBounds]="true">
+    <agm-marker 
+        *ngFor="let sitio of sitios" 
+        [latitude]="sitio.lat" 
+        [longitude]="sitio.lng" 
+        [agmFitBounds]="true"
+        >
+        <!-- [iconUrl]="{ url: sitio.icon, scaledSize: { height: 15, width: 20 } }" -->
+        <agm-info-window>
+            <h3>{{ sitio.nombre }}</h3>
+        </agm-info-window>
+    </agm-marker>
+</agm-map>
