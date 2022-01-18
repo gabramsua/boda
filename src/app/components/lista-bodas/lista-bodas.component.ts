@@ -12,4 +12,6 @@ export class ListaBodasComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  copiar() {
+  }
 }
