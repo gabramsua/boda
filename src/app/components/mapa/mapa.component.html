@@ -1,9 +1,16 @@
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeId]="mapTypeId" [fitBounds]="true">
+<agm-map 
+    [latitude]="lat" 
+    [longitude]="lng" 
+    [zoom]="zoom" 
+    [mapTypeId]="mapTypeId" 
+    [fitBounds]="true"
+>
     <agm-marker 
         *ngFor="let sitio of sitios" 
         [latitude]="sitio.lat" 
         [longitude]="sitio.lng" 
         [agmFitBounds]="true"
+        [iconUrl]="sitio.icon"
         >
         <!-- [iconUrl]="{ url: sitio.icon, scaledSize: { height: 15, width: 20 } }" -->
         <agm-info-window>

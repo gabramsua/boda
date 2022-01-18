@@ -25,13 +25,13 @@ export class MapaComponent implements OnInit {
         nombre: "Hacienda El pino de San José",
         lat: 37.42345798224207,
         lng: -5.816402346560007,
-        icon: 'https://img.icons8.com/windows/30/000000/restaurant.png'
+        icon: '../../assets/imgs/restaurant_2.png'// 'https://img.icons8.com/windows/30/000000/restaurant.png'
       },
       {
         nombre: "Iglesia de La Caridad",
         lat: 37.38446735276997,
         lng: -5.99578351814051,
-        icon: 'https://img.icons8.com/windows/32/000000/church.png'
+        icon: '../../assets/imgs/church_2.png' // 'https://img.icons8.com/windows/32/000000/church.png'
       }
     ];
   }

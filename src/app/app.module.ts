@@ -13,6 +13,16 @@ import { TrasladosComponent } from './components/traslados/traslados.component';
 import { MesasComponent } from './components/mesas/mesas.component';
 import { ListaBodasComponent } from './components/lista-bodas/lista-bodas.component';
 import { MapaComponent } from './components/mapa/mapa.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper'; 
+import { CUSTOM_ELEMENTS_SCHEMA }      from '@angular/core'; 
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+// import { MAT_BUTTON_TOGGLE_DEFAULT_OPTIONS  } from '@angular/material/button-toggle';
+import { MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS  } from '@angular/material/radio';
+import { MatButtonModule } from '@angular/material/button';
+// import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +37,16 @@ import { MapaComponent } from './components/mapa/mapa.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatButtonModule,
+    // MatButtonToggleModule,
+
     AppRoutingModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
@@ -40,7 +60,11 @@ import { MapaComponent } from './components/mapa/mapa.component';
       apiKey: 'AIzaSyBjyKxnDLuBq_llik_lG_NafFHTYPSeIo8'
     })
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
+    { provide: MAT_RADIO_DEFAULT_OPTIONS , useValue: { color: 'accent' } }
+  ],
+  bootstrap: [AppComponent], 
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

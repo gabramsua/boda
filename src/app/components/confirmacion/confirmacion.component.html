@@ -1,1 +1,66 @@
-<p>confirmacion works!</p>
+<mat-vertical-stepper  #stepper>
+    <mat-step [stepControl]="quien_eres">
+      <form [formGroup]="quien_eres" class="d-flex justify-content-around">
+        <ng-template matStepLabel>¿Quién eres?</ng-template>
+        <mat-form-field appearance="outline">
+            <mat-label>Tu nombre</mat-label>
+            <input matInput aria-label="nombre" formControlName="nombre">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Tus apellidos</mat-label>
+            <input matInput aria-label="apellidos" formControlName="apellidos">
+        </mat-form-field>
+      </form>
+    </mat-step>
+
+    <mat-step>        
+        <form [formGroup]="asistencia">
+            <ng-template matStepLabel>¿Vas a poder acompañarnos el 19 de Marzo?</ng-template>
+            <mat-radio-group class="d-flex justify-content-around" aria-label="Select an option!" formControlName="vienes_o_que">
+                <mat-radio-button value="true">Sí</mat-radio-button>
+                <mat-radio-button value="false">No</mat-radio-button>
+            </mat-radio-group>
+        </form>
+    </mat-step>
+    
+    <mat-step *ngIf="asistencia.value.vienes_o_que === 'true'">        
+        <form [formGroup]="buses">
+            <ng-template matStepLabel>¿Necesitas traslado en autobús?</ng-template>
+            <mat-radio-group class="d-flex justify-content-around" aria-label="Select an option!" formControlName="traslado">
+                <mat-radio-button value="ida_vuelta">Sí, ida y vuelta</mat-radio-button>
+                <mat-radio-button value="ida">Sólo la ida</mat-radio-button>
+                <mat-radio-button value="no">No</mat-radio-button>
+            </mat-radio-group>
+        </form>
+    </mat-step>
+    
+    <mat-step *ngIf="asistencia.value.vienes_o_que === 'true'">        
+        <form [formGroup]="alergias">
+            <ng-template matStepLabel>Alergias e intolerancias</ng-template>
+            <div class="form-group">
+                <label>Especifica por favor tus restricciones para tenerlas en cuenta: </label>
+                <textarea class="form-control" formControlName="intolerancias" rows="3"></textarea>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step *ngIf="asistencia.value.vienes_o_que === 'true'">        
+        <form [formGroup]="bebidas">
+            <ng-template matStepLabel>Bebida favorita</ng-template>
+            <div class="form-group">
+                <label> Intentaremos poner las bebidas que le gusten a todos, o a la mayoría. Por favor, 
+                    especifica alguna marca que te gustaría beber, quién sabe si sois muchos los que bebéis determinada marca ;) </label>
+                <textarea class="form-control" formControlName="drinks" rows="3" placeholder="Ginebra Seagrams, o Ron Pampero"></textarea>
+            </div>
+        </form>
+    </mat-step>
+</mat-vertical-stepper>
+<button 
+    *ngIf="asistencia.value.vienes_o_que !== ''"
+    (click)="guardar()"
+>
+    FINALIZAR
+</button>
+
+<!-- {{ quien_eres.value.nombre }} - {{ quien_eres.value.apellidos }} -->
+<!-- {{ asistencia.value.vienes_o_que }} -->
