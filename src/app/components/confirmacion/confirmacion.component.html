@@ -1,6 +1,6 @@
 <mat-vertical-stepper  #stepper>
     <mat-step [stepControl]="quien_eres">
-      <form [formGroup]="quien_eres" class="d-flex justify-content-around">
+      <form [formGroup]="quien_eres" class="d-flex justify-content-around flex-wrap">
         <ng-template matStepLabel>¿Quién eres?</ng-template>
         <mat-form-field appearance="outline">
             <mat-label>Tu nombre</mat-label>
@@ -16,9 +16,9 @@
     <mat-step>        
         <form [formGroup]="asistencia">
             <ng-template matStepLabel>¿Vas a poder acompañarnos el 19 de Marzo?</ng-template>
-            <mat-radio-group class="d-flex justify-content-around" aria-label="Select an option!" formControlName="vienes_o_que">
-                <mat-radio-button value="true">Sí</mat-radio-button>
-                <mat-radio-button value="false">No</mat-radio-button>
+            <mat-radio-group class="d-flex justify-content-around flex-wrap" aria-label="Select an option!" formControlName="vienes_o_que">
+                <mat-radio-button value="true" class="col-sm-2">Sí</mat-radio-button>
+                <mat-radio-button value="false" class="col-sm-4">No</mat-radio-button>
             </mat-radio-group>
         </form>
     </mat-step>
@@ -26,10 +26,10 @@
     <mat-step *ngIf="asistencia.value.vienes_o_que === 'true'">        
         <form [formGroup]="buses">
             <ng-template matStepLabel>¿Necesitas traslado en autobús?</ng-template>
-            <mat-radio-group class="d-flex justify-content-around" aria-label="Select an option!" formControlName="traslado">
-                <mat-radio-button value="ida_vuelta">Sí, ida y vuelta</mat-radio-button>
-                <mat-radio-button value="ida">Sólo la ida</mat-radio-button>
-                <mat-radio-button value="no">No</mat-radio-button>
+            <mat-radio-group class="d-flex justify-content-around flex-wrap" aria-label="Select an option!" formControlName="traslado">
+                <mat-radio-button class="col-sm-4" value="ida_vuelta">Sí, ida y vuelta</mat-radio-button>
+                <mat-radio-button class="col-sm-4" value="ida">Sólo la ida</mat-radio-button>
+                <mat-radio-button class="col-sm-4" value="no">No</mat-radio-button>
             </mat-radio-group>
         </form>
     </mat-step>
