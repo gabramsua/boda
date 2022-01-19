@@ -1,1 +1,21 @@
-<p>lista-bodas works!</p>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4 d-flex justify-content-center">Lista de Bodas</h1>
+      <p class="lead">A nosotros nos encantaría que compartiérais con nosotros este día tan especial. ¡Vuestra presencia allí será nuestro regalo!</p>
+      <p>Tenemos mucha suerte de tener todo lo material que necesitamos, 
+          pero si quieres contribuir con nuestro viaje soñado podrás hacerlo el número de cuenta que te indicamos</p>
+
+      <p>¡Muchísimas gracias!</p>
+      <p>Gracias también por la visita, ¡esperamos veros allí en nuestro gran día!</p>
+      <span class="dudas">Si aún tienes alguna duda, por favor no dudes en contactarnos a cualquiera de los dos.</span>
+    </div>
+</div>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<span class="texto_cuenta_bancaria">Número de cuenta BBVA: </span>
+<div class="bank container d-flex justify-content-between align-items-center">
+    <span>ES88 0182 9465 6602 0576 9238</span>
+    <button type="button" (click)="copiar()" class="btn btn-primary btn-lg" cdkCopyToClipboard="ES88 0182 9465 6602 0576 9238">
+        <mat-icon>file_copy</mat-icon>
+    </button>
+</div>

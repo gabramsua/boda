@@ -21,7 +21,10 @@ import { MatInputModule } from '@angular/material/input';
 // import { MAT_BUTTON_TOGGLE_DEFAULT_OPTIONS  } from '@angular/material/button-toggle';
 import { MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS  } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
-// import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatIconModule } from '@angular/material/icon'
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { CustomSnackBarComponent } from 'shared/SnackBarComponent.component';
 
 
 @NgModule({
@@ -35,6 +38,7 @@ import { MatButtonModule } from '@angular/material/button';
     ListaBodasComponent,
     MapaComponent
   ],
+  entryComponents: [CustomSnackBarComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -45,7 +49,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatRadioModule,
     MatButtonModule,
-    // MatButtonToggleModule,
+    ClipboardModule,
+    MatIconModule,
+    MatSnackBarModule,
 
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -62,7 +68,8 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
-    { provide: MAT_RADIO_DEFAULT_OPTIONS , useValue: { color: 'accent' } }
+    { provide: MAT_RADIO_DEFAULT_OPTIONS , useValue: { color: 'accent' } },
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}
   ],
   bootstrap: [AppComponent], 
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
