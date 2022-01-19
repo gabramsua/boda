@@ -1,9 +1,7 @@
 .jumbotron {
     background-color: transparent;
-    // span {
-    //     color:  #336E7B;
-    //     font-weight: 500;
-    //   }
+    margin-bottom:  0rem;
+    padding: 0 2rem 3rem;
 }
 h1 {
     color: #67B8BC;
@@ -14,4 +12,25 @@ p {
     font-family: "Julius Sans One";
     color:  #2a626e; // #336E7B; // #2a626e //
     font-weight: 500;
+}
+button {
+    display: flex;
+}
+
+.dudas {
+    margin-top: 1rem;
+}
+.texto_cuenta_bancaria{     
+    margin-left: 1rem;
+}
+.bank {
+    border: 1px solid;
+    border-color: #CECECE;
+    background: white;
+    border-radius: 10px;
+    padding-right: 0px;
+}
+::ng-deep .snackbarcopy {
+    color: white;
+    background-color: white;
 }
