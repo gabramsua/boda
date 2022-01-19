@@ -34,3 +34,8 @@ ul {
 .navbar-toggle:focus .icon-bar {
     background-color: #ffffff;
 }
+
+.disabled {
+    pointer-events: none;
+    color: #cecece !important;
+}
