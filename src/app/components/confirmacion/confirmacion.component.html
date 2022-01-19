@@ -1,5 +1,11 @@
 <h1 class="display-4 d-flex justify-content-center">Confirmar asistencia</h1>
-<mat-vertical-stepper  #stepper>
+<p><span>Nos encantará estar con vosotros en nuestra boda. ¡Estamos deseando que llegue el día! En esta sección os pedimos que confirméis vuestra asistencia a la boda. 
+         Por favor no te olvides de indicarnos también si necesitarás traslado en autobús (en el apartado 3).</span></p>
+<p><span>Adoramos a vuestros peques y a vuestras mascotas, y por ello creemos que se merecen un día libre. Sólo adultos por favor.</span></p>
+
+<div class="container d-flex justify-content-center mt-4"><h3>¡OS ESPERAMOS!</h3></div>
+
+<mat-vertical-stepper  #stepper [linear]="true">
     <mat-step [stepControl]="quien_eres">
       <form [formGroup]="quien_eres" class="d-flex justify-content-around flex-wrap">
         <ng-template matStepLabel>¿Quién eres?</ng-template>
@@ -23,8 +29,8 @@
             </mat-radio-group>
         </form>
     </mat-step>
-    
-    <mat-step *ngIf="asistencia.value.vienes_o_que === 'true'">        
+
+    <mat-step *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que === 'true'">        
         <form [formGroup]="buses">
             <ng-template matStepLabel>¿Necesitas traslado en autobús?</ng-template>
             <mat-radio-group class="d-flex justify-content-around flex-wrap" aria-label="Select an option!" formControlName="traslado">
@@ -35,7 +41,7 @@
         </form>
     </mat-step>
     
-    <mat-step *ngIf="asistencia.value.vienes_o_que === 'true'">        
+    <mat-step *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que === 'true'">        
         <form [formGroup]="alergias">
             <ng-template matStepLabel>Alergias e intolerancias</ng-template>
             <div class="form-group">
@@ -45,19 +51,19 @@
         </form>
     </mat-step>
 
-    <mat-step *ngIf="asistencia.value.vienes_o_que === 'true'">        
+    <mat-step *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que === 'true'">        
         <form [formGroup]="bebidas">
             <ng-template matStepLabel>Bebida favorita</ng-template>
             <div class="form-group">
                 <label> Intentaremos poner las bebidas que le gusten a todos, o a la mayoría. Por favor, 
-                    especifica alguna marca que te gustaría beber, quién sabe si sois muchos los que bebéis determinada marca ;) </label>
-                <textarea class="form-control" formControlName="drinks" rows="3" placeholder="Ginebra Seagrams, o Ron Pampero"></textarea>
+                    especifica alguna marca que te gustaría beber, quién sabe si sois muchos los que bebéis determinada marca ;-)&#128521; </label>
+                <textarea class="form-control" formControlName="drinks" rows="3" placeholder="Ginebra marca tal, o Ron marca cual..."></textarea>
             </div>
         </form>
     </mat-step>
 </mat-vertical-stepper>
 <button 
-    *ngIf="asistencia.value.vienes_o_que !== ''"
+    *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que !== ''"
     (click)="guardar()"
 >
     FINALIZAR
