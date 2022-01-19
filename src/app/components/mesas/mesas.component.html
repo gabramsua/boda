@@ -24,14 +24,14 @@
             </div>
         </div>
         <div class="container d-flex justify-content-center">
-            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#container_modal_traslados">¿Cuál será mi mesa?</button>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#container_modal_mesas">¿Cuál será mi mesa?</button>
         </div>
-        <div class="modal fade" id="container_modal_traslados" tabindex="-1">
+        <div class="modal fade" id="container_modal_mesas" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2 class="modal-title">¿Que cuál será tu mesa?</h2>
-                        <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                        <button class="close" data-dismiss="modal" data-toggle="modal" data-target="#container_modal_broma"><span>&times;</span></button>
                     </div>
                     <div class="modal-body">
                         <p><span>De verdad esperábamos que no nos hicieses esa pregunta...</span></p>
@@ -39,11 +39,28 @@
                             Lamentablemente no vamos a poder decírtelo, <b>¡porque no tenemos las mesas hechas!</b> 
                             Estamos aún pensando con quién ponerte, todo a su tiempo. Pero nos alegra saber la ilusión que te hace saberlo. 
                         </span></p>
+                        <!-- <p><span>Ahora en serio, sí que tenemos las mesas. Pero no os las vamos a decir aún =)</span></p> -->
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#container_modal_broma">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="container_modal_broma" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">¿Es en serio?</h2>
+                        <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <div class="modal-body">
                         <p><span>Ahora en serio, sí que tenemos las mesas. Pero no os las vamos a decir aún =)</span></p>
 
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                        <button class="btn btn-primary" data-dismiss="modal">Cerrar de verdad</button>
                     </div>
                 </div>
             </div>
