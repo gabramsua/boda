@@ -1,9 +1,9 @@
 <h1 class="display-4 d-flex justify-content-center">Las Mesas</h1>
 <div class="section full-height over-hide px-4 px-sm-0">
     <div class="container">
-        <p>¡Habrá muchas! Y de varios tipos. Será una fastuosa y rimbombante demostración.</p>
-        <p>Habrá de varias formas geométricas, con distintos números de patas, cubiertas de elegantes manteles...</p>
-        <div class="row full-height justify-content-center">
+        <p><span>¡Habrá muchas! Y de varios tipos. Será una fastuosa y rimbombante demostración.</span></p>
+        <p><span>Habrá de varias formas geométricas, con distintos números de patas, cubiertas de elegantes manteles...</span></p>
+        <div class="row full-height justify-content-center d-flex mt-4">
             <div class="col-lg-10 col-xl-8 align-self-center padding-tb">
                 <div class="section mx-auto text-center slider-height-padding">
                     <input class="checkbox frst" type="radio" id="slide-1" name="slider" checked/>
@@ -15,11 +15,36 @@
                     <input class="checkbox foth" type="radio" name="slider" id="slider-4"/>
                     <label for="slider-4"></label>
                     <ul>
-                        <li><span>Mesas Cuadradas</span></li>
-                        <li><span>Mesas Redondas</span></li>
-                        <li><span>Mesas Redondas</span></li>
-                        <li><span>Mesas Rectangulares</span></li>
+                        <li>Mesas Cuadradas</li>
+                        <li>Mesas Redondas</li>
+                        <li>Mesas Redondas</li>
+                        <li>Mesas Rectangulares</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container d-flex justify-content-center">
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#container_modal_traslados">¿Cuál será mi mesa?</button>
+        </div>
+        <div class="modal fade" id="container_modal_traslados" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">¿Que cuál será tu mesa?</h2>
+                        <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><span>De verdad esperábamos que no nos hicieses esa pregunta...</span></p>
+                        <p><span>
+                            Lamentablemente no vamos a poder decírtelo, <b>¡porque no tenemos las mesas hechas!</b> 
+                            Estamos aún pensando con quién ponerte, todo a su tiempo. Pero nos alegra saber la ilusión que te hace saberlo. 
+                        </span></p>
+                        <p><span>Ahora en serio, sí que tenemos las mesas. Pero no os las vamos a decir aún =)</span></p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
