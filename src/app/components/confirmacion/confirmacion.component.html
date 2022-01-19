@@ -5,7 +5,8 @@
 
 <div class="container d-flex justify-content-center mt-4"><h3>¡OS ESPERAMOS!</h3></div>
 
-<mat-vertical-stepper  #stepper [linear]="true">
+<!-- TODO: QUE NO SE OLVIDE CAMBIAR EL STEPPER LINEAL A TRUE  [linear]="true" -->
+<mat-vertical-stepper  #stepper>
     <mat-step [stepControl]="quien_eres">
       <form [formGroup]="quien_eres" class="d-flex justify-content-around flex-wrap">
         <ng-template matStepLabel>¿Quién eres?</ng-template>
@@ -33,6 +34,8 @@
     <mat-step *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que === 'true'">        
         <form [formGroup]="buses">
             <ng-template matStepLabel>¿Necesitas traslado en autobús?</ng-template>
+            
+            <div class="container d-flex justify-content-center mb-2"><span>Ver traslados</span></div><br>
             <mat-radio-group class="d-flex justify-content-around flex-wrap" aria-label="Select an option!" formControlName="traslado">
                 <mat-radio-button class="col-sm-4" value="ida_vuelta">Sí, ida y vuelta</mat-radio-button>
                 <mat-radio-button class="col-sm-4" value="ida">Sólo la ida</mat-radio-button>
