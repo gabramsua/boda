@@ -35,7 +35,34 @@
         <form [formGroup]="buses">
             <ng-template matStepLabel>¿Necesitas traslado en autobús?</ng-template>
             
-            <div class="container d-flex justify-content-center mb-2"><span>Ver traslados</span></div><br>
+            <div class="container d-flex justify-content-center mb-4">
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#container_modal_traslados">Ver traslados</button>
+            </div>
+            <div class="modal fade" id="container_modal_traslados" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Traslados de autobús</h2>
+                            <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p><span>Pondremos a vuestra disposición el traslado en autobús a la Hacienda. 
+                                Para la vuelta también habrá regreso, no os preocupéis.</span></p>
+                            <div class="d-flex justify-content-center">
+                                <img class="img-fluid" src="../assets/imgs/maestranza.jfif" alt="Gabri y Maria">
+                            </div>
+                            <p><span>El punto de origen será en el <u><b>Teatro de la Maestranza</b></u>, muy cerca de la Iglesia de la Caridad. 
+                                    Para la vuelta habrá una parada en <u><b>Plaza de Cuba y otra en Tomares</b></u>, en un lugar aún por determinar. </span></p>
+                            <p><span>Los horarios para la vuelta los indicaremos cuando se acerque la fecha, pero posiblemente <u><b>uno sea a las 20.00h, otro a las 22.30h </b></u>y otro al terminar la barra libre. Recuerda, este horario es aproximado y se definirá días antes del enlace.</span></p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <modal class="d-flex mb-3"></modal> -->
             <mat-radio-group class="d-flex justify-content-around flex-wrap" aria-label="Select an option!" formControlName="traslado">
                 <mat-radio-button class="col-sm-4" value="ida_vuelta">Sí, ida y vuelta</mat-radio-button>
                 <mat-radio-button class="col-sm-4" value="ida">Sólo la ida</mat-radio-button>

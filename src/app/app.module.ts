@@ -25,6 +25,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatIconModule } from '@angular/material/icon'
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { CustomSnackBarComponent } from 'shared/SnackBarComponent.component';
+import { ModalComponent } from './shared/modal/modal.component ';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { CustomSnackBarComponent } from 'shared/SnackBarComponent.component';
     TrasladosComponent,
     MesasComponent,
     ListaBodasComponent,
-    MapaComponent
+    MapaComponent,
+    ModalComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [

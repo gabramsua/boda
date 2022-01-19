@@ -69,16 +69,17 @@ $boda2022-theme: mat-light-theme((
 @include angular-material-theme($boda2022-theme);
 
 /* You can add global styles to this file, and also import other style files */
-
+$body_color:rgb(98,176,222,0.16);
+$span_color: #336E7B;
 html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body { 
   margin: 0; 
   font-family: Roboto, "Helvetica Neue", sans-serif; 
-  background-color: rgb(98,176,222,0.16);
+  background-color: $body_color; // rgb(98,176,222,0.16);
 }
 span {
-  color:  #336E7B;
+  color:  $span_color;
   font-weight: 500;
 }
 html, body { height: 100%; }

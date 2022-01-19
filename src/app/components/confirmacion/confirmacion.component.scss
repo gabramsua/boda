@@ -4,6 +4,9 @@ h1 {
     margin-top: 4em;
     margin-bottom: 2em;
 }
+h2.modal-title {
+    margin: 0;
+}
 h3 {
     color: #67B8BC;
     font-family: "Julius Sans One";
@@ -29,4 +32,6 @@ mat-vertical-stepper {
 form:nth-child(1) {
     margin-top: 0.5rem;
 }
-
+.img-fluid {
+    margin-bottom: 1em;
+}
