@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lobster&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lobster&family=Mea+Culpa&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lobster&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lobster&family=Mea+Culpa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Great+Vibes&family=Lobster&family=Mea+Culpa&display=swap');
 h1 {
     color: #67B8BC;
     font-family: "Julius Sans One";
@@ -28,7 +29,7 @@ p {
     text-justify: inter-word;
 }
 span {
-    font-family: 'Lobster', cursive;
+    font-family: 'Courgette', cursive; // 'Lobster', cursive
     font-size: 20px;
 }
 .margen_superior {
