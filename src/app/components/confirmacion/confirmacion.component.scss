@@ -34,4 +34,27 @@ form:nth-child(1) {
 }
 .img-fluid {
     margin-bottom: 1em;
+} 
+::ng-deep .mat-step-header .mat-step-icon-selected {
+    background-color: rgb(98,176,222,0.16);
+}
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+    background-color: rgb(98,176,222,0.16)!important; // transparent !important;
+    color: rgb(98,176,222,0.16);
+    // +.mat-step-label{
+    //   color: rgb(98,176,222,0.16) !important;
+    // }
+}
+
+::ng-deep .mat-radio-outer-circle {
+    .mat-radio-checked & {
+          border-color: #336E7B; // 3f51b5
+        }
+    }
+::ng-deep .mat-radio-inner-circle {
+    background-color: #336E7B;
+}
+::ng-deep .mat-radio-ripple .mat-ripple-element {
+    background-color: rgba(#336E7B, 0.26);
 }

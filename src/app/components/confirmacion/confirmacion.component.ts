@@ -15,6 +15,9 @@ export class ConfirmacionComponent implements OnInit {
   buses: FormGroup;
   alergias: FormGroup;
   bebidas: FormGroup;
+  
+  name = new FormControl('', [Validators.required]);
+  surname = new FormControl('', [Validators.required]);
 
   constructor(private _formBuilder: FormBuilder) {}
 

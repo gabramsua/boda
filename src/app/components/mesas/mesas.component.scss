@@ -131,11 +131,12 @@ ul li {
   font-size: 16px;
   letter-spacing: 2px;
   line-height: 2.7;
-  color: white; //#343434;
-  writing-mode: vertical-rl;
+  color: cornsilk; // #343434; // white; // 
+  writing-mode: horizontal-tb; //  vertical-rl;
   opacity: 0;
   pointer-events: none;
   box-shadow: 0 8px 25px 0 rgba(16,39,112,.1);
+  -webkit-text-stroke: 1px black;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }

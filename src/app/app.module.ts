@@ -70,7 +70,7 @@ import { ModalComponent } from './shared/modal/modal.component ';
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
-    { provide: MAT_RADIO_DEFAULT_OPTIONS , useValue: { color: 'accent' } },
+    { provide: MAT_RADIO_DEFAULT_OPTIONS , useValue: { color: '#336E7B' } },
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}
   ],
   bootstrap: [AppComponent], 

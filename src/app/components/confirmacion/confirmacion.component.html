@@ -1,7 +1,7 @@
 <h1 class="display-4 d-flex justify-content-center">Confirmar asistencia</h1>
-<p><span>Nos encantará estar con vosotros en nuestra boda. ¡Estamos deseando que llegue el día! En esta sección os pedimos que confirméis vuestra asistencia a la boda. 
+<p><span>Nos encantará disfrutar con vosotros en nuestra boda. ¡Estamos deseando que llegue el día! En esta sección os pedimos que confirméis vuestra asistencia. 
          Por favor no te olvides de indicarnos también si necesitarás traslado en autobús (en el apartado 3).</span></p>
-<p><span>Adoramos a vuestros peques y a vuestras mascotas, y por ello creemos que se merecen un día libre. Sólo adultos por favor.</span></p>
+<p><span>Adoramos a vuestros peques y a vuestras mascotas, y por ello creemos que se merecen un día libre. </span></p>
 
 <div class="container d-flex justify-content-center mt-4"><h3>¡OS ESPERAMOS!</h3></div>
 
@@ -13,12 +13,19 @@
         <mat-form-field appearance="outline">
             <mat-label>Tu nombre</mat-label>
             <input matInput aria-label="nombre" formControlName="nombre">
+            <mat-error *ngIf="name.invalid">Sin estos campos no podrás continuar</mat-error>
+            <!-- <mat-hint>Sin estos campos no podrás continuar</mat-hint> -->
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Tus apellidos</mat-label>
             <input matInput aria-label="apellidos" formControlName="apellidos">
+            <mat-error *ngIf="surname.invalid">Sin estos campos no podrás continuar</mat-error>
         </mat-form-field>
       </form>
+      <div class="d-flex justify-content-between">
+        <button mat-button matStepperPrevious style="visibility: hidden">Anterior</button>
+        <button mat-button matStepperNext>Siguiente</button>
+      </div>
     </mat-step>
 
     <mat-step>        
@@ -26,9 +33,13 @@
             <ng-template matStepLabel>¿Vas a poder acompañarnos el 19 de Marzo?</ng-template>
             <mat-radio-group class="d-flex justify-content-around flex-wrap" aria-label="Select an option!" formControlName="vienes_o_que">
                 <mat-radio-button value="true" class="col-sm-2">Sí</mat-radio-button>
-                <mat-radio-button value="false" class="col-sm-4">No</mat-radio-button>
+                <mat-radio-button value="false" class="col-sm-4">No, lo siento</mat-radio-button>
             </mat-radio-group>
         </form>
+        <div class="d-flex justify-content-between" *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que === 'true'">
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
     </mat-step>
 
     <mat-step *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que === 'true'">        
@@ -36,7 +47,7 @@
             <ng-template matStepLabel>¿Necesitas traslado en autobús?</ng-template>
             
             <div class="container d-flex justify-content-center mb-4">
-                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#container_modal_traslados">Ver traslados</button>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#container_modal_traslados">Ver traslados</button>
             </div>
             <div class="modal fade" id="container_modal_traslados" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -64,21 +75,30 @@
             </div>
             <!-- <modal class="d-flex mb-3"></modal> -->
             <mat-radio-group class="d-flex justify-content-around flex-wrap" aria-label="Select an option!" formControlName="traslado">
-                <mat-radio-button class="col-sm-4" value="ida_vuelta">Sí, ida y vuelta</mat-radio-button>
-                <mat-radio-button class="col-sm-4" value="ida">Sólo la ida</mat-radio-button>
-                <mat-radio-button class="col-sm-4" value="no">No</mat-radio-button>
+                <mat-radio-button class="col-sm-6" value="ida_vuelta">Sí, ida y vuelta</mat-radio-button>
+                <mat-radio-button class="col-sm-6" value="ida">Sólo la ida</mat-radio-button>
+                <mat-radio-button class="col-sm-6" value="ida">Sólo la vuelta</mat-radio-button>
+                <mat-radio-button class="col-sm-6" value="no">No, gracias</mat-radio-button>
             </mat-radio-group>
-        </form>
+        </form>        
+        <div class="d-flex justify-content-between">
+            <button mat-button matStepperPrevious>Anterior</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
     </mat-step>
     
     <mat-step *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que === 'true'">        
         <form [formGroup]="alergias">
             <ng-template matStepLabel>Alergias e intolerancias</ng-template>
             <div class="form-group">
-                <label>Especifica por favor tus restricciones para tenerlas en cuenta: </label>
+                <label>Especifica por favor tus alergias/intolerancias para tenerlas en cuenta: </label>
                 <textarea class="form-control" formControlName="intolerancias" rows="3"></textarea>
             </div>
-        </form>
+        </form>        
+        <div class="d-flex justify-content-between">
+            <button mat-button matStepperPrevious>Anterior</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
     </mat-step>
 
     <mat-step *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que === 'true'">        
@@ -86,11 +106,15 @@
             <ng-template matStepLabel>Bebida favorita</ng-template>
             <div class="form-group">
                 <label> Intentaremos poner las bebidas que le gusten a todos, o a la mayoría. Por favor, 
-                    especifica alguna marca que te gustaría beber, quién sabe si sois muchos los que bebéis determinada marca ;-)&#128521; </label>
+                    especifica alguna marca que te gustaría beber, quién sabe si sois muchos los que bebéis determinada marca ;-)</label>
                 <textarea class="form-control" formControlName="drinks" rows="3" placeholder="Ginebra marca tal, o Ron marca cual..."></textarea>
             </div>
         </form>
-    </mat-step>
+    </mat-step>        
+    <div class="d-flex justify-content-between">
+        <button mat-button matStepperPrevious>Anterior</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
 </mat-vertical-stepper>
 <button 
     *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que !== ''"
