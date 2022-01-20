@@ -1,5 +1,6 @@
 import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-recomienda-cancion',
@@ -37,6 +38,11 @@ export class RecomiendaCancionComponent implements AfterViewInit, OnDestroy {
     window.removeEventListener('resize', this.onResize);
   }
   guardarCancion () {
+    Swal.fire(
+      '¡Gracias!',
+      'Hemos registrado tu respuesta y ya estamos un poco más cerca de saber qué canción pondremos',
+      'success'
+    )
   }
   verResultados() {}
 }
