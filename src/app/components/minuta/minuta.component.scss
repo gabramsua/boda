@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lobster&family=Mea+Culpa&display=swap');
+h1 {
+    color: #67B8BC;
+    font-family: "Julius Sans One";
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+h2.modal-title {
+    margin: 0;
+}
+h2, h3 {
+    color: #67B8BC;
+    font-family: 'Great Vibes', cursive;
+    font-size: 35px;
+    font-weight: bold;
+    // margin-top: 1em;
+}
+h5 {
+    font-family: 'Mea Culpa', cursive;
+    font-size: 30px;
+}
+p {
+    color:  #336E7B;
+    font-weight: 500;
+    text-align: justify;
+    text-justify: inter-word;
+}
+span {
+    font-family: 'Lobster', cursive;
+    font-size: 20px;
+}
+.margen_superior {
+    margin-top: 3rem;
+}
+.margen_inferior {
+    padding-bottom: 3em;
+}
