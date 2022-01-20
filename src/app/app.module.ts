@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from '@agm/core'
+import { HttpClientModule } from '@angular/common/http';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +28,8 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { CustomSnackBarComponent } from 'shared/SnackBarComponent.component';
 import { ModalComponent } from './shared/modal/modal.component ';
+import { YoutubeSearcherComponent } from './components/youtube-searcher/youtube-searcher.component';
+import { RecomiendaCancionComponent } from './components/recomienda-cancion/recomienda-cancion.component';
 
 
 @NgModule({
@@ -38,13 +42,17 @@ import { ModalComponent } from './shared/modal/modal.component ';
     MesasComponent,
     ListaBodasComponent,
     MapaComponent,
-    ModalComponent
+    ModalComponent,
+    YoutubeSearcherComponent,
+    RecomiendaCancionComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    YouTubePlayerModule,
     
     MatStepperModule,
     MatFormFieldModule,
@@ -63,6 +71,7 @@ import { ModalComponent } from './shared/modal/modal.component ';
       {path: 'traslados', component: TrasladosComponent},
       {path: 'mesas', component: MesasComponent},
       {path: 'lista-de-bodas', component: ListaBodasComponent},
+      {path: 'recomienda-cancion', component: RecomiendaCancionComponent},
     ]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBjyKxnDLuBq_llik_lG_NafFHTYPSeIo8'

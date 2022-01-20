@@ -116,7 +116,7 @@
         <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
 </mat-vertical-stepper>
-<button 
+<button class="btn btn-info"
     *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que !== ''"
     (click)="guardar()"
 >
