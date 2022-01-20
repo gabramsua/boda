@@ -30,6 +30,7 @@ import { CustomSnackBarComponent } from 'shared/SnackBarComponent.component';
 import { ModalComponent } from './shared/modal/modal.component ';
 import { YoutubeSearcherComponent } from './components/youtube-searcher/youtube-searcher.component';
 import { RecomiendaCancionComponent } from './components/recomienda-cancion/recomienda-cancion.component';
+import { MinutaComponent } from './components/minuta/minuta.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { RecomiendaCancionComponent } from './components/recomienda-cancion/reco
     MapaComponent,
     ModalComponent,
     YoutubeSearcherComponent,
-    RecomiendaCancionComponent
+    RecomiendaCancionComponent,
+    MinutaComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [
@@ -70,6 +72,7 @@ import { RecomiendaCancionComponent } from './components/recomienda-cancion/reco
       {path: 'confirmacion', component: ConfirmacionComponent},
       {path: 'traslados', component: TrasladosComponent},
       {path: 'mesas', component: MesasComponent},
+      {path: 'menu', component: MinutaComponent},
       {path: 'lista-de-bodas', component: ListaBodasComponent},
       {path: 'recomienda-cancion', component: RecomiendaCancionComponent},
     ]),
