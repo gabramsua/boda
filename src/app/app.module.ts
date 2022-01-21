@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from '@agm/core'
 import { HttpClientModule } from '@angular/common/http';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,6 +56,7 @@ import { MinutaComponent } from './components/minuta/minuta.component';
     ReactiveFormsModule,
     HttpClientModule,
     YouTubePlayerModule,
+    ChartsModule,
     
     MatStepperModule,
     MatFormFieldModule,

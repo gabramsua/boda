@@ -1,22 +1,39 @@
 import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
+import { ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-recomienda-cancion',
   templateUrl: './recomienda-cancion.component.html',
   styleUrls: ['./recomienda-cancion.component.scss']
 })
-export class RecomiendaCancionComponent implements AfterViewInit, OnDestroy {
+export class RecomiendaCancionComponent implements OnInit, AfterViewInit, OnDestroy {
   
   @ViewChild('demoYouTubePlayer') demoYouTubePlayer: ElementRef<HTMLDivElement>;
   videoWidth: number | undefined;
   videoHeight: number | undefined;
   canciones: FormGroup;
+  show_results: Boolean;
+
+  public doughnutChartLabels = [
+    'Avicii - The nights',
+    'Manzanita - Un ramito de violetas',
+    'Chiquetete - Esa cobardía',
+    'Camilo Sesto - Vivir así es morir de amor',
+    'Jarabe de Palo - Eso que tú me das',
+    'Junco - Hola mi amor'
+  ];
+  public doughnutChartData = [
+    [350, 450, 100, 65, 97, 465]
+  ];
+  public doughnutChartType: ChartType = 'pie';
 
   constructor(private _formBuilder: FormBuilder, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    this.show_results = false;
+
     this.canciones = this._formBuilder.group({
       cancion: ['', Validators.required]
     });
@@ -37,6 +54,7 @@ export class RecomiendaCancionComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     window.removeEventListener('resize', this.onResize);
   }
+
   guardarCancion () {
     Swal.fire(
       '¡Gracias!',
@@ -44,5 +62,8 @@ export class RecomiendaCancionComponent implements AfterViewInit, OnDestroy {
       'success'
     )
   }
-  verResultados() {}
+
+  verResultados() {
+    this.show_results = ! this.show_results;
+  }
 }
