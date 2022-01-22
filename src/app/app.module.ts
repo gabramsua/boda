@@ -5,6 +5,7 @@ import { AgmCoreModule } from '@agm/core'
 import { HttpClientModule } from '@angular/common/http';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { ChartsModule } from 'ng2-charts';
+import { AngularFireModule } from '@angular/fire';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,8 @@ import { ModalComponent } from './shared/modal/modal.component ';
 import { YoutubeSearcherComponent } from './components/youtube-searcher/youtube-searcher.component';
 import { RecomiendaCancionComponent } from './components/recomienda-cancion/recomienda-cancion.component';
 import { MinutaComponent } from './components/minuta/minuta.component';
+import { LoginComponent } from './components/login/login.component';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -47,7 +50,8 @@ import { MinutaComponent } from './components/minuta/minuta.component';
     ModalComponent,
     YoutubeSearcherComponent,
     RecomiendaCancionComponent,
-    MinutaComponent
+    MinutaComponent,
+    LoginComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [
@@ -55,6 +59,7 @@ import { MinutaComponent } from './components/minuta/minuta.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     YouTubePlayerModule,
     ChartsModule,
     
@@ -70,7 +75,8 @@ import { MinutaComponent } from './components/minuta/minuta.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
-      {path: '', component: HomeComponent},
+      {path: '', component: LoginComponent},
+      {path: 'home', component: HomeComponent},
       {path: 'confirmacion', component: ConfirmacionComponent},
       {path: 'traslados', component: TrasladosComponent},
       {path: 'mesas', component: MesasComponent},

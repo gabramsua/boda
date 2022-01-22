@@ -121,8 +121,13 @@
               "devServerTarget": "boda2022:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "boda2022"
 }
