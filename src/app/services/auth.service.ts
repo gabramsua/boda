@@ -1,35 +1,60 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import constants from '../constants';
+import { logging } from 'protractor';
 
-
+export interface User {
+  nombre: string;
+  apellidos: string;
+  telefono: string;
+  asistencia: boolean;
+  tipoBus: string;
+  alergias: string;
+  bebidas: string;
+  cancion: string;
+  puntuacionQuizz: Number;
+}
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   items: Observable<any[]>;
+  currentUser$ = new Subject<User>();
   
-  constructor(private firebase: AngularFirestore) { }
+  constructor(private firebase: AngularFirestore) { 
+  }
   
-  // login(): Promise<any>{
-  //   this.items = this.firebase.collection('items').valueChanges();
-  //   // return this.firebase.collection('users').add(credentials)
-  //   console.log('items', this.items)
-  //   return;
-  // }
-
   save(item) {
     return this.firebase.collection(constants.END_POINTS.USERS).add(item);
   }
 
   getAll(collection): Observable<any> {
-    // console.log('LOGIN', this.firebase.collection(constants.END_POINTS.USERS).get())
     return this.firebase.collection(collection).snapshotChanges();
   }
   
-  get(collection, phone): Observable<any> {
-    // return this.firebase.collection(collection).get(phone);
-    return this.firebase.collection(collection).doc(phone).get()
+  get(collection, id: string) {
+    return this.firebase.collection(collection).doc(id).get()
+  }
+
+  login(collection, phone: string) {
+    this.firebase.collection(collection).doc(phone).get().subscribe( data => {
+      const user = {
+        nombre: data.data()['nombre'],
+        apellidos: data.data()['apellidos'],
+        telefono: phone, //data.data()['telefono'],
+        asistencia: data.data()['asistencia'],
+        tipoBus: data.data()['tipoBus'],
+        alergias: data.data()['alergias'],
+        bebidas: data.data()['bebida'],
+        cancion: data.data()['cancion'],
+        puntuacionQuizz: data.data()['puntuacionQuizz'],
+      }
+      this.currentUser$.next(user);
+    })
+  }
+
+  getCurrentUser$(): Observable<any> {
+    return this.currentUser$.asObservable();
   }
 }

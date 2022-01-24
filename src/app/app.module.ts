@@ -37,6 +37,7 @@ import { RecomiendaCancionComponent } from './components/recomienda-cancion/reco
 import { MinutaComponent } from './components/minuta/minuta.component';
 import { LoginComponent } from './components/login/login.component';
 import { environment } from '../environments/environment';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 @NgModule({
@@ -81,10 +82,10 @@ import { environment } from '../environments/environment';
     RouterModule.forRoot([
       {path: '', component: LoginComponent},
       {path: 'home', component: HomeComponent},
-      {path: 'confirmacion', component: ConfirmacionComponent},
-      {path: 'traslados', component: TrasladosComponent},
-      {path: 'mesas', component: MesasComponent},
-      {path: 'menu', component: MinutaComponent},
+      {path: 'confirmacion', component: ConfirmacionComponent},// , canActivate: [AuthGuardService]
+      // {path: 'traslados', component: TrasladosComponent},
+      // {path: 'mesas', component: MesasComponent},
+      // {path: 'menu', component: MinutaComponent},
       {path: 'lista-de-bodas', component: ListaBodasComponent},
       {path: 'recomienda-cancion', component: RecomiendaCancionComponent},
     ]),
@@ -95,7 +96,8 @@ import { environment } from '../environments/environment';
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS , useValue: { color: '#336E7B' } },
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}},
+    AuthGuardService,
   ],
   bootstrap: [AppComponent], 
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

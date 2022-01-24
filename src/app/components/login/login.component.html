@@ -1,7 +1,16 @@
-<p>login works!</p>
 <ul *ngIf="users">
     <li class="text" *ngFor="let item of users">
         {{item.id}} - {{item.nombre}}
     </li>
 </ul>
-Hola {{ loggedUser.nombre }} y bebes {{ loggedUser.bebida }}
+<div *ngIf="loggedUser">Hola {{ loggedUser.nombre }} y bebes {{ loggedUser.bebida }}</div>
+<div *ngIf="user">hello  {{ user.nombre }} y bebes {{ user.bebidas }}</div>
+
+<form [formGroup]="formulario" (ngSubmit)="login()">
+    <div class="form-group">
+        <label>Introduce tu número de teléfono</label>
+        <input type="text" class="form-control" formControlValue="telefono" aria-label="phone" value="645303663">
+        <!-- <button class="btn btn-primary">Login</button> -->
+        <input type="submit" value="Entrar" aria-label="submit">
+    </div>
+</form>
