@@ -15,16 +15,7 @@ export class ListaBodasComponent implements OnInit {
   }
 
   copiar() {
-    // this._snackBar.open('¡Copiado!', null, {
-    //   duration: 2000,
-    //   panelClass: ['mat-secondary']
-    // });
     this._snackBar.openFromComponent(CustomSnackBarComponent, {data: '¡Copiado!', duration: 2000});
   }
 }
-// @Component({
-//     selector: 'snackbar',
-//     template: `<span style="color: white">¡Copiado!</span>`
-//   })
-// export class CustomSnackBarComponent {}
   
