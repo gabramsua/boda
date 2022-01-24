@@ -1,1 +1,7 @@
 <p>login works!</p>
+<ul *ngIf="users">
+    <li class="text" *ngFor="let item of users">
+        {{item.id}} - {{item.nombre}}
+    </li>
+</ul>
+Hola {{ loggedUser.nombre }} y bebes {{ loggedUser.bebida }}

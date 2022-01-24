@@ -5,7 +5,9 @@ import { AgmCoreModule } from '@agm/core'
 import { HttpClientModule } from '@angular/common/http';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { ChartsModule } from 'ng2-charts';
+
 import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -60,6 +62,8 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    
     YouTubePlayerModule,
     ChartsModule,
     
