@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService, User } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
   title = 'boda2022';
+  user: User;
   
-  ngOnInit(): void {}
+  constructor(public _service: AuthService){}
+
+  ngOnInit(): void {
+    this._service.currentUser$.subscribe( user => {
+      console.log('app copmponent', user)
+      this.user = user;
+    })
+  }
 }
