@@ -59,7 +59,7 @@ export class AuthService {
         this.router.navigate(['/home']);
       })
       .catch( err => {
-        this.loginFailed$.next('Necesitas poner tu teléfono para entrar. Lo sentimos.')
+        this.loginFailed$.next('Necesitas poner tu teléfono para entrar. Sentimos las molestias.')
     })
   }
 

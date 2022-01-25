@@ -21,5 +21,37 @@
         </button>
     </form>
 </div>
-<div *ngIf="_guard.notAllowed$ | async as notAllowed">{{ notAllowed }}</div>
-<div *ngIf="_service.loginFailed$ | async as loginFailed">{{ loginFailed }}</div>
+<!-- <div class="errorMessage" *ngIf="_guard.notAllowed$ | async as notAllowed">{{ notAllowed }}</div>
+<div class="errorMessage" *ngIf="_service.loginFailed$ | async as loginFailed">{{ loginFailed }}</div> -->
+<div class="alert alert-danger" role="alert" *ngIf="_guard.notAllowed$ | async as notAllowed">
+    {{ notAllowed }}
+</div><div class="alert alert-danger" role="alert" *ngIf="_service.loginFailed$ | async as loginFailed">
+    {{ loginFailed }}
+</div>
+
+
+<div class="container d-flex justify-content-center mb-4">
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#container_modal_why">¿Para qué?</button>
+</div>
+<div class="modal fade" id="container_modal_why" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">¿Por qué necesito poner mi número?</h2>
+                <button class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-justify"><span>
+                    Es una pequeña capa de seguridad que hemos previsto. Así, nadie que no esté invitado debería poder entrar a ver nuestra información.
+                    <br>Tu teléfono está almacenado en nuestra base de datos (LOPD mediante) y comprobaremos quién eres cuando lo introduzcas. 
+                    Te servirá para rellenar el formulario de asistencia, y alguna que otra pregunta más que te hacemos =)
+                </span></p>
+                <p class="text-justify"><span>Esperamos que no sea una gran molestia. </span></p>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
