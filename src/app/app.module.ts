@@ -38,6 +38,7 @@ import { MinutaComponent } from './components/minuta/minuta.component';
 import { LoginComponent } from './components/login/login.component';
 import { environment } from '../environments/environment';
 import { AuthGuardService } from './services/auth-guard.service';
+import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     YoutubeSearcherComponent,
     RecomiendaCancionComponent,
     MinutaComponent,
-    LoginComponent
+    LoginComponent,
+    PaginaNoEncontradaComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [
@@ -82,12 +84,13 @@ import { AuthGuardService } from './services/auth-guard.service';
     RouterModule.forRoot([
       {path: '', component: LoginComponent},
       {path: 'home', component: HomeComponent},
-      {path: 'confirmacion', component: ConfirmacionComponent},// , canActivate: [AuthGuardService]
-      // {path: 'traslados', component: TrasladosComponent},
-      // {path: 'mesas', component: MesasComponent},
-      // {path: 'menu', component: MinutaComponent},
+      {path: 'confirmacion', component: ConfirmacionComponent, canActivate: [AuthGuardService]},
+      {path: 'traslados', component: TrasladosComponent},
+      {path: 'mesas', component: MesasComponent},
+      {path: 'menu', component: MinutaComponent},
       {path: 'lista-de-bodas', component: ListaBodasComponent},
       {path: 'recomienda-cancion', component: RecomiendaCancionComponent},
+      {path: '**', component: PaginaNoEncontradaComponent},
     ]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBjyKxnDLuBq_llik_lG_NafFHTYPSeIo8'

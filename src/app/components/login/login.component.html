@@ -1,16 +1,25 @@
-<ul *ngIf="users">
-    <li class="text" *ngFor="let item of users">
-        {{item.id}} - {{item.nombre}}
-    </li>
-</ul>
-<div *ngIf="loggedUser">Hola {{ loggedUser.nombre }} y bebes {{ loggedUser.bebida }}</div>
-<div *ngIf="user">hello  {{ user.nombre }} y bebes {{ user.bebidas }}</div>
+<!-- <div *ngIf="user">hello  {{ user.nombre }} y bebes {{ user.bebidas }}</div> -->
+<div class="container d-flex justify-content-center flex-column">
+    <span class="title">
+        ¡Bienvenido a nuestra boda!
+    </span>
 
-<form [formGroup]="formulario" (ngSubmit)="login()">
-    <div class="form-group">
-        <label>Introduce tu número de teléfono</label>
-        <input type="text" class="form-control" formControlValue="telefono" aria-label="phone" value="645303663">
-        <!-- <button class="btn btn-primary">Login</button> -->
-        <input type="submit" value="Entrar" aria-label="submit">
+    <div class="d-flex-justify-content-center">
+        <img class="img-fluid" src="../assets/imgs/narices.jpeg" alt="Gabri y Maria">    
     </div>
-</form>
+    
+    <form [formGroup]="loginForm" class="d-flex justify-content-center flex-column">
+        <ng-template matStepLabel>¿Quién eres?</ng-template>
+        <mat-form-field appearance="outline">
+            <mat-label>Por favor, indica tu número de teléfono</mat-label>
+                <input matInput type="number" aria-label="telefono" formControlName="telefono">
+            <mat-error *ngIf="telefono.invalid">Sin rellenarlo correctamente no podrás continuar. Lo sentimos.</mat-error>
+        </mat-form-field>
+        
+        <button class="btn btn-info" (click)="login()" [disabled]="disableLogin()">
+            <span>Entrar</span>
+        </button>
+    </form>
+</div>
+<div *ngIf="_guard.notAllowed$ | async as notAllowed">{{ notAllowed }}</div>
+<div *ngIf="_service.loginFailed$ | async as loginFailed">{{ loginFailed }}</div>

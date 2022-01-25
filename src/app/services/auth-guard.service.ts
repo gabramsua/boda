@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
+  notAllowed$ = new Subject<string>();
 
   constructor(
     private auth: AuthService,
@@ -14,12 +15,16 @@ export class AuthGuardService implements CanActivate {
   ) { }
 
   canActivate() {
-    // return this.auth.user$.map(user => {
-    //   if ( user ) return true;
-    //   this.router.navigate(['/']);
-    //   return false;
-    // })
-    return false
+    return this.checkUserLogin()
       
+  }
+  checkUserLogin(): boolean {
+    this.notAllowed$.next('Necesitas poner tu teléfono para poder entrar en esa sección.');
+    
+    this.auth.currentUser$.subscribe(user => {
+      if ( user ) return true;
+    })
+    this.router.navigate(['/']);
+    return false;
   }
 }
