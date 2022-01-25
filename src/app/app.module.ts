@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { ChartsModule } from 'ng2-charts';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -32,6 +35,10 @@ import { ModalComponent } from './shared/modal/modal.component ';
 import { YoutubeSearcherComponent } from './components/youtube-searcher/youtube-searcher.component';
 import { RecomiendaCancionComponent } from './components/recomienda-cancion/recomienda-cancion.component';
 import { MinutaComponent } from './components/minuta/minuta.component';
+import { LoginComponent } from './components/login/login.component';
+import { environment } from '../environments/environment';
+import { AuthGuardService } from './services/auth-guard.service';
+import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
 
 
 @NgModule({
@@ -47,7 +54,9 @@ import { MinutaComponent } from './components/minuta/minuta.component';
     ModalComponent,
     YoutubeSearcherComponent,
     RecomiendaCancionComponent,
-    MinutaComponent
+    MinutaComponent,
+    LoginComponent,
+    PaginaNoEncontradaComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [
@@ -55,6 +64,9 @@ import { MinutaComponent } from './components/minuta/minuta.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    
     YouTubePlayerModule,
     ChartsModule,
     
@@ -69,15 +81,18 @@ import { MinutaComponent } from './components/minuta/minuta.component';
 
     AppRoutingModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot([
-      {path: '', component: HomeComponent},
-      {path: 'confirmacion', component: ConfirmacionComponent},
-      {path: 'traslados', component: TrasladosComponent},
-      {path: 'mesas', component: MesasComponent},
-      {path: 'menu', component: MinutaComponent},
-      {path: 'lista-de-bodas', component: ListaBodasComponent},
-      {path: 'recomienda-cancion', component: RecomiendaCancionComponent},
-    ]),
+    // RouterModule.forRoot([
+    //   {path: '', component: LoginComponent},
+    //   {path: 'home', component: HomeComponent},
+    //   {path: 'confirmacion', component: ConfirmacionComponent, canActivate: [AuthGuardService]},
+    //   {path: 'traslados', component: TrasladosComponent, canActivate: [AuthGuardService]},
+    //   {path: 'mesas', component: MesasComponent, canActivate: [AuthGuardService]},
+    //   {path: 'menu', component: MinutaComponent, canActivate: [AuthGuardService]},
+    //   {path: 'lista-de-bodas', component: ListaBodasComponent, canActivate: [AuthGuardService]},
+    //   {path: 'recomienda-cancion', component: RecomiendaCancionComponent, canActivate: [AuthGuardService]},
+    //   {path: '**', component: PaginaNoEncontradaComponent},
+    // ]),
+    AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBjyKxnDLuBq_llik_lG_NafFHTYPSeIo8'
     })
@@ -85,7 +100,8 @@ import { MinutaComponent } from './components/minuta/minuta.component';
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS , useValue: { color: '#336E7B' } },
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}},
+    AuthGuardService,
   ],
   bootstrap: [AppComponent], 
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

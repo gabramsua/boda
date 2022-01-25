@@ -1,7 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
+import { HomeComponent } from './components/home/home.component';
+import { ListaBodasComponent } from './components/lista-bodas/lista-bodas.component';
+import { LoginComponent } from './components/login/login.component';
+import { MesasComponent } from './components/mesas/mesas.component';
+import { MinutaComponent } from './components/minuta/minuta.component';
+import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
+import { RecomiendaCancionComponent } from './components/recomienda-cancion/recomienda-cancion.component';
+import { TrasladosComponent } from './components/traslados/traslados.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
-const routes: Routes = [];
+const routes: Routes = [
+    {path: '', component: LoginComponent},
+    {path: 'home', component: HomeComponent},
+    {path: 'confirmacion', component: ConfirmacionComponent, canActivate: [AuthGuardService]},
+    {path: 'traslados', component: TrasladosComponent, canActivate: [AuthGuardService]},
+    {path: 'mesas', component: MesasComponent, canActivate: [AuthGuardService]},
+    {path: 'menu', component: MinutaComponent, canActivate: [AuthGuardService]},
+    {path: 'lista-de-bodas', component: ListaBodasComponent, canActivate: [AuthGuardService]},
+    {path: 'recomienda-cancion', component: RecomiendaCancionComponent, canActivate: [AuthGuardService]},
+    {path: '**', component: PaginaNoEncontradaComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

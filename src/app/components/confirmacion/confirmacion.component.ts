@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-confirmacion',
+  selector: 'confirmacion',
   templateUrl: './confirmacion.component.html',
   styleUrls: ['./confirmacion.component.scss']
 })
@@ -19,9 +20,17 @@ export class ConfirmacionComponent implements OnInit {
   name = new FormControl('', [Validators.required]);
   surname = new FormControl('', [Validators.required]);
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder, 
+    private _service: AuthService) {}
 
   ngOnInit() {
+    
+    this._service.getCurrentUser$().subscribe(user => {
+      // this.loggedUser = user;
+      console.log(user)
+      // this.users.push(user)
+    })
+
     this.quien_eres = this._formBuilder.group({
       nombre: ['', Validators.required],
       apellidos: ['', Validators.required],

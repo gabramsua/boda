@@ -11,5 +11,8 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  cerrarSesion() {
+    localStorage.clear()
+    console.log("cerrando sesion")
+  }
 }
