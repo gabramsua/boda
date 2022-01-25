@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   users: any[] = [];
   loggedUser: any;
   loginForm: FormGroup
-  telefono = new FormControl('', [Validators.pattern("[6-7]{1}[0-9]{8}$"),Validators.required]);
+  telefono = new FormControl('645303663', [Validators.pattern("[6-7]{1}[0-9]{8}$"),Validators.required]);
   //  = new FormGroup({
   //   telefono: new FormControl()
   // })
@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
     // this.getAll()
     // this.get('645303663')
     this._service.currentUser$.subscribe( user => {
-      console.log('USER', user)
       this.user = user;
     })
 
@@ -46,7 +45,6 @@ export class LoginComponent implements OnInit {
   disableLogin() {
     return this.loginForm.value.telefono === '' || JSON.stringify(this.loginForm.value.telefono).length !== 9
   }
-
 
 
 

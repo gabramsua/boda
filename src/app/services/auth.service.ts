@@ -42,25 +42,40 @@ export class AuthService {
 
   login(collection, phone: string) {
     // this.firebase.collection(collection).doc(phone).get().subscribe( data => {
-    this.firebase.collection(collection).doc(phone).get().toPromise()
-    .then( data => {
-        const user = {
-          nombre: data.data()['nombre'],
-          apellidos: data.data()['apellidos'],
-          telefono: phone, //data.data()['telefono'],
-          asistencia: data.data()['asistencia'],
-          tipoBus: data.data()['tipoBus'],
-          alergias: data.data()['alergias'],
-          bebidas: data.data()['bebida'],
-          cancion: data.data()['cancion'],
-          puntuacionQuizz: data.data()['puntuacionQuizz'],
-        }
-        this.currentUser$.next(user);
-        this.router.navigate(['/home']);
-      })
-      .catch( err => {
-        this.loginFailed$.next('Necesitas poner tu teléfono para entrar. Sentimos las molestias.')
-    })
+    // this.firebase.collection(collection).doc(phone).get().toPromise()
+    // .then( data => {
+    //     const user = {
+    //       nombre: data.data()['nombre'],
+    //       apellidos: data.data()['apellidos'],
+    //       telefono: phone, //data.data()['telefono'],
+    //       asistencia: data.data()['asistencia'],
+    //       tipoBus: data.data()['tipoBus'],
+    //       alergias: data.data()['alergias'],
+    //       bebidas: data.data()['bebida'],
+    //       cancion: data.data()['cancion'],
+    //       puntuacionQuizz: data.data()['puntuacionQuizz'],
+    //     }
+    //     localStorage.setItem('currentUser', JSON.stringify(user));
+    //     this.currentUser$.next(user);
+    //     this.router.navigate(['/home']);
+    //   })
+    //   .catch( err => {
+    //     this.loginFailed$.next('Necesitas poner tu teléfono para entrar. Sentimos las molestias.')
+    // })
+    const user = {
+            nombre:'Gabriel',
+            apellidos: 'Ramos Suan',
+            telefono: phone, //data.data()['telefono'],
+            asistencia:null,
+            tipoBus:null,
+            alergias:null,
+            bebidas:null,
+            cancion:null,
+            puntuacionQuizz:null,
+          }
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUser$.next(user);
+          this.router.navigate(['/home']);
   }
 
   getCurrentUser$(): Observable<any> {

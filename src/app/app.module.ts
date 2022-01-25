@@ -81,17 +81,18 @@ import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/p
 
     AppRoutingModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot([
-      {path: '', component: LoginComponent},
-      {path: 'home', component: HomeComponent},
-      {path: 'confirmacion', component: ConfirmacionComponent, canActivate: [AuthGuardService]},
-      {path: 'traslados', component: TrasladosComponent, canActivate: [AuthGuardService]},
-      {path: 'mesas', component: MesasComponent, canActivate: [AuthGuardService]},
-      {path: 'menu', component: MinutaComponent, canActivate: [AuthGuardService]},
-      {path: 'lista-de-bodas', component: ListaBodasComponent, canActivate: [AuthGuardService]},
-      {path: 'recomienda-cancion', component: RecomiendaCancionComponent, canActivate: [AuthGuardService]},
-      {path: '**', component: PaginaNoEncontradaComponent},
-    ]),
+    // RouterModule.forRoot([
+    //   {path: '', component: LoginComponent},
+    //   {path: 'home', component: HomeComponent},
+    //   {path: 'confirmacion', component: ConfirmacionComponent, canActivate: [AuthGuardService]},
+    //   {path: 'traslados', component: TrasladosComponent, canActivate: [AuthGuardService]},
+    //   {path: 'mesas', component: MesasComponent, canActivate: [AuthGuardService]},
+    //   {path: 'menu', component: MinutaComponent, canActivate: [AuthGuardService]},
+    //   {path: 'lista-de-bodas', component: ListaBodasComponent, canActivate: [AuthGuardService]},
+    //   {path: 'recomienda-cancion', component: RecomiendaCancionComponent, canActivate: [AuthGuardService]},
+    //   {path: '**', component: PaginaNoEncontradaComponent},
+    // ]),
+    AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBjyKxnDLuBq_llik_lG_NafFHTYPSeIo8'
     })
