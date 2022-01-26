@@ -16,9 +16,6 @@ export class LoginComponent implements OnInit {
   loggedUser: any;
   loginForm: FormGroup
   telefono = new FormControl('645303663', [Validators.pattern("[6-7]{1}[0-9]{8}$"),Validators.required]);
-  //  = new FormGroup({
-  //   telefono: new FormControl()
-  // })
   user: User;
 
   constructor(
@@ -32,36 +29,20 @@ export class LoginComponent implements OnInit {
     this._service.currentUser$.subscribe( user => {
       this.user = user;
     })
-
+    this.user = JSON.parse(localStorage.getItem('currentUser'))
+    if(this.user)this.login();
     
     this.loginForm = this._formBuilder.group({
       telefono: ['', Validators.required]
     });
   }
-  login() {
-    // console.log(this.loginForm.value)
-    this._service.login(constants.END_POINTS.USERS, JSON.stringify(this.loginForm.value.telefono))
+  login(phone:string = this.user?.telefono) {
+    if(!phone) phone = this.telefono.value // JSON.stringify(this.loginForm.value.telefono);
+    this._service.login(constants.END_POINTS.USERS, phone)
   }
   disableLogin() {
     return this.loginForm.value.telefono === '' || JSON.stringify(this.loginForm.value.telefono).length !== 9
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   // post() {
   //   this._service.save({item2: 'val'})

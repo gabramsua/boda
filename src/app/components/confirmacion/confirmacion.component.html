@@ -75,10 +75,10 @@
             </div>
             <!-- <modal class="d-flex mb-3"></modal> -->
             <mat-radio-group class="d-flex justify-content-around flex-wrap" aria-label="Select an option!" formControlName="traslado">
-                <mat-radio-button class="col-sm-6" value="ida_vuelta">Sí, ida y vuelta</mat-radio-button>
-                <mat-radio-button class="col-sm-6" value="ida">Sólo la ida</mat-radio-button>
-                <mat-radio-button class="col-sm-6" value="ida">Sólo la vuelta</mat-radio-button>
-                <mat-radio-button class="col-sm-6" value="no">No, gracias</mat-radio-button>
+                <mat-radio-button class="col-sm-6" value="bus_ida_vuelta">Sí, ida y vuelta</mat-radio-button>
+                <mat-radio-button class="col-sm-6" value="bus_ida">Sólo la ida</mat-radio-button>
+                <mat-radio-button class="col-sm-6" value="bus_vuelta">Sólo la vuelta</mat-radio-button>
+                <mat-radio-button class="col-sm-6" value="bus_no">No, gracias</mat-radio-button>
             </mat-radio-group>
         </form>        
         <div class="d-flex justify-content-between">
@@ -116,12 +116,14 @@
         <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
 </mat-vertical-stepper>
-<button class="btn btn-info"
-    *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que !== ''"
-    (click)="guardar()"
->
-    FINALIZAR
-</button>
+<div class="display-4 d-flex justify-content-center mt-4 mb-2">
+    <!-- *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que !== ''" -->
+    <button class="btn btn-info"
+        (click)="guardar()"
+    >
+        FINALIZAR
+    </button>
+</div>
 
 <!-- {{ quien_eres.value.nombre }} - {{ quien_eres.value.apellidos }} -->
 <!-- {{ asistencia.value.vienes_o_que }} -->

@@ -2,6 +2,8 @@ import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnIn
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
 import { ChartType } from 'chart.js';
+import { AuthService, User } from 'src/app/services/auth.service';
+import constants from 'src/app/constants';
 
 @Component({
   selector: 'app-recomienda-cancion',
@@ -15,6 +17,7 @@ export class RecomiendaCancionComponent implements OnInit, AfterViewInit, OnDest
   videoHeight: number | undefined;
   canciones: FormGroup;
   show_results: Boolean;
+  currentUser: User;
 
   public doughnutChartLabels = [
     'Avicii - The nights',
@@ -29,13 +32,25 @@ export class RecomiendaCancionComponent implements OnInit, AfterViewInit, OnDest
   ];
   public doughnutChartType: ChartType = 'pie';
 
-  constructor(private _formBuilder: FormBuilder, private _changeDetectorRef: ChangeDetectorRef) { }
+  constructor(
+    private _formBuilder: FormBuilder, 
+    private _changeDetectorRef: ChangeDetectorRef, 
+    private _service: AuthService) { }
 
   ngOnInit(): void {
     this.show_results = false;
 
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
+    let cancion;
+
+    if(this.currentUser){
+      cancion = this.currentUser.cancion
+    } else {
+      cancion = '';
+    }
+
     this.canciones = this._formBuilder.group({
-      cancion: ['', Validators.required]
+      cancion: [cancion, Validators.required]
     });
   }
 
@@ -56,11 +71,21 @@ export class RecomiendaCancionComponent implements OnInit, AfterViewInit, OnDest
   }
 
   guardarCancion () {
-    Swal.fire(
-      '¡Gracias!',
-      'Hemos registrado tu respuesta y ya estamos un poco más cerca de saber qué canción pondremos',
-      'success'
-    )
+    this.currentUser.cancion = this.canciones.value.cancion;
+
+    //  ACTUALIZAR EL CURRENT USER
+    localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+    
+    this._service.update(constants.END_POINTS.USERS, this.currentUser.telefono, this.currentUser)
+      .then(()=>{
+        Swal.fire(
+          '¡Gracias!',
+          'Hemos registrado tu respuesta y ya estamos un poco más cerca de saber qué canción pondremos',
+          'success'
+        )
+      }, error => {
+        console.log(error)
+      })
   }
 
   verResultados() {

@@ -7,7 +7,6 @@ import { Subject } from 'rxjs';
 })
 export class AuthGuardService implements CanActivate {
   notAllowed$ = new Subject<string>();
-  currentUser: any;
 
   constructor(
     private router: Router
