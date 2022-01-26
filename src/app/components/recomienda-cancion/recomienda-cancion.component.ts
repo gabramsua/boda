@@ -27,9 +27,7 @@ export class RecomiendaCancionComponent implements OnInit, AfterViewInit, OnDest
     'Jarabe de Palo - Eso que tú me das',
     'Junco - Hola mi amor'
   ];
-  public doughnutChartData = [
-    [350, 450, 100, 65, 97, 465]
-  ];
+  public doughnutChartData = [[,,,,,]];
   public doughnutChartType: ChartType = 'pie';
 
   constructor(
@@ -39,15 +37,13 @@ export class RecomiendaCancionComponent implements OnInit, AfterViewInit, OnDest
 
   ngOnInit(): void {
     this.show_results = false;
+    this.getResultados()
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
     let cancion;
 
-    if(this.currentUser){
-      cancion = this.currentUser.cancion
-    } else {
-      cancion = '';
-    }
+    if(this.currentUser) cancion = this.currentUser.cancion
+    else cancion = ''
 
     this.canciones = this._formBuilder.group({
       cancion: [cancion, Validators.required]
@@ -88,7 +84,18 @@ export class RecomiendaCancionComponent implements OnInit, AfterViewInit, OnDest
       })
   }
 
+  getResultados() {
+    this._service.getAll(constants.END_POINTS.RESULTADOS_CANCIONES).subscribe(data => {
+      for (let i = 0; i < 6; i++) {
+        let cancion = []
+        for(var j in data[i].payload.doc.data()){
+          cancion.push([j, data[i].payload.doc.data() [j]]);
+        }
+        this.doughnutChartData[0][i] = cancion.length
+      }
+    })
+  }
   verResultados() {
-    this.show_results = ! this.show_results;
+    this.show_results = !this.show_results;
   }
 }

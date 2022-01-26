@@ -2,6 +2,7 @@ const Constants = {
     END_POINTS: {
         USERS: 'users',
         // QUIZZ: 'quizz'
+        RESULTADOS_CANCIONES: 'resultados_canciones'
     },
     VALUES: {
         ASISTENCIA: {
