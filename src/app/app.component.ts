@@ -17,8 +17,8 @@ export class AppComponent implements OnInit {
     this._service.currentUser$.subscribe( user => {
       this.user = user;
     })
+    this.user = JSON.parse(localStorage.getItem('currentUser'))
     if(!this.user) {
-      console.log('no hay user => redirigir')
       this.guardService.checkUserLogin()
     }
   }

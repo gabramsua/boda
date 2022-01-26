@@ -28,8 +28,9 @@ export class AuthService {
     private router: Router) { 
   }
   
-  save(item) {
-    return this.firebase.collection(constants.END_POINTS.USERS).add(item);
+  save(collection, item) {
+    // constants.END_POINTS.USERS
+    return this.firebase.collection(collection).add(item);
   }
 
   getAll(collection): Observable<any> {
@@ -38,6 +39,10 @@ export class AuthService {
   
   get(collection, id: string) {
     return this.firebase.collection(collection).doc(id).get()
+  }
+
+  update(collection, id:string, data:any) {
+    return this.firebase.collection(collection).doc(id).update(data);
   }
 
   login(collection, phone: string) {
@@ -67,10 +72,10 @@ export class AuthService {
             apellidos: 'Ramos Suan',
             telefono: phone, //data.data()['telefono'],
             asistencia:null,
-            tipoBus:null,
-            alergias:null,
+            tipoBus:'bus_vuelta',
+            alergias:'nope',
             bebidas:null,
-            cancion:null,
+            cancion:'cancion_3',
             puntuacionQuizz:null,
           }
           localStorage.setItem('currentUser', JSON.stringify(user));

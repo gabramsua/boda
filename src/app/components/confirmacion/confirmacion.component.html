@@ -1,6 +1,7 @@
 <h1 class="display-4 d-flex justify-content-center">Confirmar asistencia</h1>
-<p><span>Nos encantará disfrutar con vosotros en nuestra boda. ¡Estamos deseando que llegue el día! En esta sección os pedimos que confirméis vuestra asistencia. 
-         Por favor no te olvides de indicarnos también si necesitarás traslado en autobús (en el apartado 3).</span></p>
+<p class="text-justify"><span>Nos encantará disfrutar con vosotros en nuestra boda. ¡Estamos deseando que llegue el día! En esta sección os pedimos que confirméis vuestra asistencia. 
+        Por favor no te olvides de indicarnos también si necesitarás traslado en autobús (en el apartado 3).
+        No te preocupes si más adelante quieres modificar o actualizar algo, podrás hacerlo sin tener que rellenar todo de nuevo.</span></p>
 <p><span>Adoramos a vuestros peques y a vuestras mascotas, y por ello creemos que se merecen un día libre. </span></p>
 
 <div class="container d-flex justify-content-center mt-4"><h3>¡OS ESPERAMOS!</h3></div>
@@ -75,10 +76,10 @@
             </div>
             <!-- <modal class="d-flex mb-3"></modal> -->
             <mat-radio-group class="d-flex justify-content-around flex-wrap" aria-label="Select an option!" formControlName="traslado">
-                <mat-radio-button class="col-sm-6" value="ida_vuelta">Sí, ida y vuelta</mat-radio-button>
-                <mat-radio-button class="col-sm-6" value="ida">Sólo la ida</mat-radio-button>
-                <mat-radio-button class="col-sm-6" value="ida">Sólo la vuelta</mat-radio-button>
-                <mat-radio-button class="col-sm-6" value="no">No, gracias</mat-radio-button>
+                <mat-radio-button class="col-sm-6" value="bus_ida_vuelta">Sí, ida y vuelta</mat-radio-button>
+                <mat-radio-button class="col-sm-6" value="bus_ida">Sólo la ida</mat-radio-button>
+                <mat-radio-button class="col-sm-6" value="bus_vuelta">Sólo la vuelta</mat-radio-button>
+                <mat-radio-button class="col-sm-6" value="bus_no">No, gracias</mat-radio-button>
             </mat-radio-group>
         </form>        
         <div class="d-flex justify-content-between">
@@ -116,12 +117,14 @@
         <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
 </mat-vertical-stepper>
-<button class="btn btn-info"
-    *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que !== ''"
-    (click)="guardar()"
->
-    FINALIZAR
-</button>
+<div class="display-4 d-flex justify-content-center mt-4 mb-2">
+    <!-- *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que !== ''" -->
+    <button class="btn btn-info"
+        (click)="guardar()"
+    >
+        FINALIZAR
+    </button>
+</div>
 
 <!-- {{ quien_eres.value.nombre }} - {{ quien_eres.value.apellidos }} -->
 <!-- {{ asistencia.value.vienes_o_que }} -->
