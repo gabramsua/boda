@@ -38,7 +38,8 @@ export class LoginComponent implements OnInit {
   }
   login(phone:string = this.user?.telefono) {
     if(!phone) phone = this.telefono.value // JSON.stringify(this.loginForm.value.telefono);
-    this._service.login(constants.END_POINTS.USERS, phone)
+    this._service.fakeLogin(constants.END_POINTS.USERS, phone)
+    // this._service.login(constants.END_POINTS.USERS, phone)
   }
   disableLogin() {
     return this.loginForm.value.telefono === '' || JSON.stringify(this.loginForm.value.telefono).length !== 9
