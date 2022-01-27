@@ -1,16 +1,17 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
 import { ChartType } from 'chart.js';
-import { AuthService, User } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import constants from 'src/app/constants';
+import { User } from 'src/app/models/models';
 
 @Component({
   selector: 'app-recomienda-cancion',
   templateUrl: './recomienda-cancion.component.html',
   styleUrls: ['./recomienda-cancion.component.scss']
 })
-export class RecomiendaCancionComponent implements OnInit, AfterViewInit, OnDestroy {
+export class RecomiendaCancionComponent implements OnInit {
   
   @ViewChild('demoYouTubePlayer') demoYouTubePlayer: ElementRef<HTMLDivElement>;
   videoWidth: number | undefined;
@@ -31,8 +32,7 @@ export class RecomiendaCancionComponent implements OnInit, AfterViewInit, OnDest
   public doughnutChartType: ChartType = 'pie';
 
   constructor(
-    private _formBuilder: FormBuilder, 
-    private _changeDetectorRef: ChangeDetectorRef, 
+    private _formBuilder: FormBuilder,
     private _service: AuthService) { }
 
   ngOnInit(): void {
@@ -50,52 +50,56 @@ export class RecomiendaCancionComponent implements OnInit, AfterViewInit, OnDest
     });
   }
 
-  ngAfterViewInit(): void {
-    this.onResize();
-    window.addEventListener('resize', this.onResize);
-  }
-
-  onResize = (): void => {
-    // Automatically expand the video to fit the page up to 1200px x 720px
-    this.videoWidth = Math.min(this.demoYouTubePlayer.nativeElement.clientWidth, 1200);
-    this.videoHeight = this.videoWidth * 0.6;
-    this._changeDetectorRef.detectChanges();
-  }
-
-  ngOnDestroy(): void {
-    window.removeEventListener('resize', this.onResize);
-  }
-
   guardarCancion () {
-    this.currentUser.cancion = this.canciones.value.cancion;
+    // Si hay voto anterior, borrar
+    if ( this.currentUser.cancion ) {      
+      this._service.delete(this.currentUser.cancion, this.currentUser.telefono)
+    }
+    // Insertar el voto en la tabla correspondiente de la canción
+    this._service.save(this.canciones.value.cancion, this.currentUser.telefono, {})
 
+    // Actualizar el usuario con su voto
+    this.updateUser()
+  }
+
+  disableResults() {
+    return this.currentUser.cancion === null || this.currentUser.cancion === ''
+  }
+
+  getResultados() {
+    for (let i = 1; i < 7; i++) {
+      this._service.getAll('cancion_'+i).subscribe(data => {
+        this.doughnutChartData[0][i-1] = data.length-1
+      })
+    }
+  }
+  verResultados() {
+    this.show_results = !this.show_results;
+  }
+  updateUser(){
     //  ACTUALIZAR EL CURRENT USER
+    this.currentUser.cancion = this.canciones.value.cancion;
     localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-    
+        
+    // Actualizar el registro del current User
     this._service.update(constants.END_POINTS.USERS, this.currentUser.telefono, this.currentUser)
       .then(()=>{
+        // this.getResultados()
         Swal.fire(
           '¡Gracias!',
           'Hemos registrado tu respuesta y ya estamos un poco más cerca de saber qué canción pondremos',
           'success'
-        )
+        ).then((result) => {
+          if (result.isConfirmed) {
+            // Swal.fire(
+            //   'Deleted!',
+            //   'Your file has been deleted.',
+            //   'success'
+            // )
+          }
+        })
       }, error => {
         console.log(error)
       })
-  }
-
-  getResultados() {
-    this._service.getAll(constants.END_POINTS.RESULTADOS_CANCIONES).subscribe(data => {
-      for (let i = 0; i < 6; i++) {
-        let cancion = []
-        for(var j in data[i].payload.doc.data()){
-          cancion.push([j, data[i].payload.doc.data() [j]]);
-        }
-        this.doughnutChartData[0][i] = cancion.length
-      }
-    })
-  }
-  verResultados() {
-    this.show_results = !this.show_results;
   }
 }

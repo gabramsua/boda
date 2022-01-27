@@ -121,8 +121,10 @@
                     aria-expanded="false" 
                     aria-controls="collapseExample"
                     (click)="verResultados()"
+                    [disabled]="disableResults()"
                 >
-                    Ver resultados
+                    <span *ngIf="!disableResults()">Ver resultados</span>
+                    <span *ngIf="disableResults()">Vota para ver los resultados</span>
                 </button>
             </div>
         </div>
