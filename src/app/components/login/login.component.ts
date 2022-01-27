@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import constants from 'src/app/constants';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
-import { AuthService, User } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/models';
 
 @Component({
   selector: 'app-login',
