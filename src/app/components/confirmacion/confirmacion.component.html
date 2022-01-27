@@ -11,17 +11,26 @@
     <mat-step [stepControl]="quien_eres">
       <form [formGroup]="quien_eres" class="d-flex justify-content-around flex-wrap">
         <ng-template matStepLabel>¿Quién eres?</ng-template>
-        <mat-form-field appearance="outline">
-            <mat-label>Tu nombre</mat-label>
-            <input matInput aria-label="nombre" formControlName="nombre">
-            <mat-error *ngIf="name.invalid">Sin estos campos no podrás continuar</mat-error>
-            <!-- <mat-hint>Sin estos campos no podrás continuar</mat-hint> -->
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Tus apellidos</mat-label>
-            <input matInput aria-label="apellidos" formControlName="apellidos">
-            <mat-error *ngIf="surname.invalid">Sin estos campos no podrás continuar</mat-error>
-        </mat-form-field>
+        <div class="container">
+            <div class="row">
+              <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Tu nombre</mat-label>
+                    <input matInput aria-label="nombre" formControlName="nombre">
+                    <mat-error *ngIf="name.invalid">Sin estos campos no podrás continuar</mat-error>
+                    <!-- <mat-hint>Sin estos campos no podrás continuar</mat-hint> -->
+                </mat-form-field>
+              </div>
+              
+              <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Tus apellidos</mat-label>
+                    <input matInput aria-label="apellidos" formControlName="apellidos">
+                    <mat-error *ngIf="surname.invalid">Sin estos campos no podrás continuar</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+        </div>
       </form>
       <div class="d-flex justify-content-between">
         <button mat-button matStepperPrevious style="visibility: hidden">Anterior</button>
@@ -42,6 +51,46 @@
           <button mat-button matStepperNext>Siguiente</button>
         </div>
     </mat-step>
+    <!-- /////////////////// ¿TRAES ACOMPAÑANTE? //////////////////// -->
+    <mat-step *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que === 'true'">        
+        <form [formGroup]="acompanantes" class="d-flex justify-content-around flex-wrap">
+            <ng-template matStepLabel>¿Traes acompañante?</ng-template>
+            
+            <!-- ACOMPAÑANTE 1 -->
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Su nombre</mat-label>
+                            <input matInput aria-label="ac_nombre1" formControlName="nombre1">
+                            <!-- <mat-hint>Sin estos campos no podrás continuar</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Sus apellidos</mat-label>
+                            <input matInput aria-label="ac_apellido1" formControlName="apellido1">
+                            <!-- <mat-hint>Sin estos campos no podrás continuar</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Su teléfono</mat-label>
+                            <input matInput aria-label="ac_telefono" formControlName="telefono1">
+                            <!-- <mat-hint>Sin estos campos no podrás continuar</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN ACOMPAÑANTE 1 -->
+            
+        </form>        
+        <div class="d-flex justify-content-between">
+            <button mat-button matStepperPrevious>Anterior</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
+    </mat-step>
+    <!-- /////////////////// ¿TRAES ACOMPAÑANTE? //////////////////// -->
 
     <mat-step *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que === 'true'">        
         <form [formGroup]="buses">
@@ -90,9 +139,10 @@
     
     <mat-step *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que === 'true'">        
         <form [formGroup]="alergias">
-            <ng-template matStepLabel>Alergias e intolerancias</ng-template>
+            <ng-template matStepLabel>Requerimiento alimenticio</ng-template>
             <div class="form-group">
-                <label>Especifica por favor tus alergias/intolerancias para tenerlas en cuenta: </label>
+                <!-- <label>Especifica por favor tus alergias/intolerancias para tenerlas en cuenta: </label> -->
+                <label>Aquí es donde especificas, por favor, tus alergias / intolerancias / si eres vegetariano ó vegano, etc para tenerlo en cuenta: </label>
                 <textarea class="form-control" formControlName="intolerancias" rows="3"></textarea>
             </div>
         </form>        
@@ -111,12 +161,14 @@
                 <textarea class="form-control" formControlName="drinks" rows="3" placeholder="Ginebra marca tal, o Ron marca cual..."></textarea>
             </div>
         </form>
-    </mat-step>        
+    </mat-step>
+
     <div class="d-flex justify-content-between">
         <button mat-button matStepperPrevious>Anterior</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
 </mat-vertical-stepper>
+
 <div class="display-4 d-flex justify-content-center mt-4 mb-2">
     <!-- *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que !== ''" -->
     <button class="btn btn-info"
@@ -125,6 +177,4 @@
         FINALIZAR
     </button>
 </div>
-
-<!-- {{ quien_eres.value.nombre }} - {{ quien_eres.value.apellidos }} -->
-<!-- {{ asistencia.value.vienes_o_que }} -->
+<br>
