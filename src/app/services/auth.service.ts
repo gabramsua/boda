@@ -84,7 +84,12 @@ export class AuthService {
             cancion:'cancion_3',
             puntuacionQuizz:null,
             acompananteDe: null,
-            acompanantes: []
+            acompanantes: [
+              {
+                nombre: 'Cai',
+                apellidos: 'Ramos Gallardo',
+                telefono: '123321'}
+            ]
           }
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUser$.next(user);

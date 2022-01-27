@@ -9,7 +9,7 @@ export interface User {
     cancion: string;
     puntuacionQuizz: number;
     acompananteDe: string;
-    acompanantes: User[];
+    acompanantes: any[];
 }
 
 export interface ResultadoCancion {}

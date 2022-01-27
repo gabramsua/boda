@@ -128,17 +128,22 @@ export class ConfirmacionComponent implements OnInit {
         telefono: this.acompanantes.value.telefono1,
         asistencia: this.asistencia.value.vienes_o_que,
         tipoBus: this.buses.value.traslado,
-        alergias: this.alergias.value.intolerancias,
-        bebidas: this.bebidas.value.drinks,
+        alergias: null,
+        bebidas: null,
         cancion: null,
         puntuacionQuizz: null,
         acompananteDe: this.currentUser.telefono,
-        acompanantes: []
+        acompanantes: [{
+          nombre: this.quien_eres.value.nombre,
+          apellidos: this.quien_eres.value.apellidos,
+          telefono: this.currentUser.telefono,
+        }]
       }
-      console.log('FORMULARIO ACOMPAÑANTE', formularioAcompanante1)
-      
-      formularioAcompanante1.acompanantes = []
-      formulario.acompanantes.push(formularioAcompanante1)
+
+      formulario.acompanantes.push({
+          nombre: this.acompanantes.value.nombre1,
+          apellidos: this.acompanantes.value.apellido1,
+          telefono: this.acompanantes.value.telefono1})
 
       if(acompanante2) {
         formularioAcompanante2 = {
@@ -147,15 +152,21 @@ export class ConfirmacionComponent implements OnInit {
           telefono: this.acompanantes.value.telefono2,
           asistencia: this.asistencia.value.vienes_o_que,
           tipoBus: this.buses.value.traslado,
-          alergias: this.alergias.value.intolerancias,
-          bebidas: this.bebidas.value.drinks,
+          alergias: null,
+          bebidas: null,
           cancion: null,
           puntuacionQuizz: null,
           acompananteDe: this.currentUser.telefono,
-          acompanantes: [formulario, formularioAcompanante1]
+          acompanantes: []
         }
-        formulario.acompanantes.push(formularioAcompanante2)
-        formularioAcompanante1.acompanantes.push(formularioAcompanante2)
+        formulario.acompanantes.push({
+            nombre: this.acompanantes.value.nombre2,
+            apellidos: this.acompanantes.value.apellido2,
+            telefono: this.acompanantes.value.telefono2})
+        formularioAcompanante1.acompanantes.push({
+            nombre: this.acompanantes.value.nombre2,
+            apellidos: this.acompanantes.value.apellido2,
+            telefono: this.acompanantes.value.telefono2})
 
         
         if(acompanante3) {
@@ -165,26 +176,46 @@ export class ConfirmacionComponent implements OnInit {
             telefono: this.acompanantes.value.telefono3,
             asistencia: this.asistencia.value.vienes_o_que,
             tipoBus: this.buses.value.traslado,
-            alergias: this.alergias.value.intolerancias,
-            bebidas: this.bebidas.value.drinks,
+            alergias: null,
+            bebidas: null,
             cancion: null,
             puntuacionQuizz: null,
             acompananteDe: this.currentUser.telefono,
-            acompanantes: [formulario, formularioAcompanante1, formularioAcompanante2]
+            acompanantes: []
           }
-          formulario.acompanantes.push(formularioAcompanante3)
-          formularioAcompanante1.acompanantes.push(formularioAcompanante3)
-          formularioAcompanante2.acompanantes.push(formularioAcompanante3)
+          formulario.acompanantes.push({
+              nombre: this.acompanantes.value.nombre3,
+              apellidos: this.acompanantes.value.apellido3,
+              telefono: this.acompanantes.value.telefono3})
+          formularioAcompanante1.acompanantes.push({
+              nombre: this.acompanantes.value.nombre3,
+              apellidos: this.acompanantes.value.apellido3,
+              telefono: this.acompanantes.value.telefono3})
+          formularioAcompanante2.acompanantes.push({
+              nombre: this.acompanantes.value.nombre3,
+              apellidos: this.acompanantes.value.apellido3,
+              telefono: this.acompanantes.value.telefono3})
 
           // Máximo 3 acompañantes
+          // console.log('VER SI USER TIENE A ACOMPANANTE')
           // this.save(this.acompanantes.value.telefono3, formularioAcompanante3)
         }
         // this.save(this.acompanantes.value.telefono2, formularioAcompanante2)
       }
+      console.log('VER SI USER TIENE A ACOMPANANTE', this.currentUser.acompanantes)
+      // Recorrer los acompañantes y comprobar si los objetos que hay son iguales a los que ha metido
+      this.currentUser.acompanantes.map(elem => {
+        console.log(elem, elem === {
+          nombre: this.acompanantes.value.nombre1,
+          apellidos: this.acompanantes.value.apellido1,
+          telefono: this.acompanantes.value.telefono1})
+      })
+
       // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
       // this.update(this.acompanantes.value.telefono1, formularioAcompanante1)
     }
     console.log('FORMULARIO USER', formulario)
+    console.log('FORMULARIO ACOMPAÑANTE', formularioAcompanante1)
 
     //  ACTUALIZAR EL CURRENT USER
     // localStorage.setItem('currentUser', JSON.stringify(formulario));
