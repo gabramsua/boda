@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
-import { ChartType } from 'chart.js';
 import { AuthService } from 'src/app/services/auth.service';
 import constants from 'src/app/constants';
 import { User } from 'src/app/models/models';
@@ -17,28 +16,14 @@ export class RecomiendaCancionComponent implements OnInit {
   videoWidth: number | undefined;
   videoHeight: number | undefined;
   canciones: FormGroup;
-  show_results: Boolean;
   currentUser: User;
-
-  public doughnutChartLabels = [
-    'Avicii - The nights',
-    'Manzanita - Un ramito de violetas',
-    'Chiquetete - Esa cobardía',
-    'Camilo Sesto - Vivir así es morir de amor',
-    'Jarabe de Palo - Eso que tú me das',
-    'Junco - Hola mi amor'
-  ];
-  public doughnutChartData = [[,,,,,]];
-  public doughnutChartType: ChartType = 'pie';
+  constants = constants;
 
   constructor(
     private _formBuilder: FormBuilder,
     private _service: AuthService) { }
 
   ngOnInit(): void {
-    this.show_results = false;
-    this.getResultados()
-
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
     let cancion;
 
@@ -66,16 +51,6 @@ export class RecomiendaCancionComponent implements OnInit {
     return this.currentUser.cancion === null || this.currentUser.cancion === ''
   }
 
-  getResultados() {
-    for (let i = 1; i < 7; i++) {
-      this._service.getAll('cancion_'+i).subscribe(data => {
-        this.doughnutChartData[0][i-1] = data.length-1
-      })
-    }
-  }
-  verResultados() {
-    this.show_results = !this.show_results;
-  }
   updateUser(){
     //  ACTUALIZAR EL CURRENT USER
     this.currentUser.cancion = this.canciones.value.cancion;

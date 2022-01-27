@@ -38,27 +38,13 @@
                         <div class="modal-body">
                             <div class="d-flex justify-content-center flex-wrap">
                                 <youtube-player
-                                    videoId="UtF6Jej8yb4"
+                                    [videoId]="constants.VALUES.IDS_CANCIONES.CANCION_1"
                                     suggestedQuality="highres"
                                     [height]="200"
                                     [width]="300"
                                 ></youtube-player>
                                 <youtube-player
-                                    videoId="8WdrVgdUXJI"
-                                    suggestedQuality="highres"
-                                    [height]="200"
-                                    [width]="300"
-                                ></youtube-player>
-                            </div>
-                            <div class="d-flex justify-content-center flex-wrap">
-                                <youtube-player
-                                    videoId="aUyPHxBc82Q"
-                                    suggestedQuality="highres"
-                                    [height]="200"
-                                    [width]="300"
-                                ></youtube-player>
-                                <youtube-player
-                                    videoId="-DQ4ZUdcmwk"
+                                    [videoId]="constants.VALUES.IDS_CANCIONES.CANCION_2"
                                     suggestedQuality="highres"
                                     [height]="200"
                                     [width]="300"
@@ -66,13 +52,27 @@
                             </div>
                             <div class="d-flex justify-content-center flex-wrap">
                                 <youtube-player
-                                    videoId="hE6CsyWv8Zs"
+                                    [videoId]="constants.VALUES.IDS_CANCIONES.CANCION_3"
                                     suggestedQuality="highres"
                                     [height]="200"
                                     [width]="300"
                                 ></youtube-player>
                                 <youtube-player
-                                    videoId="Iw0FNURjOWs"
+                                    [videoId]="constants.VALUES.IDS_CANCIONES.CANCION_4"
+                                    suggestedQuality="highres"
+                                    [height]="200"
+                                    [width]="300"
+                                ></youtube-player>
+                            </div>
+                            <div class="d-flex justify-content-center flex-wrap">
+                                <youtube-player
+                                    [videoId]="constants.VALUES.IDS_CANCIONES.CANCION_5"
+                                    suggestedQuality="highres"
+                                    [height]="200"
+                                    [width]="300"
+                                ></youtube-player>
+                                <youtube-player
+                                    [videoId]="constants.VALUES.IDS_CANCIONES.CANCION_6"
                                     suggestedQuality="highres"
                                     [height]="200"
                                     [width]="300"
@@ -96,15 +96,14 @@
                     <h3>¿Con qué canción quieres que entremos al banquete?</h3>
                 </div>
                 <mat-radio-group class="d-flex justify-content-around flex-wrap" aria-label="Select an option!" formControlName="cancion">
-                    <mat-radio-button class="col-sm-7 col-lg-6" value="cancion_1">Avicii - The nights</mat-radio-button>
-                    <mat-radio-button class="col-sm-7 col-lg-6" value="cancion_2">Manzanita - Un ramito de violetas</mat-radio-button>
-                    <mat-radio-button class="col-sm-7 col-lg-6" value="cancion_3">Chiquetete - Esa cobardía</mat-radio-button>
-                    <mat-radio-button class="col-sm-7 col-lg-6" value="cancion_4">Camilo Sesto - Vivir así es morir de amor</mat-radio-button>
-                    <mat-radio-button class="col-sm-7 col-lg-6" value="cancion_5">Jarabe de Palo - Eso que tú me das</mat-radio-button>
-                    <mat-radio-button class="col-sm-7 col-lg-6" value="cancion_6">Junco - Hola mi amor</mat-radio-button>
+                    <mat-radio-button class="col-sm-7 col-lg-6" value="cancion_1">{{ constants.VALUES.TITULOS_CANCIONES.CANCION_1 }}</mat-radio-button>
+                    <mat-radio-button class="col-sm-7 col-lg-6" value="cancion_2">{{ constants.VALUES.TITULOS_CANCIONES.CANCION_2 }}</mat-radio-button>
+                    <mat-radio-button class="col-sm-7 col-lg-6" value="cancion_3">{{ constants.VALUES.TITULOS_CANCIONES.CANCION_3 }}</mat-radio-button>
+                    <mat-radio-button class="col-sm-7 col-lg-6" value="cancion_4">{{ constants.VALUES.TITULOS_CANCIONES.CANCION_4 }}</mat-radio-button>
+                    <mat-radio-button class="col-sm-7 col-lg-6" value="cancion_5">{{ constants.VALUES.TITULOS_CANCIONES.CANCION_5 }}</mat-radio-button>
+                    <mat-radio-button class="col-sm-7 col-lg-6" value="cancion_6">{{ constants.VALUES.TITULOS_CANCIONES.CANCION_6 }}</mat-radio-button>
                 </mat-radio-group>
             </form>
-            <!-- *ngIf="canciones.value.cancion" -->
             <div class="container d-flex justify-content-around">
                 <button 
                     class="btn btn-info"
@@ -113,15 +112,10 @@
                 >
                     Votar
                 </button>
-                <!-- data-toggle="modal" data-target="#container_resultados" -->
                 <button 
                     class="btn btn-outline-secondary"
-                    data-toggle="collapse" 
-                    data-target="#collapseExample" 
-                    aria-expanded="false" 
-                    aria-controls="collapseExample"
-                    (click)="verResultados()"
                     [disabled]="disableResults()"
+                    routerLink="/resultados-votacion"
                 >
                     <span *ngIf="!disableResults()">Ver resultados</span>
                     <span *ngIf="disableResults()">Vota para ver los resultados</span>
@@ -129,58 +123,3 @@
             </div>
         </div>
     </div>
-
-<!-- <div class="modal fade" id="container_resultados" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Aquí tienes los resultados actuales</h2>
-                <button class="close" data-dismiss="modal"><span>&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="d-flex justify-content-center flex-wrap">
-                    Va ganando Rita The Singer
-                    <app-graficos></app-graficos>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<div class="collapse" id="collapseExample">
-        <div class="container mt-2 d-flex flex-wrap justify-content-center">
-            <div class="card card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h2 class="modal-title">Aquí tienes los resultados actuales</h2>
-                    <button 
-                        class="btn btn-outline-secondary"
-                        data-toggle="collapse" 
-                        data-target="#collapseExample" 
-                        aria-expanded="false" 
-                        aria-controls="collapseExample"
-                        (click)="verResultados()"
-                    >
-                        Volver
-                    </button>
-                </div>
-                    <div>
-                        <div>
-                            <div>
-                                <canvas baseChart
-                                [data]="doughnutChartData"
-                                [labels]="doughnutChartLabels"  
-                                [chartType]="doughnutChartType">
-                                </canvas>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-

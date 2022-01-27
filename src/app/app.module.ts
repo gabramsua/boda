@@ -39,6 +39,7 @@ import { RecomiendaCancionComponent } from './components/recomienda-cancion/reco
 import { MinutaComponent } from './components/minuta/minuta.component';
 import { LoginComponent } from './components/login/login.component';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
+import { ResultadosComponent } from './components/resultados/resultados.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/p
     RecomiendaCancionComponent,
     MinutaComponent,
     LoginComponent,
-    PaginaNoEncontradaComponent
+    PaginaNoEncontradaComponent,
+    ResultadosComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [

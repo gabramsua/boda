@@ -8,6 +8,7 @@ import { MesasComponent } from './components/mesas/mesas.component';
 import { MinutaComponent } from './components/minuta/minuta.component';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
 import { RecomiendaCancionComponent } from './components/recomienda-cancion/recomienda-cancion.component';
+import { ResultadosComponent } from './components/resultados/resultados.component';
 import { TrasladosComponent } from './components/traslados/traslados.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
     {path: 'menu', component: MinutaComponent, canActivate: [AuthGuardService]},
     {path: 'lista-de-bodas', component: ListaBodasComponent, canActivate: [AuthGuardService]},
     {path: 'recomienda-cancion', component: RecomiendaCancionComponent, canActivate: [AuthGuardService]},
+    {path: 'resultados-votacion', component: ResultadosComponent, canActivate: [AuthGuardService]},
     {path: '**', component: PaginaNoEncontradaComponent}
 ];
 
