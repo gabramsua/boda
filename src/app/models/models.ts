@@ -4,8 +4,8 @@ export interface User {
     telefono: string;
     asistencia: string;
     tipoBus: string;
-    alergias: string;
-    bebidas: string;
+    alergias?: string;
+    bebida: string;
     cancion: string;
     puntuacionQuizz: number;
     acompananteDe: string;

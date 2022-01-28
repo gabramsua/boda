@@ -58,6 +58,7 @@
             
             <!-- ACOMPAÑANTE 1 -->
             <div class="container">
+                <p><span *ngIf="addAcompanante2">Acompañante 1</span></p>
                 <div class="row">
                     <div class="col">
                         <mat-form-field appearance="outline">
@@ -84,9 +85,62 @@
             </div>
             <!-- FIN ACOMPAÑANTE 1 -->
             
+            <!-- ACOMPAÑANTE 2 -->
+            <div class="container" *ngIf="addAcompanante2">
+                <p class="p_acompanante"><span *ngIf="addAcompanante2">Acompañante 2</span></p>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Su nombre</mat-label>
+                            <input matInput aria-label="ac_nombre2" formControlName="nombre2">
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Sus apellidos</mat-label>
+                            <input matInput aria-label="ac_apellido2" formControlName="apellido2">
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Su teléfono</mat-label>
+                            <input matInput aria-label="ac_telefono2" formControlName="telefono2">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN ACOMPAÑANTE 2 -->
+            
+            <!-- ACOMPAÑANTE 3 -->
+            <div class="container" *ngIf="addAcompanante3">
+                <p class="p_acompanante"><span *ngIf="addAcompanante3">Acompañante 3</span></p>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Su nombre</mat-label>
+                            <input matInput aria-label="ac_nombre3" formControlName="nombre3">
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Sus apellidos</mat-label>
+                            <input matInput aria-label="ac_apellido3" formControlName="apellido3">
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Su teléfono</mat-label>
+                            <input matInput aria-label="ac_telefono3" formControlName="telefono3">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN ACOMPAÑANTE 3 -->
+            
         </form>        
         <div class="d-flex justify-content-between">
             <button mat-button matStepperPrevious>Anterior</button>
+            <button mat-raised-button class="addAcompanante" (click)="addAcompanante()">Añadir otro acompañante</button>
             <button mat-button matStepperNext>Siguiente</button>
           </div>
     </mat-step>
@@ -153,7 +207,7 @@
     </mat-step>
 
     <mat-step *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que === 'true'">        
-        <form [formGroup]="bebidas">
+        <form [formGroup]="bebida">
             <ng-template matStepLabel>Bebida favorita</ng-template>
             <div class="form-group">
                 <label> Intentaremos poner las bebidas que le gusten a todos, o a la mayoría. Por favor, 

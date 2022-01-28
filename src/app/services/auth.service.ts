@@ -47,6 +47,10 @@ export class AuthService {
   });
   }
 
+  getRandom() {
+    // return this.firebase.collection('').where("", "==", true).get()
+  }
+
   login(collection, phone: string) {
     // // this.firebase.collection(collection).doc(phone).get().subscribe( data => {
     this.firebase.collection(collection).doc(phone).get().toPromise()
@@ -58,7 +62,7 @@ export class AuthService {
           asistencia: data.data()['asistencia'],
           tipoBus: data.data()['tipoBus'],
           alergias: data.data()['alergias'],
-          bebidas: data.data()['bebida'],
+          bebida: data.data()['bebida'],
           cancion: data.data()['cancion'],
           puntuacionQuizz: data.data()['puntuacionQuizz'],
           acompananteDe: data.data()['acompananteDe'],

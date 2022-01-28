@@ -7,7 +7,7 @@ import { User } from 'src/app/models/models';
 @Component({
   selector: 'confirmacion',
   templateUrl: './confirmacion.component.html',
-  styleUrls: ['./confirmacion.component.scss']
+  styleUrls: ['./confirmacion.component.scss',]
 })
 export class ConfirmacionComponent implements OnInit {
 
@@ -17,9 +17,11 @@ export class ConfirmacionComponent implements OnInit {
   asistencia: FormGroup;
   buses: FormGroup;
   alergias: FormGroup;
-  bebidas: FormGroup;
+  bebida: FormGroup;
   acompanantes : FormGroup;
   currentUser: User;
+  addAcompanante2 = false;
+  addAcompanante3 = false;
   
   name = new FormControl('', [Validators.required]);
   surname = new FormControl('', [Validators.required]);
@@ -29,7 +31,7 @@ export class ConfirmacionComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
-    let nombre, apellidos, asistencia, bebidas, tipoBus, alergias;
+    let nombre, apellidos, asistencia, bebida, tipoBus, alergias;
     let nombre1, apellido1, telefono1;
     let nombre2, apellido2, telefono2;
     let nombre3, apellido3, telefono3;
@@ -38,7 +40,7 @@ export class ConfirmacionComponent implements OnInit {
       nombre = this.currentUser.nombre
       apellidos = this.currentUser.apellidos
       asistencia = this.currentUser.asistencia
-      bebidas = this.currentUser.bebidas
+      bebida = this.currentUser.bebida
       tipoBus = this.currentUser.tipoBus
       alergias = this.currentUser.alergias
 
@@ -59,7 +61,7 @@ export class ConfirmacionComponent implements OnInit {
       nombre = '';
       apellidos = '';
       asistencia = '';
-      bebidas = '';
+      bebida = '';
       tipoBus = '';
       alergias = '';
 
@@ -89,15 +91,28 @@ export class ConfirmacionComponent implements OnInit {
     this.alergias = this._formBuilder.group({
       intolerancias: [alergias, Validators.required]
     });
-    this.bebidas = this._formBuilder.group({
-      drinks: [bebidas, Validators.required]
+    this.bebida = this._formBuilder.group({
+      drinks: [bebida, Validators.required]
     });
     this.acompanantes = this._formBuilder.group({
       nombre1: nombre1,
       apellido1:apellido1,
-      telefono1: telefono1
+      telefono1: telefono1,
+
+      nombre2: nombre2,
+      apellido2:apellido2,
+      telefono2: telefono2,
+
+      nombre3: nombre3,
+      apellido3:apellido3,
+      telefono3: telefono3
     })
   }
+  addAcompanante() {
+    if(!this.addAcompanante2) this.addAcompanante2 = true;
+    else if(!this.addAcompanante3) this.addAcompanante3 = true;
+  }
+
   guardar() {
     const formulario: User = {
       nombre: this.quien_eres.value.nombre,
@@ -105,8 +120,8 @@ export class ConfirmacionComponent implements OnInit {
       telefono: this.currentUser.telefono,
       asistencia: this.asistencia.value.vienes_o_que,
       tipoBus: this.buses.value.traslado,
-      alergias: this.alergias.value.intolerancias,
-      bebidas: this.bebidas.value.drinks,
+      //alergias: this.alergias.value.intolerancias,
+      bebida: this.bebida.value.drinks,
       cancion: this.currentUser.cancion,
       puntuacionQuizz: this.currentUser.puntuacionQuizz,
       acompananteDe: this.currentUser.acompananteDe,
@@ -119,8 +134,7 @@ export class ConfirmacionComponent implements OnInit {
     let acompanante3 = this.acompanantes.value.nombre3 && this.acompanantes.value.telefono3
 
     let formularioAcompanante1,formularioAcompanante2,formularioAcompanante3: User;
-    // Hay que ver si es INSERT o bien UPDATE
-    // la información está en el currentUser
+    // Info de los acompañanets del formulario
     if(acompanante1) {
       formularioAcompanante1 = {
         nombre: this.acompanantes.value.nombre1,
@@ -129,15 +143,17 @@ export class ConfirmacionComponent implements OnInit {
         asistencia: this.asistencia.value.vienes_o_que,
         tipoBus: this.buses.value.traslado,
         alergias: null,
-        bebidas: null,
+        bebida: null,
         cancion: null,
         puntuacionQuizz: null,
         acompananteDe: this.currentUser.telefono,
-        acompanantes: [{
-          nombre: this.quien_eres.value.nombre,
-          apellidos: this.quien_eres.value.apellidos,
-          telefono: this.currentUser.telefono,
-        }]
+        acompanantes: [
+          {
+            nombre: this.quien_eres.value.nombre,
+            apellidos: this.quien_eres.value.apellidos,
+            telefono: this.currentUser.telefono,
+          }
+        ]
       }
 
       formulario.acompanantes.push({
@@ -153,11 +169,21 @@ export class ConfirmacionComponent implements OnInit {
           asistencia: this.asistencia.value.vienes_o_que,
           tipoBus: this.buses.value.traslado,
           alergias: null,
-          bebidas: null,
+          bebida: null,
           cancion: null,
           puntuacionQuizz: null,
           acompananteDe: this.currentUser.telefono,
-          acompanantes: []
+          acompanantes: [
+            {
+              nombre: this.quien_eres.value.nombre,
+              apellidos: this.quien_eres.value.apellidos,
+              telefono: this.currentUser.telefono,
+            },{
+              nombre: this.acompanantes.value.nombre1,
+              apellidos: this.acompanantes.value.apellido1,
+              telefono: this.acompanantes.value.telefono1
+            }
+          ]
         }
         formulario.acompanantes.push({
             nombre: this.acompanantes.value.nombre2,
@@ -177,11 +203,25 @@ export class ConfirmacionComponent implements OnInit {
             asistencia: this.asistencia.value.vienes_o_que,
             tipoBus: this.buses.value.traslado,
             alergias: null,
-            bebidas: null,
+            bebida: null,
             cancion: null,
             puntuacionQuizz: null,
             acompananteDe: this.currentUser.telefono,
-            acompanantes: []
+            acompanantes: [
+              {
+                nombre: this.quien_eres.value.nombre,
+                apellidos: this.quien_eres.value.apellidos,
+                telefono: this.currentUser.telefono,
+              },{
+                nombre: this.acompanantes.value.nombre1,
+                apellidos: this.acompanantes.value.apellido1,
+                telefono: this.acompanantes.value.telefono1
+              },{
+                nombre: this.acompanantes.value.nombre2,
+                apellidos: this.acompanantes.value.apellido2,
+                telefono: this.acompanantes.value.telefono2
+              }
+            ]
           }
           formulario.acompanantes.push({
               nombre: this.acompanantes.value.nombre3,
@@ -197,25 +237,91 @@ export class ConfirmacionComponent implements OnInit {
               telefono: this.acompanantes.value.telefono3})
 
           // Máximo 3 acompañantes
-          // console.log('VER SI USER TIENE A ACOMPANANTE')
           // this.save(this.acompanantes.value.telefono3, formularioAcompanante3)
         }
         // this.save(this.acompanantes.value.telefono2, formularioAcompanante2)
       }
-      console.log('VER SI USER TIENE A ACOMPANANTE', this.currentUser.acompanantes)
-      // Recorrer los acompañantes y comprobar si los objetos que hay son iguales a los que ha metido
-      this.currentUser.acompanantes.map(elem => {
-        console.log(elem, elem === {
-          nombre: this.acompanantes.value.nombre1,
-          apellidos: this.acompanantes.value.apellido1,
-          telefono: this.acompanantes.value.telefono1})
-      })
-
-      // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
-      // this.update(this.acompanantes.value.telefono1, formularioAcompanante1)
     }
-    console.log('FORMULARIO USER', formulario)
-    console.log('FORMULARIO ACOMPAÑANTE', formularioAcompanante1)
+
+    // Persistencia de los acompañantes    
+    // Recorrer los acompañantes y comprobar si los objetos que hay son iguales a los que ha metido => Si no, hacer insert de los nuevos invitados
+    console.log('VER SI USER TIENE A ACOMPANANTE', this.currentUser.acompanantes)
+    switch(this.currentUser.acompanantes.length){
+      case 1:
+        this.currentUser.acompanantes.map(elem => {
+          let obj1 =  {nombre: this.acompanantes.value.nombre1,apellidos: this.acompanantes.value.apellido1,telefono: this.acompanantes.value.telefono1}
+
+          if(acompanante1 && JSON.stringify(elem) == JSON.stringify(obj1)) {
+            // El Acompañante ya debería existir en BD => No hay que hacer nada
+            console.log('El Acompañante ya debería existir en BD')
+          }
+          else if(acompanante1 && JSON.stringify(elem) !== JSON.stringify(obj1)) {
+            // Es Insert del acompañante 1
+            console.log('Es Insert del acompañante 1', formularioAcompanante1)
+            // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
+          }
+        })
+        break;
+      case 2:
+        this.currentUser.acompanantes.map(elem => {
+          let obj1 =  {nombre: this.acompanantes.value.nombre1,apellidos: this.acompanantes.value.apellido1,telefono: this.acompanantes.value.telefono1}
+          let obj2 =  {nombre: this.acompanantes.value?.nombre2,apellidos: this.acompanantes.value?.apellido2,telefono: this.acompanantes.value?.telefono2}
+
+          if(JSON.stringify(elem) == JSON.stringify(obj1)) {
+            // El Acompañante ya debería existir en BD => No hay que hacer nada
+            console.log('El Acompañante 1 ya debería existir en BD')
+          }
+          else if(JSON.stringify(elem) !== JSON.stringify(obj1) && JSON.stringify(elem) !== JSON.stringify(obj2)) {
+            // Es Insert del acompañante 1
+            console.log('Es Insert del acompañante 1', formularioAcompanante1)
+            // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
+          }
+          else if(JSON.stringify(elem) == JSON.stringify(obj2)) {
+            // El Acompañante ya debería existir en BD => No hay que hacer nada
+            console.log('El Acompañante 2 ya debería existir en BD')
+          }
+          else if(JSON.stringify(elem) !== JSON.stringify(obj2)) {
+            // Es Insert del acompañante 1
+            console.log('Es Insert del acompañante 2', formularioAcompanante2)
+            // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
+          }
+        })
+      case 3:
+        this.currentUser.acompanantes.map(elem => {
+          let obj1 =  {nombre: this.acompanantes.value.nombre1,apellidos: this.acompanantes.value.apellido1,telefono: this.acompanantes.value.telefono1}
+          let obj2 =  {nombre: this.acompanantes.value?.nombre2,apellidos: this.acompanantes.value?.apellido2,telefono: this.acompanantes.value?.telefono2}
+          let obj3 =  {nombre: this.acompanantes.value?.nombre3,apellidos: this.acompanantes.value?.apellido3,telefono: this.acompanantes.value?.telefono3}
+
+          if(acompanante1 && JSON.stringify(elem) == JSON.stringify(obj1)) {
+            // El Acompañante ya debería existir en BD => No hay que hacer nada
+            console.log('El Acompañante 1 ya debería existir en BD')
+          }
+          else if(acompanante1 && JSON.stringify(elem) !== JSON.stringify(obj1)) {
+            // Es Insert del acompañante 1
+            console.log('Es Insert del acompañante 1', formularioAcompanante1)
+            // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
+          }
+          else if(acompanante2 && JSON.stringify(elem) == JSON.stringify(obj2)) {
+            // El Acompañante ya debería existir en BD => No hay que hacer nada
+            console.log('El Acompañante 2 ya debería existir en BD')
+          }
+          else if(acompanante2 && JSON.stringify(elem) !== JSON.stringify(obj2)) {
+            // Es Insert del acompañante 1
+            console.log('Es Insert del acompañante 2', formularioAcompanante2)
+            // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
+          }
+          else if(acompanante3 && JSON.stringify(elem) == JSON.stringify(obj3)) {
+            // El Acompañante ya debería existir en BD => No hay que hacer nada
+            console.log('El Acompañante 3 ya debería existir en BD')
+          }
+          else if(acompanante3 && JSON.stringify(elem) !== JSON.stringify(obj3)) {
+            // Es Insert del acompañante 1
+            console.log('Es Insert del acompañante 3', formularioAcompanante3)
+            // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
+          }
+        })
+        break;
+    }
 
     //  ACTUALIZAR EL CURRENT USER
     // localStorage.setItem('currentUser', JSON.stringify(formulario));
