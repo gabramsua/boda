@@ -152,7 +152,7 @@ export class ConfirmacionComponent implements OnInit {
       telefono: this.currentUser.telefono,
       asistencia: this.asistencia.value.vienes_o_que,
       tipoBus: this.buses.value.traslado,
-      //alergias: this.alergias.value.intolerancias,
+      alergias: this.alergias.value.intolerancias,
       bebida: this.bebida.value.drinks,
       cancion: this.currentUser.cancion,
       puntuacionQuizz: this.currentUser.puntuacionQuizz,
@@ -277,87 +277,6 @@ export class ConfirmacionComponent implements OnInit {
 
     // Persistencia de los acompañantes    
     // Recorrer los acompañantes y comprobar si los objetos que hay son iguales a los que ha metido => Si no, hacer insert de los nuevos invitados
-    console.log('VER SI USER TIENE A ACOMPANANTE', this.currentUser.acompanantes)
-    /*
-    switch(this.currentUser.acompanantes.length){
-      case 1:
-        this.currentUser.acompanantes.map(elem => {
-          let obj1 =  {nombre: this.acompanantes.value.nombre1,apellidos: this.acompanantes.value.apellido1,telefono: this.acompanantes.value.telefono1}
-
-          if(acompanante1 && JSON.stringify(elem) == JSON.stringify(obj1)) {
-            // El Acompañante ya debería existir en BD => No hay que hacer nada
-            console.log('El Acompañante ya debería existir en BD')
-          }
-          else if(acompanante1 && JSON.stringify(elem) !== JSON.stringify(obj1)) {
-            // Es Insert del acompañante 1
-            console.log('Es Insert del acompañante 1', formularioAcompanante1)
-            // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
-          }
-        })
-        break;
-      case 2:
-        this.currentUser.acompanantes.map(elem => {
-          let obj1 =  {nombre: this.acompanantes.value.nombre1,apellidos: this.acompanantes.value.apellido1,telefono: this.acompanantes.value.telefono1}
-          let obj2 =  {nombre: this.acompanantes.value?.nombre2,apellidos: this.acompanantes.value?.apellido2,telefono: this.acompanantes.value?.telefono2}
-
-          if(JSON.stringify(elem) == JSON.stringify(obj1)) {
-            // El Acompañante ya debería existir en BD => No hay que hacer nada
-            console.log('El Acompañante 1 ya debería existir en BD')
-          }
-          else if(JSON.stringify(elem) !== JSON.stringify(obj1) && JSON.stringify(elem) !== JSON.stringify(obj2)) {
-            // Es Insert del acompañante 1
-            console.log('Es Insert del acompañante 1', formularioAcompanante1)
-            // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
-          }
-          else if(JSON.stringify(elem) == JSON.stringify(obj2)) {
-            // El Acompañante ya debería existir en BD => No hay que hacer nada
-            console.log('El Acompañante 2 ya debería existir en BD')
-          }
-          else if(JSON.stringify(elem) !== JSON.stringify(obj2)) {
-            // Es Insert del acompañante 1
-            console.log('Es Insert del acompañante 2', formularioAcompanante2)
-            // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
-          }
-        })
-      case 3:
-        this.currentUser.acompanantes.map(elem => {
-          let obj1 =  {nombre: this.acompanantes.value.nombre1,apellidos: this.acompanantes.value.apellido1,telefono: this.acompanantes.value.telefono1}
-          let obj2 =  {nombre: this.acompanantes.value?.nombre2,apellidos: this.acompanantes.value?.apellido2,telefono: this.acompanantes.value?.telefono2}
-          let obj3 =  {nombre: this.acompanantes.value?.nombre3,apellidos: this.acompanantes.value?.apellido3,telefono: this.acompanantes.value?.telefono3}
-
-          if(acompanante1 && JSON.stringify(elem) == JSON.stringify(obj1)) {
-            // El Acompañante ya debería existir en BD => No hay que hacer nada
-            console.log('El Acompañante 1 ya debería existir en BD')
-          }
-          else if(acompanante1 && JSON.stringify(elem) !== JSON.stringify(obj1)) {
-            // Es Insert del acompañante 1
-            console.log('Es Insert del acompañante 1', formularioAcompanante1)
-            // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
-          }
-          else if(acompanante2 && JSON.stringify(elem) == JSON.stringify(obj2)) {
-            // El Acompañante ya debería existir en BD => No hay que hacer nada
-            console.log('El Acompañante 2 ya debería existir en BD')
-          }
-          else if(acompanante2 && JSON.stringify(elem) !== JSON.stringify(obj2)) {
-            // Es Insert del acompañante 1
-            console.log('Es Insert del acompañante 2', formularioAcompanante2)
-            // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
-          }
-          else if(acompanante3 && JSON.stringify(elem) == JSON.stringify(obj3)) {
-            // El Acompañante ya debería existir en BD => No hay que hacer nada
-            console.log('El Acompañante 3 ya debería existir en BD')
-          }
-          else if(acompanante3 && JSON.stringify(elem) !== JSON.stringify(obj3)) {
-            // Es Insert del acompañante 1
-            console.log('Es Insert del acompañante 3', formularioAcompanante3)
-            // this.save(this.acompanantes.value.telefono1, formularioAcompanante1)
-          }
-        })
-        break;
-    }
-    */
-
-
     // Es al revés, hay que recorrer los que tengo y ver si están en el currentUser$
     let obj1 =  {nombre: this.acompanantes.value.nombre1,apellidos: this.acompanantes.value.apellido1,telefono: this.acompanantes.value.telefono1}
     let obj2 =  {nombre: this.acompanantes.value?.nombre2,apellidos: this.acompanantes.value?.apellido2,telefono: this.acompanantes.value?.telefono2}
@@ -365,39 +284,39 @@ export class ConfirmacionComponent implements OnInit {
     const misAcompanantes = [obj1, obj2, obj3];
 
     misAcompanantes.map((elem, index) => {
-      console.log(elem)
       this.currentUser.acompanantes.map(existe => {
         switch(index){
           case 0:
-            if(elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
+            if(this.addAcompanante && !this.addAcompanante2 && !this.addAcompanante3 && elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
               console.log('0. ya existe', elem.nombre)
-            } else if(elem.nombre != null && elem.telefono != null) {
-              console.log('0. habría que insertar a ', elem.nombre)
+            } else if(this.addAcompanante && !this.addAcompanante2 && !this.addAcompanante3 && elem.nombre != null && elem.telefono != null) {
+              console.log('0. habría que insertar a ', formularioAcompanante1)
+              // this.save(elem.telefono, obj1)
             }
             break;
           case 1:
-            if(this.addAcompanante2 && elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
+            if(this.addAcompanante2 && !this.addAcompanante3 && elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
               console.log('1. ya existe ', elem.nombre)
-            } else if(this.addAcompanante2 && elem.nombre != null && elem.telefono != null) {
-              console.log('1. habría que insertar a ', elem.nombre)
+            } else if(this.addAcompanante2 && !this.addAcompanante3 && elem.nombre != null && elem.telefono != null) {
+              console.log('1. habría que insertar a ', formularioAcompanante2)
+              console.log('1. habría que actualizar a ', formularioAcompanante1)
+              // this.save(elem.telefono, obj2)
             }
             break;
           case 2:
             if(this.addAcompanante3 && elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
               console.log('2. ya existe ', elem.nombre)
             } else if(this.addAcompanante3 && elem.nombre != null && elem.telefono != null) {
-              console.log('2. habría que insertar a ', elem.nombre)
+              console.log('2. habría que insertar a ', formularioAcompanante3)
+              console.log('2. habría que actualizar a ', formularioAcompanante1)
+              console.log('2. habría que actualizar a ', formularioAcompanante2)
+              // this.save(elem.telefono, obj3)
             }
             break;
         }
       })
     })
-
-
-
-
-
-
+    console.log('y siempre hay que actualizar a ', formulario)
 
     //  ACTUALIZAR EL CURRENT USER
     // localStorage.setItem('currentUser', JSON.stringify(formulario));
