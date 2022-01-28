@@ -49,6 +49,7 @@ export class ConfirmacionComponent implements OnInit {
   currentUser: User;
   addAcompanante2 = false;
   addAcompanante3 = false;
+  exito: Boolean[] = [];
   
   name = new FormControl('', [Validators.required]);
   surname = new FormControl('', [Validators.required]);
@@ -284,59 +285,86 @@ export class ConfirmacionComponent implements OnInit {
     const misAcompanantes = [obj1, obj2, obj3];
 
     misAcompanantes.map((elem, index) => {
-      this.currentUser.acompanantes.map(existe => {
+      if(this.currentUser.acompanantes.length){
+        this.currentUser.acompanantes.map(existe => {
+          switch(index){
+            case 0:
+              if(this.addAcompanante && !this.addAcompanante2 && !this.addAcompanante3 && elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
+                // console.log('0. ya existe', elem.nombre)
+              } else if(this.addAcompanante && !this.addAcompanante2 && !this.addAcompanante3 && elem.nombre != null && elem.telefono != null) {
+                // console.log('0. habría que insertar a ', formularioAcompanante1)
+                this.save(formularioAcompanante1.telefono, formularioAcompanante1)
+              }
+              break;
+            case 1:
+              if(this.addAcompanante2 && !this.addAcompanante3 && elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
+                // console.log('1. ya existe ', elem.nombre)
+              } else if(this.addAcompanante2 && !this.addAcompanante3 && elem.nombre != null && elem.telefono != null) {
+                // console.log('1. habría que insertar a ', formularioAcompanante2)
+                // console.log('1. habría que actualizar a ', formularioAcompanante1)
+                this.save(formularioAcompanante2.telefono, formularioAcompanante2)
+                this.update(formularioAcompanante1.telefono, formularioAcompanante1)
+              }
+              break;
+            case 2:
+              if(this.addAcompanante3 && elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
+                // console.log('2. ya existe ', elem.nombre)
+              } else if(this.addAcompanante3 && elem.nombre != null && elem.telefono != null) {
+                // console.log('2. habría que insertar a ', formularioAcompanante3)
+                // console.log('2. habría que actualizar a ', formularioAcompanante1)
+                // console.log('2. habría que actualizar a ', formularioAcompanante2)    
+                this.save(formularioAcompanante3.telefono, formularioAcompanante3)
+                this.update(formularioAcompanante1.telefono, formularioAcompanante1)
+                this.update(formularioAcompanante2.telefono, formularioAcompanante2)
+
+              }
+              break;
+          }
+        })
+      } else { // NO TENÍA ACOMPAÑANTES PREVIOS
         switch(index){
           case 0:
-            if(this.addAcompanante && !this.addAcompanante2 && !this.addAcompanante3 && elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
-              console.log('0. ya existe', elem.nombre)
-            } else if(this.addAcompanante && !this.addAcompanante2 && !this.addAcompanante3 && elem.nombre != null && elem.telefono != null) {
-              console.log('0. habría que insertar a ', formularioAcompanante1)
-              // this.save(elem.telefono, obj1)
+           if(this.addAcompanante && !this.addAcompanante2 && !this.addAcompanante3 && elem.nombre != null && elem.telefono != null) {
+              // console.log('else 0. habría que insertar a ', formularioAcompanante1)
+              this.save(formularioAcompanante1.telefono, formularioAcompanante1)
             }
             break;
           case 1:
-            if(this.addAcompanante2 && !this.addAcompanante3 && elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
-              console.log('1. ya existe ', elem.nombre)
-            } else if(this.addAcompanante2 && !this.addAcompanante3 && elem.nombre != null && elem.telefono != null) {
-              console.log('1. habría que insertar a ', formularioAcompanante2)
-              console.log('1. habría que actualizar a ', formularioAcompanante1)
-              // this.save(elem.telefono, obj2)
+            if(this.addAcompanante2 && !this.addAcompanante3 && elem.nombre != null && elem.telefono != null) {
+              // console.log('else 1. habría que insertar a ', formularioAcompanante2)
+              // console.log('else 1. habría que insertar a ', formularioAcompanante1)
+              this.save(formularioAcompanante2.telefono, formularioAcompanante2)
+              this.save(formularioAcompanante1.telefono, formularioAcompanante1)
             }
             break;
           case 2:
-            if(this.addAcompanante3 && elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
-              console.log('2. ya existe ', elem.nombre)
-            } else if(this.addAcompanante3 && elem.nombre != null && elem.telefono != null) {
-              console.log('2. habría que insertar a ', formularioAcompanante3)
-              console.log('2. habría que actualizar a ', formularioAcompanante1)
-              console.log('2. habría que actualizar a ', formularioAcompanante2)
-              // this.save(elem.telefono, obj3)
+            if(this.addAcompanante3 && elem.nombre != null && elem.telefono != null) {
+              // console.log('else 2. habría que insertar a ', formularioAcompanante1)
+              // console.log('else 2. habría que insertar a ', formularioAcompanante2)    
+              // console.log('else 2. habría que insertar a ', formularioAcompanante3)
+              this.save(formularioAcompanante1.telefono, formularioAcompanante1)
+              this.save(formularioAcompanante2.telefono, formularioAcompanante2)
+              this.save(formularioAcompanante3.telefono, formularioAcompanante3)
+
             }
             break;
         }
-      })
+      }
     })
-    console.log('y siempre hay que actualizar a ', formulario)
-
     //  ACTUALIZAR EL CURRENT USER
-    // localStorage.setItem('currentUser', JSON.stringify(formulario));
-    // this.update(this.currentUser.telefono, formulario)
+    localStorage.setItem('currentUser', JSON.stringify(formulario));
+    this.update(this.currentUser.telefono, formulario)
+
+    // Show dialog alert
+    this.showFinalAlert()
   }
 
   save(clave, valor){
     this._service.save(constants.END_POINTS.USERS, clave, valor)
-      .then(()=>{        
-        Swal.fire(
-          '¡Gracias!',
-          'Hemos registrado tu respuesta y lo tendremos en cuenta. =)',
-          'info'
-        )
+      .then(()=>{
+        this.exito.push(true) 
       }, error => {
-        Swal.fire(
-          'Algo ha salido mal',
-          'Por favor, revisa los datos y si el problema persiste ponte en contacto con nosotros.',
-          'error'
-        )
+        this.exito.push(false)
         console.log(error)
       })
   }
@@ -344,18 +372,30 @@ export class ConfirmacionComponent implements OnInit {
   update(clave, valor){
     this._service.update(constants.END_POINTS.USERS, clave, valor)
       .then(()=>{
-        Swal.fire(
-          '¡Gracias!',
-          'Hemos registrado tu respuesta y lo tendremos en cuenta. =)',
-          'success'
-        )
+        this.exito.push(true)
       }, error => {
-        Swal.fire(
-          'Algo ha salido mal',
-          'Por favor, revisa los datos y si el problema persiste ponte en contacto con nosotros.',
-          'error'
-        )
+        this.exito.push(false)
         console.log(error)
       })
+  }
+
+  showFinalAlert() {
+    this.exito.find(element => element == false) ? this.errorAlert() : this.sweetAlert()
+  }
+
+  sweetAlert(){
+    Swal.fire(
+      '¡Gracias!',
+      'Hemos registrado tu respuesta y lo tendremos en cuenta. =)',
+      'success'
+    )
+  }
+
+  errorAlert(){
+    Swal.fire(
+      'Algo ha salido mal',
+      'Por favor, revisa los datos y si el problema persiste ponte en contacto con nosotros.',
+      'error'
+    )
   }
 }

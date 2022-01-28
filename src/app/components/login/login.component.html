@@ -16,7 +16,7 @@
             <mat-error *ngIf="telefono.invalid">Sin rellenarlo correctamente no podrás continuar. Lo sentimos.</mat-error>
         </mat-form-field>
         
-        <button class="btn btn-info" (click)="login()" [disabled]="!disableLogin()">
+        <button class="btn btn-info" (click)="login()" [disabled]="disableLogin()">
             <span>Entrar</span>
         </button>
     </form>

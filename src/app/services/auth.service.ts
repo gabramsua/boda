@@ -54,7 +54,7 @@ export class AuthService {
   login(collection, phone: string) {
     // // this.firebase.collection(collection).doc(phone).get().subscribe( data => {
     this.firebase.collection(collection).doc(phone).get().toPromise()
-    .then( data => {
+      .then( data => {
         const user = {
           nombre: data.data()['nombre'],
           apellidos: data.data()['apellidos'],
