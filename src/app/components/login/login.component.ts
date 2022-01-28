@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import constants from 'src/app/constants';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
-import { AuthService, User } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/models';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   users: any[] = [];
   loggedUser: any;
   loginForm: FormGroup
-  telefono = new FormControl('645303663', [Validators.pattern("[6-7]{1}[0-9]{8}$"),Validators.required]);
+  telefono = new FormControl('', [Validators.pattern("[6-7]{1}[0-9]{8}$"),Validators.required]);
   user: User;
 
   constructor(
@@ -37,8 +37,9 @@ export class LoginComponent implements OnInit {
     });
   }
   login(phone:string = this.user?.telefono) {
-    if(!phone) phone = this.telefono.value // JSON.stringify(this.loginForm.value.telefono);
+    if(!phone) phone = JSON.stringify(this.loginForm.value.telefono); // this.telefono.value // 
     this._service.login(constants.END_POINTS.USERS, phone)
+    // this._service.login(constants.END_POINTS.USERS, phone)
   }
   disableLogin() {
     return this.loginForm.value.telefono === '' || JSON.stringify(this.loginForm.value.telefono).length !== 9

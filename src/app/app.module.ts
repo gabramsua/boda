@@ -1,44 +1,45 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { AgmCoreModule } from '@agm/core'
 import { HttpClientModule } from '@angular/common/http';
 import { YouTubePlayerModule } from '@angular/youtube-player';
-import { ChartsModule } from 'ng2-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper'; 
+import { CUSTOM_ELEMENTS_SCHEMA }      from '@angular/core'; 
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS  } from '@angular/material/radio';
+import { MatButtonModule } from '@angular/material/button';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatIconModule } from '@angular/material/icon'
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
+import { AgmCoreModule } from '@agm/core'
+import { ChartsModule } from 'ng2-charts';
+
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuardService } from './services/auth-guard.service';
+
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 import { TrasladosComponent } from './components/traslados/traslados.component';
 import { MesasComponent } from './components/mesas/mesas.component';
 import { ListaBodasComponent } from './components/lista-bodas/lista-bodas.component';
 import { MapaComponent } from './components/mapa/mapa.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatStepperModule } from '@angular/material/stepper'; 
-import { CUSTOM_ELEMENTS_SCHEMA }      from '@angular/core'; 
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-// import { MAT_BUTTON_TOGGLE_DEFAULT_OPTIONS  } from '@angular/material/button-toggle';
-import { MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS  } from '@angular/material/radio';
-import { MatButtonModule } from '@angular/material/button';
-import { ClipboardModule } from '@angular/cdk/clipboard';
-import { MatIconModule } from '@angular/material/icon'
-import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { CustomSnackBarComponent } from 'shared/SnackBarComponent.component';
 import { ModalComponent } from './shared/modal/modal.component ';
 import { YoutubeSearcherComponent } from './components/youtube-searcher/youtube-searcher.component';
 import { RecomiendaCancionComponent } from './components/recomienda-cancion/recomienda-cancion.component';
 import { MinutaComponent } from './components/minuta/minuta.component';
 import { LoginComponent } from './components/login/login.component';
-import { environment } from '../environments/environment';
-import { AuthGuardService } from './services/auth-guard.service';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
+import { ResultadosComponent } from './components/resultados/resultados.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/p
     RecomiendaCancionComponent,
     MinutaComponent,
     LoginComponent,
-    PaginaNoEncontradaComponent
+    PaginaNoEncontradaComponent,
+    ResultadosComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [
@@ -81,17 +83,6 @@ import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/p
 
     AppRoutingModule,
     BrowserAnimationsModule,
-    // RouterModule.forRoot([
-    //   {path: '', component: LoginComponent},
-    //   {path: 'home', component: HomeComponent},
-    //   {path: 'confirmacion', component: ConfirmacionComponent, canActivate: [AuthGuardService]},
-    //   {path: 'traslados', component: TrasladosComponent, canActivate: [AuthGuardService]},
-    //   {path: 'mesas', component: MesasComponent, canActivate: [AuthGuardService]},
-    //   {path: 'menu', component: MinutaComponent, canActivate: [AuthGuardService]},
-    //   {path: 'lista-de-bodas', component: ListaBodasComponent, canActivate: [AuthGuardService]},
-    //   {path: 'recomienda-cancion', component: RecomiendaCancionComponent, canActivate: [AuthGuardService]},
-    //   {path: '**', component: PaginaNoEncontradaComponent},
-    // ]),
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBjyKxnDLuBq_llik_lG_NafFHTYPSeIo8'
