@@ -2,12 +2,36 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2'
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import constants from 'src/app/constants';
 import { User } from 'src/app/models/models';
 @Component({
   selector: 'confirmacion',
   templateUrl: './confirmacion.component.html',
-  styleUrls: ['./confirmacion.component.scss',]
+  styleUrls: ['./confirmacion.component.scss'],
+  animations: [
+    trigger(
+      'inOutAnimation', 
+      [
+        transition(
+          ':enter', 
+          [
+            style({ height: 0, opacity: 0 }),
+            animate('1s ease-out', 
+                    style({ height: 300, opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave', 
+          [
+            style({ height: 300, opacity: 1 }),
+            animate('1s ease-in', 
+                    style({ height: 0, opacity: 0 }))
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class ConfirmacionComponent implements OnInit {
 

@@ -84,7 +84,7 @@ export class AuthService {
             asistencia:'true',
             tipoBus:'bus_vuelta',
             alergias:'nope',
-            bebidas:null,
+            bebida:null,
             cancion:'cancion_3',
             puntuacionQuizz:null,
             acompananteDe: null,
