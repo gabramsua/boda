@@ -11,24 +11,27 @@ import { User } from 'src/app/models/models';
   styleUrls: ['./confirmacion.component.scss'],
   animations: [
     trigger(
-      'inOutAnimation', 
-      [
-        transition(
-          ':enter', 
-          [
+      'fadeIn', [
+        transition(':enter', [
             style({ height: 0, opacity: 0 }),
-            animate('1s ease-out', 
-                    style({ height: 300, opacity: 1 }))
-          ]
-        ),
-        transition(
-          ':leave', 
-          [
+            animate('1s ease-out', style({ height: 300, opacity: 1 }))
+          ]),
+        transition(':leave', [
             style({ height: 300, opacity: 1 }),
-            animate('1s ease-in', 
-                    style({ height: 0, opacity: 0 }))
-          ]
-        )
+            animate('1s ease-in', style({ height: 0, opacity: 0 }))
+          ])
+      ]
+    ),
+    trigger(
+      'enterAnimationRight', [
+        transition(':enter', [
+          style({transform: 'translateX(100%)', opacity: 0}),
+          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateX(0)', opacity: 1}),
+          animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
+        ])
       ]
     )
   ]
@@ -134,7 +137,12 @@ export class ConfirmacionComponent implements OnInit {
   }
   addAcompanante() {
     if(!this.addAcompanante2) this.addAcompanante2 = true;
-    else if(!this.addAcompanante3) this.addAcompanante3 = true;
+    else if(this.addAcompanante2 && !this.addAcompanante3) this.addAcompanante3 = true;
+  }
+  removeAcompanante() {
+    if(this.addAcompanante3) this.addAcompanante3 = false
+    else if(this.addAcompanante2 && !this.addAcompanante3) this.addAcompanante2 = false;
+
   }
 
   guardar() {
@@ -270,6 +278,7 @@ export class ConfirmacionComponent implements OnInit {
     // Persistencia de los acompañantes    
     // Recorrer los acompañantes y comprobar si los objetos que hay son iguales a los que ha metido => Si no, hacer insert de los nuevos invitados
     console.log('VER SI USER TIENE A ACOMPANANTE', this.currentUser.acompanantes)
+    /*
     switch(this.currentUser.acompanantes.length){
       case 1:
         this.currentUser.acompanantes.map(elem => {
@@ -346,6 +355,49 @@ export class ConfirmacionComponent implements OnInit {
         })
         break;
     }
+    */
+
+
+    // Es al revés, hay que recorrer los que tengo y ver si están en el currentUser$
+    let obj1 =  {nombre: this.acompanantes.value.nombre1,apellidos: this.acompanantes.value.apellido1,telefono: this.acompanantes.value.telefono1}
+    let obj2 =  {nombre: this.acompanantes.value?.nombre2,apellidos: this.acompanantes.value?.apellido2,telefono: this.acompanantes.value?.telefono2}
+    let obj3 =  {nombre: this.acompanantes.value?.nombre3,apellidos: this.acompanantes.value?.apellido3,telefono: this.acompanantes.value?.telefono3}
+    const misAcompanantes = [obj1, obj2, obj3];
+
+    misAcompanantes.map((elem, index) => {
+      console.log(elem)
+      this.currentUser.acompanantes.map(existe => {
+        switch(index){
+          case 0:
+            if(elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
+              console.log('0. ya existe', elem.nombre)
+            } else if(elem.nombre != null && elem.telefono != null) {
+              console.log('0. habría que insertar a ', elem.nombre)
+            }
+            break;
+          case 1:
+            if(this.addAcompanante2 && elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
+              console.log('1. ya existe ', elem.nombre)
+            } else if(this.addAcompanante2 && elem.nombre != null && elem.telefono != null) {
+              console.log('1. habría que insertar a ', elem.nombre)
+            }
+            break;
+          case 2:
+            if(this.addAcompanante3 && elem != null && JSON.stringify(elem) == JSON.stringify(existe)){
+              console.log('2. ya existe ', elem.nombre)
+            } else if(this.addAcompanante3 && elem.nombre != null && elem.telefono != null) {
+              console.log('2. habría que insertar a ', elem.nombre)
+            }
+            break;
+        }
+      })
+    })
+
+
+
+
+
+
 
     //  ACTUALIZAR EL CURRENT USER
     // localStorage.setItem('currentUser', JSON.stringify(formulario));

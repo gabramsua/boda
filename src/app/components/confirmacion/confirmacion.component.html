@@ -86,7 +86,7 @@
             <!-- FIN ACOMPAÑANTE 1 -->
             
             <!-- ACOMPAÑANTE 2 -->
-            <div class="container" [@inOutAnimation] *ngIf="addAcompanante2">
+            <div class="container" [@fadeIn] *ngIf="addAcompanante2">
                 <p class="p_acompanante"><span *ngIf="addAcompanante2">Acompañante 2</span></p>
                 <div class="row">
                     <div class="col">
@@ -112,7 +112,7 @@
             <!-- FIN ACOMPAÑANTE 2 -->
             
             <!-- ACOMPAÑANTE 3 -->
-            <div class="container" [@inOutAnimation] *ngIf="addAcompanante3">
+            <div class="container" [@fadeIn] *ngIf="addAcompanante3">
                 <p class="p_acompanante"><span *ngIf="addAcompanante3">Acompañante 3</span></p>
                 <div class="row">
                     <div class="col">
@@ -140,7 +140,8 @@
         </form>        
         <div class="d-flex justify-content-between">
             <button mat-button matStepperPrevious>Anterior</button>
-            <button mat-raised-button class="addAcompanante" (click)="addAcompanante()">Añadir otro acompañante</button>
+            <button mat-raised-button class="addAcompanante" (click)="removeAcompanante()" *ngIf="addAcompanante2">Quitar</button>
+            <button mat-raised-button class="addAcompanante" (click)="addAcompanante()" *ngIf="!addAcompanante3">Añadir</button>
             <button mat-button matStepperNext>Siguiente</button>
           </div>
     </mat-step>
