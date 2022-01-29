@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .jumbotron {
     background-color: transparent;
     margin-bottom:  0rem;
@@ -8,10 +10,16 @@ h1 {
     font-family: "Julius Sans One";
     margin-bottom: 2em;
 }
+// p {
+//     font-family: "Julius Sans One";
+//     color:  #2a626e; // #336E7B; // #2a626e //
+//     font-weight: 500;
+// }
 p {
-    font-family: "Julius Sans One";
-    color:  #2a626e; // #336E7B; // #2a626e //
+    color:  $verde-letra;
     font-weight: 500;
+    text-align: justify;
+    text-justify: inter-word;
 }
 button {
     display: flex;

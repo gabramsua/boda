@@ -12,7 +12,7 @@
     <div class="container d-flex justify-content-center"><h2>¡La entrada al banquete!</h2></div>
     <p><span>
     Para ello tendrás que escuchar las siguientes canciones y votar por alguna de ellas. 
-    Escúchalas cuantas veces necesites, ¡sólo habrá un voto por persona! Al final de la página encontrarás el formulario para ayudarnos.
+    Escúchalas cuantas veces necesites. Más abajo encontrarás el formulario para ayudarnos.
     ¡Te agradecemos que te tomes este tiempo y esperamos que lo disfrutes!
     </span></p>
 
@@ -113,12 +113,35 @@
             </button>
             <button 
                 class="btn btn-outline-secondary"
-                [disabled]="disableResults()"
+                *ngIf="!disableResults()"
                 routerLink="/resultados-votacion"
             >
-                <span *ngIf="!disableResults()">Ver resultados</span>
-                <span *ngIf="disableResults()">Vota para ver los resultados</span>
+                <span>Ver resultados</span>
+                <!-- <span *ngIf="disableResults()">Vota para ver los resultados</span> -->
             </button>
+            <button 
+                class="btn btn-outline-secondary"
+                *ngIf="disableResults()" data-toggle="modal" data-target="#container_modal_resultados"
+            >
+                <span>Vota para ver los resultados</span>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="container_modal_resultados" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">¡No hagas trampas!</h2>
+                <button class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p><span>Hasta que no votes no vas a poder ver los resultados. Así evitamos que te influencien... MUAJAJA</span></p>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal">Cerrar de verdad</button>
+            </div>
         </div>
     </div>
 </div>

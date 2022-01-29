@@ -46,3 +46,10 @@ const Constants = {
 }
 
 export default Constants;
+
+// Agrega los siguientes registros TXT a tu proveedor de DNS para verificar que eres el propietario de bodagabrielymaria.es. No borres tus registros TXT.
+// google-site-verification=ijtLUK9Z-bjS-ZTLt6mNGiAMm99qQDRsql4R-puezNY
+
+// bodagabrielmaria.com
+// https://boda-338312.web.app
+// 199.36.158.100

@@ -1,14 +1,18 @@
+@import '../../variables.scss';
+
 ul {
     width: -webkit-fill-available;
 }
 .navbar-brand {
-    color: rgba(98, 176, 222, 1);
+    // color: rgba(98, 176, 222, 1);
+    color: $verde-letra;
     font-family: "Julius Sans One";
     font-size: 1.7em;
     border-bottom-width: 0px;
 }
 .navbar-nav>li>a {
-    color: #67B8BC;
+    // color: #67B8BC;
+    color: $verde-letra;
     font-family: "Julius Sans One";
 }
 .navbar-nav>li>a:hover,

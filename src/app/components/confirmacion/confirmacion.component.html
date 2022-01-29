@@ -1,8 +1,8 @@
 <h1 class="display-4 d-flex justify-content-center">Confirmar asistencia</h1>
-<p class="text-justify"><span>Nos encantará disfrutar con vosotros en nuestra boda. ¡Estamos deseando que llegue el día! En esta sección os pedimos que confirméis vuestra asistencia. 
-        Por favor no te olvides de indicarnos también si necesitarás traslado en autobús (en el apartado 3).
-        No te preocupes si más adelante quieres modificar o actualizar algo, podrás hacerlo sin tener que rellenar todo de nuevo.</span></p>
-<p><span>Adoramos a vuestros peques y a vuestras mascotas, y por ello creemos que se merecen un día libre. </span></p>
+<p class="text-justify"><span>¡Estamos deseando que llegue el día! Nos encantará disfrutar con vosotros en nuestra boda.  En esta sección os pedimos que confirméis vuestra asistencia y algunos detalles adicionales. 
+        Por favor no te olvides de indicarnos también si necesitarás traslado en autobús (apartado 3).
+        Si más adelante quieres modificar o actualizar algo, no te preocupes, podrás hacerlo sin problema.</span></p>
+<p><span> P.D. Adoramos a vuestros peques y a vuestras mascotas, y por ello creemos que se merecen un día libre. </span></p>
 
 <div class="container d-flex justify-content-center mt-4"><h3>¡OS ESPERAMOS!</h3></div>
 
@@ -40,7 +40,7 @@
 
     <mat-step>        
         <form [formGroup]="asistencia">
-            <ng-template matStepLabel>¿Vas a poder acompañarnos el 19 de Marzo?</ng-template>
+            <ng-template matStepLabel>¿Vas a poder acompañarnos?</ng-template>
             <mat-radio-group class="d-flex justify-content-around flex-wrap" aria-label="Select an option!" formControlName="vienes_o_que">
                 <mat-radio-button value="true" class="col-sm-2">Sí</mat-radio-button>
                 <mat-radio-button value="false" class="col-sm-4">No, lo siento</mat-radio-button>
@@ -163,11 +163,11 @@
                         </div>
                         <div class="modal-body">
                             <p><span>Pondremos a vuestra disposición el traslado en autobús a la Hacienda. 
-                                Para la vuelta también habrá regreso, no os preocupéis.</span></p>
+                                Para la vuelta también habrá autobús de regreso, no os preocupéis.</span></p>
                             <div class="d-flex justify-content-center">
                                 <img class="img-fluid" src="../assets/imgs/maestranza.jfif" alt="Gabri y Maria">
                             </div>
-                            <p><span>El punto de origen será en el <u><b>Teatro de la Maestranza</b></u>, muy cerca de la Iglesia de la Caridad. 
+                            <p><span>El punto de origen será en el <u><b>Teatro de la Maestranza</b></u>, a pocos metros de la Iglesia de la Caridad. 
                                     Para la vuelta habrá una parada en <u><b>Plaza de Cuba y otra en Tomares</b></u>, en un lugar aún por determinar. </span></p>
                             <p><span>Los horarios para la vuelta los indicaremos cuando se acerque la fecha, pero posiblemente <u><b>uno sea a las 20.00h, otro a las 22.30h </b></u>y otro al terminar la barra libre. Recuerda, este horario es aproximado y se definirá días antes del enlace.</span></p>
 
@@ -194,10 +194,10 @@
     
     <mat-step *ngIf="quien_eres.value.nombre !== '' && quien_eres.value.apellidos !== '' && asistencia.value.vienes_o_que === 'true'">        
         <form [formGroup]="alergias">
-            <ng-template matStepLabel>Requerimiento alimenticio</ng-template>
+            <ng-template matStepLabel>Requerimientos alimenticios</ng-template>
             <div class="form-group">
                 <!-- <label>Especifica por favor tus alergias/intolerancias para tenerlas en cuenta: </label> -->
-                <label>Aquí es donde especificas, por favor, tus alergias / intolerancias / si eres vegetariano ó vegano, etc para tenerlo en cuenta: </label>
+                <label>Aquí es donde especificas, por favor, tus alergias / intolerancias / si eres vegetariano ó vegano, etc para tenerlo en cuenta en tu menú: </label>
                 <textarea class="form-control" formControlName="intolerancias" rows="3"></textarea>
             </div>
         </form>        
@@ -212,7 +212,7 @@
             <ng-template matStepLabel>Bebida favorita</ng-template>
             <div class="form-group">
                 <label> Intentaremos poner las bebidas que le gusten a todos, o a la mayoría. Por favor, 
-                    especifica alguna marca que te gustaría beber, quién sabe si sois muchos los que bebéis determinada marca ;-)</label>
+                    especifica alguna marca que te gustaría beber, quién sabe si sois muchos los que bebéis una en concreto ;-)</label>
                 <textarea class="form-control" formControlName="drinks" rows="3" placeholder="Ginebra marca tal, o Ron marca cual..."></textarea>
             </div>
         </form>

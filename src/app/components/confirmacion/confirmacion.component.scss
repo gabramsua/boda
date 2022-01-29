@@ -1,3 +1,6 @@
+@import '../../variables.scss';
+
+
 h1 {
     color: #67B8BC;
     font-family: "Julius Sans One";
@@ -8,12 +11,12 @@ h2.modal-title {
     margin: 0;
 }
 h3 {
-    color: #67B8BC;
+    color: $verde-letra;
     font-family: "Julius Sans One";
     margin-top: 1em;
 }
 p {
-    color:  #336E7B;
+    color:  $verde-letra;
     font-weight: 500;
 }
 mat-vertical-stepper {

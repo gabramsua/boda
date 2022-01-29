@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 h1 {
     color: #67B8BC;
     font-family: "Julius Sans One";
@@ -14,7 +16,7 @@ h2, h3 {
     // margin-top: 1em;
 }
 p {
-    color:  #336E7B;
+    color:  $verde-letra;
     font-weight: 500;
     text-align: justify;
     text-justify: inter-word;
@@ -29,14 +31,14 @@ youtube-player {
 
 ::ng-deep .mat-radio-outer-circle {
     .mat-radio-checked & {
-        border-color: #336E7B; // 3f51b5
+        border-color: $verde-letra; // 3f51b5
     }
 }
 ::ng-deep .mat-radio-inner-circle {
-    background-color: #336E7B;
+    background-color: $verde-letra;
 }
 ::ng-deep .mat-radio-ripple .mat-ripple-element {
-    background-color: rgba(#336E7B, 0.26);
+    background-color: rgba($verde-letra, 0.26);
 }
 ::ng-deep .mat-radio-checked .mat-radio-label-content {
     font-weight: bold;
