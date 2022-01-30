@@ -17,13 +17,13 @@ export class ResultadosComponent implements OnInit {
     constants.VALUES.TITULOS_CANCIONES.CANCION_5,
     constants.VALUES.TITULOS_CANCIONES.CANCION_6
   ];
-  public doughnutChartData = [[10,20,30,40,50,60]];
+  public doughnutChartData = [[,,,,,]]; // [[10,20,30,40,50,60]];
   public doughnutChartType: ChartType = 'pie';
 
   constructor(private _service: AuthService) { }
 
   ngOnInit(): void {
-    // this.getResultados()
+    this.getResultados()
   }
 
   getResultados() {

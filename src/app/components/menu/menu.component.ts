@@ -13,6 +13,5 @@ export class MenuComponent implements OnInit {
   }
   cerrarSesion() {
     localStorage.clear()
-    console.log("cerrando sesion")
   }
 }
