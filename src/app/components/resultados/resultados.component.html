@@ -1,5 +1,5 @@
 <div class="container mt-2 d-flex flex-wrap justify-content-center">
-    <div class="card card-body">
+    <div class="card card-body graph">
         <div class="d-flex justify-content-between align-items-center">
             <h2 class="modal-title">Aquí tienes los resultados actuales</h2>
             <button 
@@ -23,7 +23,16 @@
     </div>
 </div>
 <div class="container mt-2 d-flex flex-wrap justify-content-center no-se-ve">    
-    <h2>¡OOPS!</h2>
-    <p><span>Por favor gira tu dispositivo para tener una mejor experiencia con el gráfico con los resultados</span></p>
-    <img class="img-fluid" src="../assets/imgs/screen-rotate.png" alt="Gabri y Maria">
+    <div class="card card-body">
+        <div class="d-flex justify-content-between align-items-center mb-4 ">
+            <h2 class="oops">¡OOPS!</h2>
+            <button class="btn btn-outline-secondary" routerLink="/recomienda-cancion">
+                Volver
+            </button>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+            <p><span>Por favor gira tu dispositivo para tener una mejor experiencia con el gráfico con los resultados</span></p>
+            <img class="img-fluid" src="../assets/imgs/screen-rotate.png" alt="Gabri y Maria">
+        </div>
+    </div>
 </div>

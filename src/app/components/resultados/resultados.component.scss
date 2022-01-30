@@ -4,7 +4,7 @@ h2 {
     font-family: "Julius Sans One";
     color: $verde-letra
 }
-
+.oops{ margin-bottom: 0;}
 .card-body{
     margin-top: 5rem;
 }
@@ -13,7 +13,7 @@ h2 {
     visibility: hidden;
 }
 @media only screen and (max-width: 629px) {
-    .card {
+    .graph {
     //   max-width: none;
     //   margin-top: 21vh !important;
     //   transform: rotate(90deg);
