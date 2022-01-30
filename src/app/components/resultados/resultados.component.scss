@@ -8,11 +8,22 @@ h2 {
 .card-body{
     margin-top: 5rem;
 }
+
+.no-se-ve{
+    visibility: hidden;
+}
 @media only screen and (max-width: 629px) {
-    .container {
-      max-width: none ;
-    //   margin-top: calc((202px - 42px)/2) ;
-      margin-top: 21vh !important;
-      transform: rotate(90deg);
+    .card {
+    //   max-width: none;
+    //   margin-top: 21vh !important;
+    //   transform: rotate(90deg);
+    display: none;
+    // visibility: hidden;
+    }
+    .no-se-ve{
+        visibility: visible;
+    }
+    img{
+        max-height: 40vw;
     }
 }
