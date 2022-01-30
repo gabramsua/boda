@@ -80,10 +80,12 @@ export class ConfirmacionComponent implements OnInit {
       nombre2 = this.currentUser.acompanantes[1]?.nombre;
       apellido2 = this.currentUser.acompanantes[1]?.apellidos;
       telefono2 = this.currentUser.acompanantes[1]?.telefono;
-
+      if(nombre2 && apellido2 && telefono2)this.addAcompanante2 = true;
+      
       nombre3 = this.currentUser.acompanantes[2]?.nombre;
       apellido3 = this.currentUser.acompanantes[2]?.apellidos;
       telefono3 = this.currentUser.acompanantes[2]?.telefono;
+      if(nombre3 && apellido3 && telefono3)this.addAcompanante3 = true;
 
     } else {
       nombre = '';
@@ -163,8 +165,8 @@ export class ConfirmacionComponent implements OnInit {
 
     // VER SI HAY ACOMPAÑANTES
     let acompanante1 = this.acompanantes.value.nombre1 && this.acompanantes.value.telefono1
-    let acompanante2 = this.acompanantes.value.nombre2 && this.acompanantes.value.telefono2
-    let acompanante3 = this.acompanantes.value.nombre3 && this.acompanantes.value.telefono3
+    let acompanante2 = this.acompanantes.value.nombre2 && this.acompanantes.value.telefono2 && this.addAcompanante2
+    let acompanante3 = this.acompanantes.value.nombre3 && this.acompanantes.value.telefono3 && this.addAcompanante3
 
     let formularioAcompanante1,formularioAcompanante2,formularioAcompanante3: User;
     // Info de los acompañanets del formulario
