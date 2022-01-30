@@ -63,3 +63,17 @@
         </div>
     </div>
 </div>
+<div class="container d-flex justify-content-center mb-4" *ngIf="isAdmin">
+    <form [formGroup]="adminForm" class="d-flex justify-content-center flex-column formAdmin">
+    <!-- <ng-template matStepLabel>Introduce la contraseña secreta que te dará el poder divino de desinvitar al fisgón</ng-template> -->
+        <mat-form-field appearance="outline">
+            <mat-label>Introduce la contraseña secreta que te dará el poder divino de desinvitar al fisgón</mat-label>
+                <input matInput type="password" aria-label="pass" formControlName="pass">
+            <!-- <mat-error *ngIf="pass.invalid">Vuelve por donde has venido, gracias.</mat-error> -->
+        </mat-form-field>
+        
+        <button class="btn btn-info" (click)="adminLogin()" [disabled]="disableAdminLogin()">
+            <span>Entrar como admin</span>
+        </button>
+    </form>
+</div>

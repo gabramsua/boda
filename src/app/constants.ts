@@ -2,7 +2,8 @@ const Constants = {
     END_POINTS: {
         USERS: 'users',
         // QUIZZ: 'quizz'
-        RESULTADOS_CANCIONES: 'resultados_canciones'
+        RESULTADOS_CANCIONES: 'resultados_canciones',
+        PASS: 'isAdmin'
     },
     VALUES: {
         ASISTENCIA: {
@@ -42,6 +43,10 @@ const Constants = {
             CANCION_5:'hE6CsyWv8Zs', 
             CANCION_6:'Iw0FNURjOWs' 
         }
+    },
+    ADMIN_NOVIOS: {
+        NENO: '645303663',
+        MARIA: '637919660'
     }
 }
 

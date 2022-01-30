@@ -40,6 +40,7 @@ import { MinutaComponent } from './components/minuta/minuta.component';
 import { LoginComponent } from './components/login/login.component';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
 import { ResultadosComponent } from './components/resultados/resultados.component';
+import { ManagementComponent } from './components/management/management.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { ResultadosComponent } from './components/resultados/resultados.componen
     MinutaComponent,
     LoginComponent,
     PaginaNoEncontradaComponent,
-    ResultadosComponent
+    ResultadosComponent,
+    ManagementComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [

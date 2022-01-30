@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import constants from 'src/app/constants';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
@@ -10,13 +10,15 @@ import { User } from 'src/app/models/models';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   users: any[] = [];
   loggedUser: any;
   loginForm: FormGroup
+  adminForm: FormGroup
   telefono = new FormControl('', [Validators.pattern("[6-7]{1}[0-9]{8}$"),Validators.required]);
   user: User;
+  isAdmin = false;
 
   constructor(
     public _service: AuthService,
@@ -35,16 +37,35 @@ export class LoginComponent implements OnInit {
     this.loginForm = this._formBuilder.group({
       telefono: ['', Validators.required]
     });
+    
+    this.adminForm = this._formBuilder.group({
+      pass: ['', Validators.required]
+    });
+  }
+  ngOnDestroy(): void {
+      this.loginForm = null
+      this.adminForm = null
+      this.isAdmin = false
   }
   login(phone:string = this.user?.telefono) {
     if(!phone) phone = JSON.stringify(this.loginForm.value.telefono); // this.telefono.value // 
-    this._service.login(constants.END_POINTS.USERS, phone)
-    // this._service.login(constants.END_POINTS.USERS, phone)
+
+    // Is Administración
+    if(phone === constants.ADMIN_NOVIOS.MARIA || phone === constants.ADMIN_NOVIOS.NENO) {
+      this.isAdmin = true;
+    } else { 
+      this._service.login(constants.END_POINTS.USERS, phone)
+    }
   }
   disableLogin() {
     return this.loginForm.value.telefono === '' || JSON.stringify(this.loginForm.value.telefono).length !== 9
   }
-
+  disableAdminLogin() {
+    return this.adminForm.value.pass === ''; // || JSON.stringify(this.adminForm.value.pass).length !== 9
+  }
+  adminLogin() {
+    this._service.adminLogin(this.adminForm.value.pass, this.loginForm.value.telefono)
+  }
   // post() {
   //   this._service.save({item2: 'val'})
   //   .then(()=>{

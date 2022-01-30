@@ -32,6 +32,9 @@
         <li class="nav-item d-flex justify-content-center" (click)="cerrarSesion()">
           <a class="nav-link" href="#">Cerrar Sesión</a>
         </li>
+        <li class="nav-item d-flex justify-content-center" *ngIf="isAdmin">
+          <a class="nav-link" data-toggle="collapse" data-target="#navBarContent" routerLink="/management" >Administracion</a>
+        </li>
       </ul>
     </div>
   </nav>

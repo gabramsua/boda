@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../models/models';
+import constants from 'src/app/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +54,7 @@ export class AuthService {
 
   login(collection, phone: string) {
     // // this.firebase.collection(collection).doc(phone).get().subscribe( data => {
-    this.firebase.collection(collection).doc(phone).get().toPromise()
+      this.firebase.collection(collection).doc(phone).get().toPromise()
       .then( data => {
         const user = {
           nombre: data.data()['nombre'],
@@ -98,6 +99,18 @@ export class AuthService {
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUser$.next(user);
           this.router.navigate(['/home']);
+  }
+
+  adminLogin(pass: string, phone) {
+    return this.firebase.collection(constants.END_POINTS.PASS).doc(pass).get().toPromise()
+    .then( data => {
+      console.log('Loading files...')
+      localStorage.setItem('isAdmin', data.data()['key'])
+      this.login(constants.END_POINTS.USERS, JSON.stringify(phone))
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   getCurrentUser$(): Observable<any> {

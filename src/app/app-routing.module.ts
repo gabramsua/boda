@@ -4,6 +4,7 @@ import { ConfirmacionComponent } from './components/confirmacion/confirmacion.co
 import { HomeComponent } from './components/home/home.component';
 import { ListaBodasComponent } from './components/lista-bodas/lista-bodas.component';
 import { LoginComponent } from './components/login/login.component';
+import { ManagementComponent } from './components/management/management.component';
 import { MesasComponent } from './components/mesas/mesas.component';
 import { MinutaComponent } from './components/minuta/minuta.component';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
     {path: 'lista-de-bodas', component: ListaBodasComponent, canActivate: [AuthGuardService]},
     {path: 'recomienda-cancion', component: RecomiendaCancionComponent, canActivate: [AuthGuardService]},
     {path: 'resultados-votacion', component: ResultadosComponent, canActivate: [AuthGuardService]},
+    {path: 'management', component: ManagementComponent, canActivate: [AuthGuardService]},
     {path: '**', component: PaginaNoEncontradaComponent}
 ];
 
