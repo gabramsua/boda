@@ -34,7 +34,6 @@ import { ListaBodasComponent } from './components/lista-bodas/lista-bodas.compon
 import { MapaComponent } from './components/mapa/mapa.component';
 import { CustomSnackBarComponent } from 'shared/SnackBarComponent.component';
 import { ModalComponent } from './shared/modal/modal.component ';
-import { YoutubeSearcherComponent } from './components/youtube-searcher/youtube-searcher.component';
 import { RecomiendaCancionComponent } from './components/recomienda-cancion/recomienda-cancion.component';
 import { MinutaComponent } from './components/minuta/minuta.component';
 import { LoginComponent } from './components/login/login.component';
@@ -55,7 +54,6 @@ import { FilterPipeInvitadosPipe } from './shared/filter-pipe-invitados.pipe';
     ListaBodasComponent,
     MapaComponent,
     ModalComponent,
-    YoutubeSearcherComponent,
     RecomiendaCancionComponent,
     MinutaComponent,
     LoginComponent,

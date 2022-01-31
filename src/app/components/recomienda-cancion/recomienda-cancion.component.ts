@@ -12,12 +12,13 @@ import { User } from 'src/app/models/models';
 })
 export class RecomiendaCancionComponent implements OnInit {
   
-  @ViewChild('demoYouTubePlayer') demoYouTubePlayer: ElementRef<HTMLDivElement>;
+  // @ViewChild('demoYouTubePlayer') demoYouTubePlayer: ElementRef<HTMLDivElement>;
   videoWidth: number | undefined;
   videoHeight: number | undefined;
   canciones: FormGroup;
   currentUser: User;
   constants = constants;
+  // player: any;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -76,5 +77,10 @@ export class RecomiendaCancionComponent implements OnInit {
       }, error => {
         console.log(error)
       })
+  }
+
+  cerrarModalCanciones(){
+    // console.log("Cerrar modal y parar la música")
+    // this.player.stopVideo();
   }
 }

@@ -5,12 +5,13 @@ h2 {
     color: $verde-letra
 }
 .oops{ margin-bottom: 0;}
-.card-body{
-    margin-top: 5rem;
-}
+// .card-body{
+//     margin-top: 5rem;
+// }
 
 .no-se-ve{
-    visibility: hidden;
+    // visibility: hidden;
+    display: none !important
 }
 @media only screen and (max-width: 629px) {
     .graph {
