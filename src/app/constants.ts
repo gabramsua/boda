@@ -28,20 +28,28 @@ const Constants = {
             CANCION_6: 'cancion_6'
         },
         TITULOS_CANCIONES: {
-            CANCION_1: 'Avicii - The nights',
-            CANCION_2: 'Manzanita - Un ramito de violetas',
-            CANCION_3: 'Chiquetete - Esa cobardía',
-            CANCION_4: 'Camilo Sesto - Vivir así es morir de amor',
-            CANCION_5: 'Jarabe de Palo - Eso que tú me das',
-            CANCION_6: 'Junco - Hola mi amor'
+            CANCION_1: 'Levels - Avicii',
+            CANCION_2: 'Mambo No. 5 - Lou Bega',
+            CANCION_3: 'Baila Conmigo - Dayvi, V. Cardenas',
+            CANCION_4: 'Sweet Caroline - DJ Ötzi',
+            CANCION_5: 'I Gotta Feeling - Black Eyed Peas',
+            CANCION_6: 'Madre Tierra - Chayanne'
         },
         IDS_CANCIONES: {
-            CANCION_1:'UtF6Jej8yb4', 
-            CANCION_2:'8WdrVgdUXJI', 
-            CANCION_3:'aUyPHxBc82Q', 
-            CANCION_4:'-DQ4ZUdcmw', 
-            CANCION_5:'hE6CsyWv8Zs', 
-            CANCION_6:'Iw0FNURjOWs' 
+            CANCION_1:'_ovdm2yX4MA', 
+            CANCION_2:'EK_LN3XEcnw', 
+            CANCION_3:'3zFHaijdubY', 
+            CANCION_4:'uOJ6J__L-fo', 
+            CANCION_5:'uSD4vsh1zDA', 
+            CANCION_6:'aLDIgvPlYP8' 
+        },
+        INICIO_CANCIONES: {
+            CANCION_1:0,
+            CANCION_2:51, // 51, 0
+            CANCION_3:30,
+            CANCION_4:114,
+            CANCION_5:29,
+            CANCION_6:17,
         }
     },
     ADMIN_NOVIOS: {

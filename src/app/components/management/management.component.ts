@@ -110,6 +110,11 @@ export class ManagementComponent implements OnInit {
       'Actualizamos los invitados',
       'success'
     )
+    this.usuariosForm = this._formBuilder.group({
+      nombre: ['', Validators.required],
+      apellidos: ['', Validators.required],
+      telefono: ['', Validators.required]
+    });
   }
   errorAlert(error){
     Swal.fire(
@@ -130,6 +135,10 @@ export class ManagementComponent implements OnInit {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this._service.delete(constants.END_POINTS.USERS, item.telefono)
+        // TODO: Borrar también su voto de la canción y su puntuación del quizz
+        if ( item.cancion ) {      
+          this._service.delete(item.cancion, item.telefono)
+        }
       } else if (result.isDenied) {
         Swal.fire('Changes are not saved', '', 'info')
       }
