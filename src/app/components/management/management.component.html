@@ -1,1 +1,123 @@
-<p>management works!</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<h1>Añadir Invitado</h1>
+<div class="container d-flex justify-content-center">
+    <form [formGroup]="usuariosForm" class="d-flex justify-content-around flex-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>El nombre</mat-label>
+                        <input matInput aria-label="nombre" formControlName="nombre">
+                        <!-- <mat-error *ngIf="name.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                        <!-- <mat-hint>Sin estos campos no podrás continuar</mat-hint> -->
+                    </mat-form-field>
+                </div>
+                
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Los apellidos</mat-label>
+                        <input matInput aria-label="apellidos" formControlName="apellidos">
+                        <!-- <mat-error *ngIf="surname.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                    </mat-form-field>
+                </div>
+
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>El teléfono</mat-label>
+                        <input matInput aria-label="telefono" formControlName="telefono">
+                        <!-- <mat-error *ngIf="telefono.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <button class="btn btn-info" (click)="addInvitado()" [disabled]="disableAdd()">Añadir</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<h1>Listado de invitados</h1>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <button class="btn btn-primary" data-toggle="collapse" data-target="#demo">Filtrar</button>
+            <div id="demo" class="collapse">
+
+                <!-- FILTRO NOMBRE -->
+                <h4>Filtrar</h4>
+                <input type="text" class="form-control" aria-label="emailHelp" placeholder="Introduce criterio de búsqueda(Nombre, apellidos, teléfono)"
+                [(ngModel)]="filtrador" name="filtrador">
+                
+                <!-- FILTRO ASISTENCIA -->
+                <h4>Asistencia</h4>
+                <!-- <li class="list-group-item"  *ngFor="let item of itemsList"> -->
+                <div class="form-check form-check-inline"  *ngFor="let item of itemsList">
+                    <input type="radio" id="{{item.value}}" [(ngModel)]="radioSelected" name="list_name" value="{{item.value}}" (change)="onRadioAsistenciaChange(item)" aria-label="radio"/> 
+                    <label for="{{item.value}}"><span>{{item.name}}</span></label>
+                <!-- </li> -->
+                </div>
+                
+                <!-- ALERGIAS -->
+                <h4>Requerimientos Alimenticios</h4>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="alergicos" [ngModelOptions]="{standalone: true}" aria-label="check" (change)="onChangeAlergicos()">
+                    Ver sólo invitados con alergias
+                </div>
+            </div>
+              
+
+
+            <div class="table-responsive">
+                <table class="table table-striped mt-5">
+                    <thead>
+                        <tr>
+                            <th>Teléfono</th>
+                            <th>Nombre</th>
+                            <th>Apellildos</th>
+                            <th>¿Viene?</th>
+                            <th>Alergias</th>
+                            <th>Bebida</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of invitadosCopy | filterPipeInvitados: filtrador">
+                            <td>{{ item.telefono }}</td>
+                            <td>{{ item.nombre }}</td>
+                            <td>{{ item.apellidos }}</td>
+                            <td>{{ translateAsistencia(item.asistencia) }}</td>
+                            <td>{{ item.alergias }}</td>
+                            <td>{{ item.bebida }}</td>
+                            <td>
+                                <i class="fas fa-edit fa-lg text-info mr-2" (click)="editInvitado(item)" data-toggle="modal" data-target="#container_modal_edit"></i>
+                                <i class="fas fa-trash-alt fa-lg text-danger" (click)="deleteInvitado(item)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="container_modal_edit" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Editando a *{{editandoInvitado.nombre}}*</h2>
+                <button class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p><span>Aquí va el formulario de edición.</span></p>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

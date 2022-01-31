@@ -41,6 +41,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
 import { ResultadosComponent } from './components/resultados/resultados.component';
 import { ManagementComponent } from './components/management/management.component';
+import { FilterPipeInvitadosPipe } from './shared/filter-pipe-invitados.pipe';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { ManagementComponent } from './components/management/management.componen
     LoginComponent,
     PaginaNoEncontradaComponent,
     ResultadosComponent,
-    ManagementComponent
+    ManagementComponent,
+    FilterPipeInvitadosPipe
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [
