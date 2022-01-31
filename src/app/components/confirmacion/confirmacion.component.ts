@@ -53,6 +53,8 @@ export class ConfirmacionComponent implements OnInit {
   
   name = new FormControl('', [Validators.required]);
   surname = new FormControl('', [Validators.required]);
+  telefono1 = new FormControl('', [Validators.pattern("[6-7]{1}[0-9]{8}$"),Validators.required]);
+
 
   constructor(private _formBuilder: FormBuilder, 
     private _service: AuthService) {}
@@ -174,7 +176,7 @@ export class ConfirmacionComponent implements OnInit {
       formularioAcompanante1 = {
         nombre: this.acompanantes.value.nombre1,
         apellidos: this.acompanantes.value.apellido1,
-        telefono: this.acompanantes.value.telefono1,
+        telefono: JSON.stringify(this.acompanantes.value.telefono1),
         asistencia: this.asistencia.value.vienes_o_que,
         tipoBus: this.buses.value.traslado,
         alergias: null,
@@ -194,13 +196,14 @@ export class ConfirmacionComponent implements OnInit {
       formulario.acompanantes.push({
           nombre: this.acompanantes.value.nombre1,
           apellidos: this.acompanantes.value.apellido1,
-          telefono: this.acompanantes.value.telefono1})
+          telefono: JSON.stringify(this.acompanantes.value.telefono1)
+      })
 
       if(acompanante2) {
         formularioAcompanante2 = {
           nombre: this.acompanantes.value.nombre2,
           apellidos: this.acompanantes.value.apellido2,
-          telefono: this.acompanantes.value.telefono2,
+          telefono: JSON.stringify(this.acompanantes.value.telefono2),
           asistencia: this.asistencia.value.vienes_o_que,
           tipoBus: this.buses.value.traslado,
           alergias: null,
@@ -216,18 +219,20 @@ export class ConfirmacionComponent implements OnInit {
             },{
               nombre: this.acompanantes.value.nombre1,
               apellidos: this.acompanantes.value.apellido1,
-              telefono: this.acompanantes.value.telefono1
+              telefono: JSON.stringify(this.acompanantes.value.telefono1)
             }
           ]
         }
         formulario.acompanantes.push({
             nombre: this.acompanantes.value.nombre2,
             apellidos: this.acompanantes.value.apellido2,
-            telefono: this.acompanantes.value.telefono2})
+            telefono: JSON.stringify(this.acompanantes.value.telefono2)
+        })
         formularioAcompanante1.acompanantes.push({
             nombre: this.acompanantes.value.nombre2,
             apellidos: this.acompanantes.value.apellido2,
-            telefono: this.acompanantes.value.telefono2})
+            telefono: JSON.stringify(this.acompanantes.value.telefono2)
+        })
 
         
         if(acompanante3) {
@@ -250,26 +255,29 @@ export class ConfirmacionComponent implements OnInit {
               },{
                 nombre: this.acompanantes.value.nombre1,
                 apellidos: this.acompanantes.value.apellido1,
-                telefono: this.acompanantes.value.telefono1
+                telefono: JSON.stringify(this.acompanantes.value.telefono1)
               },{
                 nombre: this.acompanantes.value.nombre2,
                 apellidos: this.acompanantes.value.apellido2,
-                telefono: this.acompanantes.value.telefono2
+                telefono: JSON.stringify(this.acompanantes.value.telefono2)
               }
             ]
           }
           formulario.acompanantes.push({
               nombre: this.acompanantes.value.nombre3,
               apellidos: this.acompanantes.value.apellido3,
-              telefono: this.acompanantes.value.telefono3})
+              telefono: JSON.stringify(this.acompanantes.value.telefono3)
+          })
           formularioAcompanante1.acompanantes.push({
               nombre: this.acompanantes.value.nombre3,
               apellidos: this.acompanantes.value.apellido3,
-              telefono: this.acompanantes.value.telefono3})
+              telefono: JSON.stringify(this.acompanantes.value.telefono3)
+          })
           formularioAcompanante2.acompanantes.push({
               nombre: this.acompanantes.value.nombre3,
               apellidos: this.acompanantes.value.apellido3,
-              telefono: this.acompanantes.value.telefono3})
+              telefono: JSON.stringify(this.acompanantes.value.telefono3)
+          })
 
           // Máximo 3 acompañantes
           // this.save(this.acompanantes.value.telefono3, formularioAcompanante3)

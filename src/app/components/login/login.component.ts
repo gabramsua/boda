@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _formBuilder: FormBuilder, ) {}
 
   ngOnInit(): void {
+    this.isAdmin = false;
     // this.getAll()
     // this.get('645303663')
     this._service.currentUser$.subscribe( user => {
