@@ -1,9 +1,19 @@
+@import '../../../variables.scss';
+
 .progress {
     // width: 70vw;
 }
 .concurso-container{
-    border: 1px solid red;
 }
-.dificultad{
-    border: 1px solid blue;
+.ayudas{
+    width: -webkit-fill-available;
+}
+.preguntas {
+    background-color: #FBFBFB; // transparent; // 
+    border: 2px solid #B7DFF0;
+    border-radius: 5px;
+    padding: 10px;
+}
+.fa-star{
+    color: $amarillo-star
 }
