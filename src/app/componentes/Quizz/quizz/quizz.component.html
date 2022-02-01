@@ -2,22 +2,26 @@
     <h1>¿Cuánto conoces a los novios?</h1>
     <p><span>Te presentamos un pequeño juego donde comprobaremos si de verdad mereces ser invitado...</span></p>
     <p><span>Es un cuestionario de 10 preguntas y respuestas tipo test. Hay preguntas de varios niveles de dificultad: Fácil, Medio, Difícil.
-            En función de la dificultad, las preguntas valdrán 10, 20 ó 30 puntos. Los fallos no restan. 
+             En función de la dificultad, las preguntas valdrán 10, 20 ó 30 puntos. Los fallos no restan. 
+             En caso de empate a puntos, tendrá prioridad la persona que rellenara el cuestionario con anterioridad.
     </span></p>
     <p><span>Hemos tirado la casa por la ventana porque es un día muy especial. El día de la boda, la persona con mayor puntuación se llevará un regalo sorpresa valorado en más de 5€. </span></p>
 
     <div class="container d-flex justify-content-around mb-4">
         <button type="button" class="btn btn-info" (click)="empezar()" >EMPEZAR</button>
         <!-- routerLink="/cuestionario" -->
-        <button type="button" class="btn btn-outline-info">VER RANKING</button>
+        <button type="button" class="btn btn-outline-info" (click)="endOfGame()">VER RANKING</button>
     </div>
 </div>
 
 <div *ngIf="estadoQuizz === 'preguntando'">
-    <app-cuestionario [preguntas]="listadoPreguntas" (dispatchPuntuacion)="updatePuntuacion($event)" (endOfGame)="endOfGame()"></app-cuestionario>
+    <app-cuestionario [preguntas]="listadoPreguntas" (dispatchPuntuacion)="updatePuntuacion($event)" (endOfGame)="endOfGame(true)"></app-cuestionario>
 </div>
 <div *ngIf="estadoQuizz === 'resultados'">
-    **{{puntuacionTotal}}**
+    <div *ngIf="hasPlayedFlag">
+        <app-fin [puntuacionFinal]="puntuacionTotal" [tuMejorPuntuacion]="tuMejorPuntuacion"></app-fin>
+    </div>
+    <app-ranking [clasificacion]="clasificacion"></app-ranking>
 </div>
 
 <div *ngIf="loading">

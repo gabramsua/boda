@@ -1,6 +1,5 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import constants from 'src/app/constants';
-import { Quizz } from 'src/app/models/models';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -17,6 +16,9 @@ export class QuizzComponent implements OnInit, DoCheck {
   flag = false;
   estadoQuizz = constants.ESTADOS_QUIZZ.BIENVENIDA
   puntuacionTotal: number = 0;
+  hasPlayedFlag = false;
+  tuMejorPuntuacion: number = 0;
+  clasificacion:any[] = []
 
   constructor(private _service: AuthService) { }
 
@@ -81,8 +83,39 @@ export class QuizzComponent implements OnInit, DoCheck {
     this.puntuacionTotal += puntos;
   }
 
-  endOfGame(){
-    this.estadoQuizz = constants.ESTADOS_QUIZZ.RESULTADOS
+  endOfGame(hasPlayed = false){
+    // this.loading = true;
+    // Guardar resultado del invitado
+    // Cargar el ranking
+    this.clasificacion = [
+      {
+        nombre: 'Pepe',
+        apellidos: 'Ramos',
+        telefono: '645303663',
+        puntos: 170,
+        fecha: '01/02/2022',
+        hora: '17:40'
+      },
+      {
+        nombre: 'Carmen',
+        apellidos: 'Gallardo',
+        telefono: '603825519',
+        puntos: 190,
+        fecha: '01/02/2022',
+        hora: '17:40'
+      },
+      {
+        nombre: 'Teo',
+        apellidos: 'González',
+        telefono: '659640428',
+        puntos: 190,
+        fecha: '01/02/2022',
+        hora: '21:35'
+      }
+    ]
+    // Calcular el mejor resultado del currentUser
 
+    this.estadoQuizz = constants.ESTADOS_QUIZZ.RESULTADOS
+    this.hasPlayedFlag = hasPlayed
   }
 }

@@ -47,6 +47,8 @@ import { FinComponent } from './componentes/Quizz/fin/fin.component';
 import { RankingComponent } from './componentes/Quizz/ranking/ranking.component';
 import { CuestionarioComponent } from './componentes/Quizz/cuestionario/cuestionario.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { CutApellidosPipePipe } from './shared/cut-apellidos-pipe.pipe';
+import { CutPhonePipePipe } from './shared/cut-phone-pipe.pipe';
 
 
 @NgModule({
@@ -72,7 +74,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
     FinComponent,
     RankingComponent,
     CuestionarioComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    CutApellidosPipePipe,
+    CutPhonePipePipe
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [

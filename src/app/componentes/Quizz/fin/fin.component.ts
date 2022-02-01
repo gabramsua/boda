@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-fin',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fin.component.scss']
 })
 export class FinComponent implements OnInit {
+  @Input() puntuacionFinal: number;
+  @Input() tuMejorPuntuacion: number;
 
   constructor() { }
 
