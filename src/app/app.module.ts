@@ -33,7 +33,6 @@ import { MesasComponent } from './components/mesas/mesas.component';
 import { ListaBodasComponent } from './components/lista-bodas/lista-bodas.component';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { CustomSnackBarComponent } from 'shared/SnackBarComponent.component';
-import { ModalComponent } from './shared/modal/modal.component ';
 import { RecomiendaCancionComponent } from './components/recomienda-cancion/recomienda-cancion.component';
 import { MinutaComponent } from './components/minuta/minuta.component';
 import { LoginComponent } from './components/login/login.component';
@@ -47,6 +46,7 @@ import { RespuestaComponent } from './componentes/Quizz/respuesta/respuesta.comp
 import { FinComponent } from './componentes/Quizz/fin/fin.component';
 import { RankingComponent } from './componentes/Quizz/ranking/ranking.component';
 import { CuestionarioComponent } from './componentes/Quizz/cuestionario/cuestionario.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
@@ -59,7 +59,6 @@ import { CuestionarioComponent } from './componentes/Quizz/cuestionario/cuestion
     MesasComponent,
     ListaBodasComponent,
     MapaComponent,
-    ModalComponent,
     RecomiendaCancionComponent,
     MinutaComponent,
     LoginComponent,
@@ -72,7 +71,8 @@ import { CuestionarioComponent } from './componentes/Quizz/cuestionario/cuestion
     RespuestaComponent,
     FinComponent,
     RankingComponent,
-    CuestionarioComponent
+    CuestionarioComponent,
+    SpinnerComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [

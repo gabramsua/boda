@@ -19,3 +19,7 @@
 <div *ngIf="estadoQuizz === 'resultados'">
     **{{puntuacionTotal}}**
 </div>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
