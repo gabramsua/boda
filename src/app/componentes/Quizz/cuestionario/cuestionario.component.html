@@ -1,0 +1,26 @@
+<div class="container" [@fadeIn]>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" [style.width]="avance[step] + '%'" aria-valuemin="0" aria-valuemax="100">{{ avance[step] }}%</div>
+    </div>
+    <div class="d-flex justify-content-center concurso-container">
+        <div class="concurso">
+            <div class="preguntas">
+                {{ preguntas[step].pregunta }}
+            </div>
+            <div class="respuestas">
+                <respuesta 
+                    [@fadeIn]
+                    *ngFor="let respuesta of respuestas" 
+                    [texto]="respuesta" 
+                    (answerClicked)="onAnswerClicked($event)">
+                </respuesta>
+            </div>
+        </div>
+        <div class="dificultad">
+            <div class="puntuacion">
+                {{ preguntas[step].puntuacion }}
+            </div>
+            <div class="pista"></div>
+        </div>
+    </div>
+</div>

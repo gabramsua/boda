@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CuestionarioComponent } from './componentes/Quizz/cuestionario/cuestionario.component';
+import { QuizzComponent } from './componentes/Quizz/quizz/quizz.component';
 import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListaBodasComponent } from './components/lista-bodas/lista-bodas.component';
@@ -23,6 +25,8 @@ const routes: Routes = [
     {path: 'lista-de-bodas', component: ListaBodasComponent, canActivate: [AuthGuardService]},
     {path: 'recomienda-cancion', component: RecomiendaCancionComponent, canActivate: [AuthGuardService]},
     {path: 'resultados-votacion', component: ResultadosComponent, canActivate: [AuthGuardService]},
+    {path: 'quizz', component: QuizzComponent, canActivate: [AuthGuardService]},
+    {path: 'cuestionario', component: CuestionarioComponent, canActivate: [AuthGuardService]},
     {path: 'management', component: ManagementComponent, canActivate: [AuthGuardService]},
     {path: '**', component: PaginaNoEncontradaComponent}
 ];

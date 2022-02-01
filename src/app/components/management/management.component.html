@@ -103,7 +103,6 @@
 </div>
 
 
-
 <div class="modal fade" id="container_modal_edit" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -120,4 +119,63 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<!-- /////////////////////////////////////////////////////////////////////////////////// -->
+<h1>Añadir Pregunta Quizz</h1>
+<div class="container d-flex justify-content-center">
+    <form [formGroup]="quizzForm" class="d-flex justify-content-around flex-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>La Pregunta</mat-label>
+                        <input matInput aria-label="pregunta" formControlName="pregunta">
+                        <!-- <mat-error *ngIf="name.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                        <!-- <mat-hint>Sin estos campos no podrás continuar</mat-hint> -->
+                    </mat-form-field>
+                </div>
+                
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Respuesta Correcta</mat-label>
+                        <input matInput aria-label="r_correcta" formControlName="r_correcta">
+                        <!-- <mat-error *ngIf="surname.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                    </mat-form-field>
+                </div>
+                
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Respuesta falsa 1</mat-label>
+                        <input matInput aria-label="r_falsa_1" formControlName="r_falsa_1">
+                        <!-- <mat-error *ngIf="telefono.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Respuesta falsa 2</mat-label>
+                        <input matInput aria-label="r_falsa_2" formControlName="r_falsa_2">
+                        <!-- <mat-error *ngIf="telefono.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Respuesta falsa 3</mat-label>
+                        <input matInput aria-label="r_falsa_3" formControlName="r_falsa_3">
+                        <!-- <mat-error *ngIf="telefono.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <md-input-container>
+                        <input matInput type="number" min="1" max="3" placeholder="Dificultad" formControlName="dificultad" aria-label="dificultad">
+                        <!-- <md-error>Please enter a value between 0 and 100</md-error> -->
+                    </md-input-container>
+                </div>
+                <div class="col">
+                    <button class="btn btn-info" (click)="addPreguntaQuizz()">Añadir</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>

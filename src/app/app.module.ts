@@ -41,6 +41,12 @@ import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/p
 import { ResultadosComponent } from './components/resultados/resultados.component';
 import { ManagementComponent } from './components/management/management.component';
 import { FilterPipeInvitadosPipe } from './shared/filter-pipe-invitados.pipe';
+import { QuizzComponent } from './componentes/Quizz/quizz/quizz.component';
+import { PreguntaComponent } from './componentes/Quizz/pregunta/pregunta.component';
+import { RespuestaComponent } from './componentes/Quizz/respuesta/respuesta.component';
+import { FinComponent } from './componentes/Quizz/fin/fin.component';
+import { RankingComponent } from './componentes/Quizz/ranking/ranking.component';
+import { CuestionarioComponent } from './componentes/Quizz/cuestionario/cuestionario.component';
 
 
 @NgModule({
@@ -60,7 +66,13 @@ import { FilterPipeInvitadosPipe } from './shared/filter-pipe-invitados.pipe';
     PaginaNoEncontradaComponent,
     ResultadosComponent,
     ManagementComponent,
-    FilterPipeInvitadosPipe
+    FilterPipeInvitadosPipe,
+    QuizzComponent,
+    PreguntaComponent,
+    RespuestaComponent,
+    FinComponent,
+    RankingComponent,
+    CuestionarioComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [
