@@ -21,6 +21,11 @@
     <div *ngIf="hasPlayedFlag">
         <app-fin [puntuacionFinal]="puntuacionTotal" [tuMejorPuntuacion]="tuMejorPuntuacion"></app-fin>
     </div>
+    <button type="button" class="btn btn-link volver" (click)="goToBienvenida()">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-chevron-left"></i>&nbsp;Atrás
+        </div>
+    </button>
     <app-ranking [clasificacion]="clasificacion"></app-ranking>
 </div>
 

@@ -4,7 +4,7 @@
 <ul>
     <li *ngFor="let puesto of clasificacion; index as i;">
        <span class="position">{{ i + 1 }}</span> 
-       <div class="vl"></div>
+       <!-- <div class="vl"></div> -->
        <div class="datos d-flex justify-content-between">
             <div class="info d-flex flex-column ml-2">
                 <span>{{ puesto.nombre }} {{ puesto.apellidos | cutApellidosPipe }}</span>

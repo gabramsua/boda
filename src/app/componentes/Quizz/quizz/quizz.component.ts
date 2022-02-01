@@ -118,4 +118,7 @@ export class QuizzComponent implements OnInit, DoCheck {
     this.estadoQuizz = constants.ESTADOS_QUIZZ.RESULTADOS
     this.hasPlayedFlag = hasPlayed
   }
+  goToBienvenida() {
+    this.estadoQuizz = constants.ESTADOS_QUIZZ.BIENVENIDA    
+  }
 }
