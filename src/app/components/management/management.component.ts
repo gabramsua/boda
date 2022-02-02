@@ -185,7 +185,6 @@ export class ManagementComponent implements OnInit {
     this.invitadosCopy = this.alergicos ? this.invitados.filter(x => x.alergias !== null) : this.invitados
   }
   addPreguntaQuizz(){
-    let endPoint = this.currentUser.nombre == 'Gabriel' ? constants.END_POINTS.QUIZZ_NENO : constants.END_POINTS.QUIZZ_MARIA
     const pregunta: Quizz = {      
       pregunta: this.quizzForm.value.pregunta,
       respuestaCorrecta: this.quizzForm.value.r_correcta,
@@ -197,7 +196,7 @@ export class ManagementComponent implements OnInit {
     }
 
     
-    this._service.guardarPregunta(endPoint, pregunta)
+    this._service.guardarPregunta(constants.END_POINTS.QUIZZ_PREGUNTAS, pregunta)
       .then(()=>{
         this.sweetAlert()
       }, error => {

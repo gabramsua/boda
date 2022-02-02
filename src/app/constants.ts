@@ -1,8 +1,7 @@
 const Constants = {
     END_POINTS: {
         USERS: 'users',
-        QUIZZ_NENO: 'quizzNeno',
-        QUIZZ_MARIA: 'quizzMaria',
+        QUIZZ_PREGUNTAS: 'quizzNeno',
         RESULTADOS_CANCIONES: 'resultados_canciones',
         PASS: 'isAdmin',
         RESULTADOS_QUIZZ: 'resultadosQuizz'
@@ -59,26 +58,53 @@ const Constants = {
         MARIA: '637919660'
     },
     PREGUNTAS_NENO:{
-        1: '56P78OBZjWI3oCyF033o',
-        2: '9jmVlwYez8mMXTBEFNR1',
-        3: 'HlRx1H4tGTh5LKpBq4Cf',
-        4: 'LrBQKHwTDQlIMFSZZoAR',
-        5: 'NIiUnXqxEc8qnSZloELK',
-        6: 'Ogy58dei8oJTUP3saVhb',
-        7: 'TL8ZlAsLS3lA1LsUfKvr',
-        8: 'ThKRA2HI69RCeV6acARE',
-        9: 'VZ6gYBCi0FhIn4i17wHk',
-        10: 'X7M8NiVPrZwcYsMlWcOU', 
-        11: 'YLinVgp8s39eSK7hs4gC',
-        12: 'ZeltjOrrTy3wBoN7gtXW',
-        13: 'eOgZUSSIeMhOwx23x3Yy',
-        14: 'hdZ9MzksyW8eiZoOwQf1',
-        15: 'mFtsd7rFkTts5jmHNCyR',
-        16: 'pHrn8mle2SsCj3to2Ewx',
-        17: 'utnI6StgO8gGG4E9j1M4',
-        18: 'uzHauFld9jghNE2tM8lc',
-        19: '',
-        20: '',
+        
+        1:'2buzjBfeGUz31GZP63CI',
+        2:'3L7AvrlcdpqHIirmAarP',
+        3:'4LSItCwjg0sfjRVrgSJs',
+        4: '56P78OBZjWI3oCyF033o',
+        5: '9jmVlwYez8mMXTBEFNR1',
+        6: 'BZscwYl9PoWUa9frgHVz',
+        7: 'D5D6GsSoIyr7LhuhJaMj',
+        8: 'EJRaXcHInlOvQyoh9HJP',
+        9: 'EJaqKTMragolwSgdFp3t',
+        10: 'HlRx1H4tGTh5LKpBq4Cf',
+        11: 'Iti3zx6dcXSqBFqCyjRh',
+        12: 'LrBQKHwTDQlIMFSZZoAR',
+        13: 'MzJNZlE4YyTgJHuuALpf',
+        14: 'NIiUnXqxEc8qnSZloELK',
+        15: 'Ogy58dei8oJTUP3saVhb',
+        16: 'TL8ZlAsLS3lA1LsUfKvr',
+        17: 'ThKRA2HI69RCeV6acARE',
+        18: 'Ui5yU72aRWV6qQG1CFPN',
+        19: 'VZ6gYBCi0FhIn4i17wHk',
+        20: 'VgwdPOFMoykYhJwgRr75',
+        21: 'W5YZDJU8anJlqtNOWn8V',
+        22: 'W7o2rdeVBk8dCgXcGvP5',
+        23: 'X7M8NiVPrZwcYsMlWcOU',
+        24: 'YLinVgp8s39eSK7hs4gC',
+        25: 'ZeltjOrrTy3wBoN7gtXW',
+        26: 'cxSuMB0XY7xItNHgfTdn',
+        27: 'eOgZUSSIeMhOwx23x3Yy',
+        28: 'fpmizTwDbvOW7LSKucCk',
+        29: 'hdZ9MzksyW8eiZoOwQf1',
+        30: 'imnjjazu5IRbb8EXD6Ve',
+        31: 'kGtqbdJj9XaMuAYNwkDb',
+        32: 'kIONU0ZjsxhICJi3mfGF',
+        33: 'kSPPtO2XPLxpiTSZMBzx',
+        34: 'lD75ZsfwDcRayZuioWEU',
+        35: 'mFtsd7rFkTts5jmHNCyR',
+        36: 'mUyBe07nuZTmWG5G8Ctm',
+        37: 'nk8k6JGEeUQXJHQ8yhLt',
+        38: 'pCGKai0W5J3bFefpk9Ta',
+        39: 'pHrn8mle2SsCj3to2Ewx',
+        40: 'pgRYzDGjhaXL70sLSXYp',
+        41: 'r4vT2kDhX3iFkvAq4Ujg',
+        42: 'utnI6StgO8gGG4E9j1M4',
+        43: 'uzHauFld9jghNE2tM8lc',
+        44: 'wqLo5wdT0jpP5mbCYRUJ',
+        45: 'xBrEFlAYDsIrhFccituA',
+        46: 'zV7nMoGORTFRXuAjT99P'
     },
     PREGUNTAS_MARIA: {},
     ESTADOS_QUIZZ: {
@@ -89,10 +115,3 @@ const Constants = {
 }
 
 export default Constants;
-
-// Agrega los siguientes registros TXT a tu proveedor de DNS para verificar que eres el propietario de bodagabrielymaria.es. No borres tus registros TXT.
-// google-site-verification=ijtLUK9Z-bjS-ZTLt6mNGiAMm99qQDRsql4R-puezNY
-
-// bodagabrielmaria.com
-// https://boda-338312.web.app
-// 199.36.158.100

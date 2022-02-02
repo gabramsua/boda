@@ -55,17 +55,16 @@ export class QuizzComponent implements OnInit, DoCheck {
     this.loading = true;
     this.puntuacionTotal = 0;
     
-    // Traer preguntas 5 María y 5 Neno
-    this.getPreguntasNeno()
-    // this.getPreguntasMaria()
+    // Traer preguntas
+    this.getPreguntas()
   }
   
   getRandomArbitrary(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
-  getPreguntasNeno() {
-    for (let i = 1; i < 35; i++) {
+  getPreguntas() {
+    for (let i = 1; i < 55; i++) {
       let randomNumber = this.getRandomArbitrary(1,19)
       if (this.preguntasAleatorias.indexOf(randomNumber) === -1 && this.preguntasAleatorias.length < 10) {
         this.preguntasAleatorias.push(randomNumber);
@@ -73,22 +72,8 @@ export class QuizzComponent implements OnInit, DoCheck {
     }
 
     for(const random of this.preguntasAleatorias) {
-      this._service.get(constants.END_POINTS.QUIZZ_NENO, constants.PREGUNTAS_NENO[random]).subscribe(data => {
+      this._service.get(constants.END_POINTS.QUIZZ_PREGUNTAS, constants.PREGUNTAS_NENO[random]).subscribe(data => {
           this.preguntasNeno.push(data.data())
-      })
-    }
-  }
-  
-  getPreguntasMaria() {
-    for (let i = 1; i < 6; i++) {
-      let randomNumber = this.getRandomArbitrary(1,19)
-      if (this.preguntasAleatorias.indexOf(randomNumber) === -1) {
-        this.preguntasAleatorias.push(randomNumber);
-      }
-    }
-    for(const random of this.preguntasAleatorias) {
-      this._service.get(constants.END_POINTS.QUIZZ_MARIA, constants.PREGUNTAS_MARIA[random]).subscribe(data => {
-          this.preguntasMaria.push(data.data())
       })
     }
   }
