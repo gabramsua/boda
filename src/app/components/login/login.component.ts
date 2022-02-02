@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loggedUser: any;
   loginForm: FormGroup
   adminForm: FormGroup
-  telefono = new FormControl('', [Validators.pattern("[6-7]{1}[0-9]{8}$"),Validators.required]);
+  telefono = new FormControl('', [this.validateInput, Validators.required]);
   user: User;
   isAdmin = false;
 
@@ -48,6 +48,15 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.adminForm = null
       this.isAdmin = false
   }
+  validateInput(c: FormControl) {
+    let first = /[6-7]{1}[0-9]{8}$/;
+    let second = /[3]{1}[0-9]{9}$/;
+    return (first.test(c.value) || second.test(c.value)) ? null : {
+      validateInput: {
+        valid: false
+      }
+    }
+  }
   login(phone:string = this.user?.telefono) {
     if(!phone) phone = JSON.stringify(this.loginForm.value.telefono); // this.telefono.value // 
 
@@ -59,7 +68,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
   disableLogin() {
-    return this.loginForm.value.telefono === '' || JSON.stringify(this.loginForm.value.telefono).length !== 9
+    return this.loginForm.value.telefono === '' || 
+           (JSON.stringify(this.loginForm.value.telefono).charAt(0) != '3' && JSON.stringify(this.loginForm.value.telefono).length !== 9) ||
+           (JSON.stringify(this.loginForm.value.telefono).charAt(0) == '3' && JSON.stringify(this.loginForm.value.telefono).length !== 10)
   }
   disableAdminLogin() {
     return this.adminForm.value.pass === ''; // || JSON.stringify(this.adminForm.value.pass).length !== 9
