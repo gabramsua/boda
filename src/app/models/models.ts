@@ -21,3 +21,13 @@ export interface Quizz {
     puntuacion: number;
     pista?: string;
 }
+
+export interface ResultadoQuizz {
+    nombre: string;
+    apellidos: string;
+    telefono: string;
+    puntos: number;
+    date: Date;
+    // fecha: string;
+    // hora: string;
+}

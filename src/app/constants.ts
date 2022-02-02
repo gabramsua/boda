@@ -4,7 +4,8 @@ const Constants = {
         QUIZZ_NENO: 'quizzNeno',
         QUIZZ_MARIA: 'quizzMaria',
         RESULTADOS_CANCIONES: 'resultados_canciones',
-        PASS: 'isAdmin'
+        PASS: 'isAdmin',
+        RESULTADOS_QUIZZ: 'resultadosQuizz'
     },
     VALUES: {
         ASISTENCIA: {

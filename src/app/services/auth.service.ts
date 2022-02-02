@@ -27,6 +27,9 @@ export class AuthService {
   getAll(collection): Observable<any> {
     return this.firebase.collection(collection).snapshotChanges();
   }
+  getAllRanking(collection): Observable<any> {
+    return this.firebase.collection(collection).get();
+  }
   
   get(collection, id: string) {
     return this.firebase.collection(collection).doc(id).get()
