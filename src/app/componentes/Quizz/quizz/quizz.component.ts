@@ -138,6 +138,7 @@ export class QuizzComponent implements OnInit, DoCheck {
       )
     })
   }
+
   getAllRanking(){
     this.init();
     
@@ -148,8 +149,9 @@ export class QuizzComponent implements OnInit, DoCheck {
         })
       });
       // Ordenar clasificación
-      this.clasificacion.sort((a,b) => (a.puntos > b.puntos) ? 1 : ((b.puntos > a.puntos) ? -1 : 0))
+      this.clasificacion.sort((a,b) => (a.puntos > b.puntos) ? 1 : ((b.puntos > a.puntos) ? -1 : (a.date < b.date ? 1 : (b.date < a.date) ? -1 : 0)))
       this.clasificacion.reverse();
+      console.log(this.clasificacion)
 
       // Calcular el mejor resultado EN EL RANKING => hay que ordenarlo antes
       this.personalBest()
@@ -159,10 +161,6 @@ export class QuizzComponent implements OnInit, DoCheck {
 
   personalBest() {
     const found = this.clasificacion.findIndex(element => element.telefono == this.currentUser.telefono);
-    
-    console.log(found)
-
-    console.log('tuMejorPuntuacion', found+1)
     this.tuMejorPuntuacion = found+1;
 
     // Valor más alto
