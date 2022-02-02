@@ -151,7 +151,6 @@ export class QuizzComponent implements OnInit, DoCheck {
       // Ordenar clasificación
       this.clasificacion.sort((a,b) => (a.puntos > b.puntos) ? 1 : ((b.puntos > a.puntos) ? -1 : (a.date < b.date ? 1 : (b.date < a.date) ? -1 : 0)))
       this.clasificacion.reverse();
-      console.log(this.clasificacion)
 
       // Calcular el mejor resultado EN EL RANKING => hay que ordenarlo antes
       this.personalBest()

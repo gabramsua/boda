@@ -18,7 +18,7 @@ export class MapaComponent implements OnInit {
     // Iglesia de La Caridad => 37.38446735276997, -5.99578351814051
     this.lat = 40;
     this.lng = -3;
-    this.zoom = 4;
+    this.zoom = 2;
     this.mapTypeId = 'hybrid';
     this.sitios =  [
       {

@@ -49,6 +49,7 @@ import { CuestionarioComponent } from './componentes/Quizz/cuestionario/cuestion
 import { SpinnerComponent } from './spinner/spinner.component';
 import { CutApellidosPipePipe } from './shared/cut-apellidos-pipe.pipe';
 import { CutPhonePipePipe } from './shared/cut-phone-pipe.pipe';
+import { CountdownComponent } from './components/countdown/countdown.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { CutPhonePipePipe } from './shared/cut-phone-pipe.pipe';
     CuestionarioComponent,
     SpinnerComponent,
     CutApellidosPipePipe,
-    CutPhonePipePipe
+    CutPhonePipePipe,
+    CountdownComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [
