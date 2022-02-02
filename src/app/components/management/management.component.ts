@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/models';
+import { Quizz, User } from 'src/app/models/models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import constants from 'src/app/constants';
@@ -13,7 +13,9 @@ import { state } from '@angular/animations';
 })
 export class ManagementComponent implements OnInit {
 
+  currentUser: User;
   usuariosForm: FormGroup;
+  quizzForm: FormGroup;
   invitados: User[];
   invitadosCopy: User[];
   isEdit = false;
@@ -32,6 +34,7 @@ export class ManagementComponent implements OnInit {
     private _service: AuthService) {}
 
   ngOnInit(): void {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
     // GET ALL INVITADOS
     this.invitados = [];
     this.getAll()
@@ -43,6 +46,14 @@ export class ManagementComponent implements OnInit {
       apellidos: ['', Validators.required],
       telefono: ['', Validators.required]
     });
+    this.quizzForm = this._formBuilder.group({
+      pregunta: ['', Validators.required],
+      r_correcta: ['', Validators.required],
+      r_falsa_1: ['', Validators.required],
+      r_falsa_2: ['', Validators.required],
+      r_falsa_3: ['', Validators.required],
+      dificultad: ['', Validators.required]
+    })
     this.editandoInvitado = {
       nombre: null,
       apellidos: null,
@@ -107,13 +118,21 @@ export class ManagementComponent implements OnInit {
   sweetAlert(){
     Swal.fire(
       'Añadido!',
-      'Actualizamos los invitados',
+      'Actualizamos los registros',
       'success'
     )
     this.usuariosForm = this._formBuilder.group({
       nombre: ['', Validators.required],
       apellidos: ['', Validators.required],
       telefono: ['', Validators.required]
+    });
+    this.quizzForm = this._formBuilder.group({
+      pregunta: ['', Validators.required],
+      r_correcta: ['', Validators.required],
+      r_falsa_1: ['', Validators.required],
+      r_falsa_2: ['', Validators.required],
+      r_falsa_3: ['', Validators.required],
+      dificultad: ['', Validators.required]
     });
   }
   errorAlert(error){
@@ -164,5 +183,25 @@ export class ManagementComponent implements OnInit {
   onChangeAlergicos(){
     console.log('ver alergicos', this.alergicos)
     this.invitadosCopy = this.alergicos ? this.invitados.filter(x => x.alergias !== null) : this.invitados
+  }
+  addPreguntaQuizz(){
+    let endPoint = this.currentUser.nombre == 'Gabriel' ? constants.END_POINTS.QUIZZ_NENO : constants.END_POINTS.QUIZZ_MARIA
+    const pregunta: Quizz = {      
+      pregunta: this.quizzForm.value.pregunta,
+      respuestaCorrecta: this.quizzForm.value.r_correcta,
+      r_falsa_1: this.quizzForm.value.r_falsa_1,
+      r_falsa_2: this.quizzForm.value.r_falsa_2,
+      r_falsa_3: this.quizzForm.value.r_falsa_3,
+      puntuacion: this.quizzForm.value.dificultad,
+      // pista: '',
+    }
+
+    
+    this._service.guardarPregunta(endPoint, pregunta)
+      .then(()=>{
+        this.sweetAlert()
+      }, error => {
+        this.errorAlert(error)
+      })
   }
 }

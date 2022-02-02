@@ -33,7 +33,6 @@ import { MesasComponent } from './components/mesas/mesas.component';
 import { ListaBodasComponent } from './components/lista-bodas/lista-bodas.component';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { CustomSnackBarComponent } from 'shared/SnackBarComponent.component';
-import { ModalComponent } from './shared/modal/modal.component ';
 import { RecomiendaCancionComponent } from './components/recomienda-cancion/recomienda-cancion.component';
 import { MinutaComponent } from './components/minuta/minuta.component';
 import { LoginComponent } from './components/login/login.component';
@@ -41,6 +40,16 @@ import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/p
 import { ResultadosComponent } from './components/resultados/resultados.component';
 import { ManagementComponent } from './components/management/management.component';
 import { FilterPipeInvitadosPipe } from './shared/filter-pipe-invitados.pipe';
+import { QuizzComponent } from './componentes/Quizz/quizz/quizz.component';
+import { PreguntaComponent } from './componentes/Quizz/pregunta/pregunta.component';
+import { RespuestaComponent } from './componentes/Quizz/respuesta/respuesta.component';
+import { FinComponent } from './componentes/Quizz/fin/fin.component';
+import { RankingComponent } from './componentes/Quizz/ranking/ranking.component';
+import { CuestionarioComponent } from './componentes/Quizz/cuestionario/cuestionario.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { CutApellidosPipePipe } from './shared/cut-apellidos-pipe.pipe';
+import { CutPhonePipePipe } from './shared/cut-phone-pipe.pipe';
+import { CountdownComponent } from './components/countdown/countdown.component';
 
 
 @NgModule({
@@ -53,14 +62,23 @@ import { FilterPipeInvitadosPipe } from './shared/filter-pipe-invitados.pipe';
     MesasComponent,
     ListaBodasComponent,
     MapaComponent,
-    ModalComponent,
     RecomiendaCancionComponent,
     MinutaComponent,
     LoginComponent,
     PaginaNoEncontradaComponent,
     ResultadosComponent,
     ManagementComponent,
-    FilterPipeInvitadosPipe
+    FilterPipeInvitadosPipe,
+    QuizzComponent,
+    PreguntaComponent,
+    RespuestaComponent,
+    FinComponent,
+    RankingComponent,
+    CuestionarioComponent,
+    SpinnerComponent,
+    CutApellidosPipePipe,
+    CutPhonePipePipe,
+    CountdownComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [

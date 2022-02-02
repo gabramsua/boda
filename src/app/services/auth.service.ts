@@ -18,13 +18,17 @@ export class AuthService {
   }
   
   save(collection, id, item) {
-    // return this.firebase.collection(collection).add(item); // PARA INSERTAR
     return this.firebase.collection(collection).doc(id).set(item); // PARA INSERTAR CON ID PROPIO
-
+  }
+  guardarPregunta(collection, item){
+    return this.firebase.collection(collection).add(item); // PARA INSERTAR
   }
 
   getAll(collection): Observable<any> {
     return this.firebase.collection(collection).snapshotChanges();
+  }
+  getAllRanking(collection): Observable<any> {
+    return this.firebase.collection(collection).get();
   }
   
   get(collection, id: string) {

@@ -12,4 +12,22 @@ export interface User {
     acompanantes: any[];
 }
 
-export interface ResultadoCancion {}
+export interface Quizz {
+    pregunta: string;
+    respuestaCorrecta: string;
+    r_falsa_1: string;
+    r_falsa_2: string;
+    r_falsa_3?: string;
+    puntuacion: number;
+    pista?: string;
+}
+
+export interface ResultadoQuizz {
+    nombre: string;
+    apellidos: string;
+    telefono: string;
+    puntos: number;
+    date: Date;
+    // fecha: string;
+    // hora: string;
+}

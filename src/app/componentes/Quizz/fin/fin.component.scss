@@ -1,0 +1,17 @@
+@import '../../../variables.scss';
+
+h1 {
+    color: #67B8BC;
+    font-family: $fuente_titles;
+}
+
+img {
+    width: 70vw;
+}
+
+.felicidades {    
+    background-color: #FBFBFB; // transparent; // 
+    border: 2px solid #B7DFF0;
+    border-radius: 5px;
+    padding: 10px;
+}

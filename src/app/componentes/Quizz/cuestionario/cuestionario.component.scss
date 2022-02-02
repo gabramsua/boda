@@ -1,0 +1,23 @@
+@import '../../../variables.scss';
+
+.progress {
+    // width: 70vw;
+}
+.concurso-container{
+}
+.ayudas{
+    width: -webkit-fill-available;
+}
+.preguntas {
+    background-color: #FBFBFB; // transparent; // 
+    border: 2px solid #B7DFF0;
+    border-radius: 5px;
+    padding: 10px;
+    
+    font-size: 16px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+.fa-star{
+    color: $amarillo-star
+}

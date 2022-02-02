@@ -1,9 +1,11 @@
 const Constants = {
     END_POINTS: {
         USERS: 'users',
-        // QUIZZ: 'quizz'
+        QUIZZ_NENO: 'quizzNeno',
+        QUIZZ_MARIA: 'quizzMaria',
         RESULTADOS_CANCIONES: 'resultados_canciones',
-        PASS: 'isAdmin'
+        PASS: 'isAdmin',
+        RESULTADOS_QUIZZ: 'resultadosQuizz'
     },
     VALUES: {
         ASISTENCIA: {
@@ -55,6 +57,34 @@ const Constants = {
     ADMIN_NOVIOS: {
         NENO: '645303663',
         MARIA: '637919660'
+    },
+    PREGUNTAS_NENO:{
+        1: '56P78OBZjWI3oCyF033o',
+        2: '9jmVlwYez8mMXTBEFNR1',
+        3: 'HlRx1H4tGTh5LKpBq4Cf',
+        4: 'LrBQKHwTDQlIMFSZZoAR',
+        5: 'NIiUnXqxEc8qnSZloELK',
+        6: 'Ogy58dei8oJTUP3saVhb',
+        7: 'TL8ZlAsLS3lA1LsUfKvr',
+        8: 'ThKRA2HI69RCeV6acARE',
+        9: 'VZ6gYBCi0FhIn4i17wHk',
+        10: 'X7M8NiVPrZwcYsMlWcOU', 
+        11: 'YLinVgp8s39eSK7hs4gC',
+        12: 'ZeltjOrrTy3wBoN7gtXW',
+        13: 'eOgZUSSIeMhOwx23x3Yy',
+        14: 'hdZ9MzksyW8eiZoOwQf1',
+        15: 'mFtsd7rFkTts5jmHNCyR',
+        16: 'pHrn8mle2SsCj3to2Ewx',
+        17: 'utnI6StgO8gGG4E9j1M4',
+        18: 'uzHauFld9jghNE2tM8lc',
+        19: '',
+        20: '',
+    },
+    PREGUNTAS_MARIA: {},
+    ESTADOS_QUIZZ: {
+        BIENVENIDA: 'bienvenida',
+        PREGUNTANDO: 'preguntando',
+        RESULTADOS: 'resultados'
     }
 }
 

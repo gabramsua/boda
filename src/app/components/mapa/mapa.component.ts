@@ -18,7 +18,7 @@ export class MapaComponent implements OnInit {
     // Iglesia de La Caridad => 37.38446735276997, -5.99578351814051
     this.lat = 40;
     this.lng = -3;
-    this.zoom = 4;
+    this.zoom = 2;
     this.mapTypeId = 'hybrid';
     this.sitios =  [
       {
@@ -38,7 +38,7 @@ export class MapaComponent implements OnInit {
         icon: '../../assets/imgs/restaurant_2.png', // 'https://img.icons8.com/windows/30/000000/restaurant.png'
         foto: '',
         wiki: 'http://www.elpinodesanjose.com',
-        texto: 'Aquí será en banquete sobre las 14:00',
+        texto: 'Aquí será el banquete sobre las 14:00',
         place: 'https://www.google.com/maps/place/El+Pino+De+San+Jose/@37.4227635,-5.8190202,17z/data=!3m1!4b1!4m5!3m4!1s0xd1266b26f38a765:0x38a6c42d5e414bc5!8m2!3d37.4228324!4d-5.8166796'
       }
     ];
