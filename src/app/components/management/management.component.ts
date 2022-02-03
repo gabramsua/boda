@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import constants from 'src/app/constants';
 import Swal from 'sweetalert2';
 import { state } from '@angular/animations';
+import { config } from 'process';
 
 @Component({
   selector: 'app-management',
@@ -21,6 +22,28 @@ export class ManagementComponent implements OnInit {
   isEdit = false;
   editandoInvitado: User;
   filtrador = '';
+  constants = constants;
+  canciones = [
+    {
+    titulo: 'Cancion 1!',
+    votos: 41,
+    invitadosQueLaVotaron: ['Juan Adolfo Velarde', 'Ángel Fuentes', 'David Palomar']
+    },
+    {
+    titulo: 'Cancion 2!',
+    votos: 36,
+    invitadosQueLaVotaron: ['Tino Tovar', 'Jose Otero', 'David Catalán']
+    },
+    {
+    titulo: 'Cancion 3!',
+    votos: 19,
+    invitadosQueLaVotaron: ['Kanouté', 'Rafa Mir', 'Andrés Palop']
+    },
+  ]
+  tituloCancionModal: string = '';
+  usuariosCancionModal: string[] = [];
+
+
   
   itemsList = [
     {name: 'Todos', value: 'all'},
@@ -39,6 +62,9 @@ export class ManagementComponent implements OnInit {
     this.invitados = [];
     this.getAll()
     this.invitadosCopy = [...this.invitados]
+
+    // GET ALL CANCIONES
+    this.getCanciones()
 
     // 
     this.usuariosForm = this._formBuilder.group({
@@ -202,5 +228,36 @@ export class ManagementComponent implements OnInit {
       }, error => {
         this.errorAlert(error)
       })
+  }
+  getCanciones(){
+    this.canciones = []
+    for (let i = 1; i < 7; i++) {
+      const song = {
+        titulo: '',
+        votos: 0,
+        invitadosQueLaVotaron: []
+      }
+
+      this._service.getAllRanking('cancion_'+i).subscribe(data => {
+        song.titulo = constants.VALUES.TITULOS_CANCIONES['CANCION_'+i]
+        song.votos = data.length - 1
+        data.forEach((element: any) => {
+          if(element.id != 0) song.invitadosQueLaVotaron.push(this.getDatosFromPhone(element.id))
+        })
+      })
+      this.canciones.push(song)
+    }
+  }
+
+  openModalCancion(index){
+    this.tituloCancionModal = this.canciones[index].titulo;
+    this.usuariosCancionModal = this.canciones[index].invitadosQueLaVotaron;
+  }
+
+  getDatosFromPhone(phone){
+    const invitado = this.invitados.find(elem => elem.telefono == phone)
+    return invitado?.nombre + ' ' + invitado?.apellidos;
+
+
   }
 }

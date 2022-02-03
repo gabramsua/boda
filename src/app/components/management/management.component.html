@@ -1,108 +1,129 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<h1>Añadir Invitado</h1>
-<div class="container d-flex justify-content-center">
-    <form [formGroup]="usuariosForm" class="d-flex justify-content-around flex-wrap">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <mat-form-field appearance="outline">
-                        <mat-label>El nombre</mat-label>
-                        <input matInput aria-label="nombre" formControlName="nombre">
-                        <!-- <mat-error *ngIf="name.invalid">Sin estos campos no podrás continuar</mat-error> -->
-                        <!-- <mat-hint>Sin estos campos no podrás continuar</mat-hint> -->
-                    </mat-form-field>
-                </div>
-                
-                <div class="col">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Los apellidos</mat-label>
-                        <input matInput aria-label="apellidos" formControlName="apellidos">
-                        <!-- <mat-error *ngIf="surname.invalid">Sin estos campos no podrás continuar</mat-error> -->
-                    </mat-form-field>
-                </div>
-
-                <div class="col">
-                    <mat-form-field appearance="outline">
-                        <mat-label>El teléfono</mat-label>
-                        <input matInput aria-label="telefono" formControlName="telefono">
-                        <!-- <mat-error *ngIf="telefono.invalid">Sin estos campos no podrás continuar</mat-error> -->
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <button class="btn btn-info" (click)="addInvitado()" [disabled]="disableAdd()">Añadir</button>
-                </div>
-            </div>
-        </div>
-    </form>
+<div class="buttons d-flex justify-content-around">
+    
+    <div class="d-flex justify-content-around flex-wrap">
+        <button class="btn btn-primary collapse-button" data-toggle="collapse" data-target="#addGuest">Añadir Invitado</button>
+        <button class="btn btn-primary collapse-button" data-toggle="collapse" data-target="#guestList">Lista de Invitados</button>
+    </div>
+    <div class="d-flex justify-content-around flex-wrap">
+        <button class="btn btn-primary collapse-button" data-toggle="collapse" data-target="#addQuestion">Añadir Pregunta</button>
+        <button class="btn btn-primary collapse-button" data-toggle="collapse" data-target="#songs">Respuestas Canciones</button>
+    </div>
 </div>
 
-
-<h1>Listado de invitados</h1>
-<div class="container mt-4">
+<!-- AÑADIR INVITADO -->
+<div class="container mt-4 collapse" id="addGuest">
     <div class="card">
         <div class="card-body">
-            <button class="btn btn-primary" data-toggle="collapse" data-target="#demo">Filtrar</button>
-            <div id="demo" class="collapse">
+            <h1>Añadir Invitado</h1>
+            <div class="container d-flex justify-content-center">
+                <form [formGroup]="usuariosForm" class="d-flex justify-content-around flex-wrap">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>El nombre</mat-label>
+                                    <input matInput aria-label="nombre" formControlName="nombre">
+                                    <!-- <mat-error *ngIf="name.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                                    <!-- <mat-hint>Sin estos campos no podrás continuar</mat-hint> -->
+                                </mat-form-field>
+                            </div>
+                            
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Los apellidos</mat-label>
+                                    <input matInput aria-label="apellidos" formControlName="apellidos">
+                                    <!-- <mat-error *ngIf="surname.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                                </mat-form-field>
+                            </div>
 
-                <!-- FILTRO NOMBRE -->
-                <h4>Filtrar</h4>
-                <input type="text" class="form-control" aria-label="emailHelp" placeholder="Introduce criterio de búsqueda(Nombre, apellidos, teléfono)"
-                [(ngModel)]="filtrador" name="filtrador">
-                
-                <!-- FILTRO ASISTENCIA -->
-                <h4>Asistencia</h4>
-                <!-- <li class="list-group-item"  *ngFor="let item of itemsList"> -->
-                <div class="form-check form-check-inline"  *ngFor="let item of itemsList">
-                    <input type="radio" id="{{item.value}}" [(ngModel)]="radioSelected" name="list_name" value="{{item.value}}" (change)="onRadioAsistenciaChange(item)" aria-label="radio"/> 
-                    <label for="{{item.value}}"><span>{{item.name}}</span></label>
-                <!-- </li> -->
-                </div>
-                
-                <!-- ALERGIAS -->
-                <h4>Requerimientos Alimenticios</h4>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" [(ngModel)]="alergicos" [ngModelOptions]="{standalone: true}" aria-label="check" (change)="onChangeAlergicos()">
-                    Ver sólo invitados con alergias
-                </div>
-            </div>
-              
-
-
-            <div class="table-responsive">
-                <table class="table table-striped mt-5">
-                    <thead>
-                        <tr>
-                            <th>Teléfono</th>
-                            <th>Nombre</th>
-                            <th>Apellildos</th>
-                            <th>¿Viene?</th>
-                            <th>Alergias</th>
-                            <th>Bebida</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of invitadosCopy | filterPipeInvitados: filtrador">
-                            <td>{{ item.telefono }}</td>
-                            <td>{{ item.nombre }}</td>
-                            <td>{{ item.apellidos }}</td>
-                            <td>{{ translateAsistencia(item.asistencia) }}</td>
-                            <td>{{ item.alergias }}</td>
-                            <td>{{ item.bebida }}</td>
-                            <td>
-                                <i class="fas fa-edit fa-lg text-info mr-2" (click)="editInvitado(item)" data-toggle="modal" data-target="#container_modal_edit"></i>
-                                <i class="fas fa-trash-alt fa-lg text-danger" (click)="deleteInvitado(item)"></i>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>El teléfono</mat-label>
+                                    <input matInput aria-label="telefono" formControlName="telefono">
+                                    <!-- <mat-error *ngIf="telefono.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-info" (click)="addInvitado()" [disabled]="disableAdd()">Añadir</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
+<!-- LISTA DE INVITADOS -->
+<div id="guestList" class="collapse">    
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h1>Listado de invitados</h1>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#demo">Filtrar</button>
+                <div id="demo" class="collapse">
 
+                    <!-- FILTRO NOMBRE -->
+                    <h4>Filtrar</h4>
+                    <input type="text" class="form-control" aria-label="emailHelp" placeholder="Introduce criterio de búsqueda(Nombre, apellidos, teléfono)"
+                    [(ngModel)]="filtrador" name="filtrador">
+                    
+                    <!-- FILTRO ASISTENCIA -->
+                    <h4>Asistencia</h4>
+                    <!-- <li class="list-group-item"  *ngFor="let item of itemsList"> -->
+                    <div class="form-check form-check-inline"  *ngFor="let item of itemsList">
+                        <input type="radio" id="{{item.value}}" [(ngModel)]="radioSelected" name="list_name" value="{{item.value}}" (change)="onRadioAsistenciaChange(item)" aria-label="radio"/> 
+                        <label for="{{item.value}}"><span>{{item.name}}</span></label>
+                    <!-- </li> -->
+                    </div>
+                    
+                    <!-- ALERGIAS -->
+                    <h4>Requerimientos Alimenticios</h4>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" [(ngModel)]="alergicos" [ngModelOptions]="{standalone: true}" aria-label="check" (change)="onChangeAlergicos()">
+                        Ver sólo invitados con alergias
+                    </div>
+                </div>
+                
+
+
+                <div class="table-responsive">
+                    <table class="table table-striped mt-5">
+                        <thead>
+                            <tr>
+                                <th>Teléfono</th>
+                                <th>Nombre</th>
+                                <th>Apellildos</th>
+                                <th>¿Viene?</th>
+                                <th>Alergias</th>
+                                <th>Bebida</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of invitadosCopy | filterPipeInvitados: filtrador">
+                                <td>{{ item.telefono }}</td>
+                                <td>{{ item.nombre }}</td>
+                                <td>{{ item.apellidos }}</td>
+                                <td>{{ translateAsistencia(item.asistencia) }}</td>
+                                <td>{{ item.alergias }}</td>
+                                <td>{{ item.bebida }}</td>
+                                <td>
+                                    <i class="fas fa-edit fa-lg text-info mr-2" (click)="editInvitado(item)" data-toggle="modal" data-target="#container_modal_edit"></i>
+                                    <i class="fas fa-trash-alt fa-lg text-danger" (click)="deleteInvitado(item)"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL EDITAR INVITADO -->
 <div class="modal fade" id="container_modal_edit" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -121,61 +142,131 @@
     </div>
 </div>
 
-
-<!-- /////////////////////////////////////////////////////////////////////////////////// -->
-<h1>Añadir Pregunta Quizz</h1>
-<div class="container d-flex justify-content-center">
-    <form [formGroup]="quizzForm" class="d-flex justify-content-around flex-wrap">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <mat-form-field appearance="outline">
-                        <mat-label>La Pregunta</mat-label>
-                        <input matInput aria-label="pregunta" formControlName="pregunta">
-                        <!-- <mat-error *ngIf="name.invalid">Sin estos campos no podrás continuar</mat-error> -->
-                        <!-- <mat-hint>Sin estos campos no podrás continuar</mat-hint> -->
-                    </mat-form-field>
-                </div>
-                
-                <div class="col">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Respuesta Correcta</mat-label>
-                        <input matInput aria-label="r_correcta" formControlName="r_correcta">
-                        <!-- <mat-error *ngIf="surname.invalid">Sin estos campos no podrás continuar</mat-error> -->
-                    </mat-form-field>
-                </div>
-                
-                <div class="col">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Respuesta falsa 1</mat-label>
-                        <input matInput aria-label="r_falsa_1" formControlName="r_falsa_1">
-                        <!-- <mat-error *ngIf="telefono.invalid">Sin estos campos no podrás continuar</mat-error> -->
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Respuesta falsa 2</mat-label>
-                        <input matInput aria-label="r_falsa_2" formControlName="r_falsa_2">
-                        <!-- <mat-error *ngIf="telefono.invalid">Sin estos campos no podrás continuar</mat-error> -->
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Respuesta falsa 3</mat-label>
-                        <input matInput aria-label="r_falsa_3" formControlName="r_falsa_3">
-                        <!-- <mat-error *ngIf="telefono.invalid">Sin estos campos no podrás continuar</mat-error> -->
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <md-input-container>
-                        <input matInput type="number" min="1" max="3" placeholder="Dificultad" formControlName="dificultad" aria-label="dificultad">
-                        <!-- <md-error>Please enter a value between 0 and 100</md-error> -->
-                    </md-input-container>
-                </div>
-                <div class="col">
-                    <button class="btn btn-info" (click)="addPreguntaQuizz()">Añadir</button>
-                </div>
+<!-- AÑADIR PREGUNTA QUIZZ -->
+<div class="container mt-4 collapse" id="addQuestion">
+    <div class="card">
+        <div class="card-body">
+            <h1>Añadir Pregunta Quizz</h1>
+            <div class="container d-flex justify-content-center">
+                <form [formGroup]="quizzForm" class="d-flex justify-content-around flex-wrap">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>La Pregunta</mat-label>
+                                    <input matInput aria-label="pregunta" formControlName="pregunta">
+                                    <!-- <mat-error *ngIf="name.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                                    <!-- <mat-hint>Sin estos campos no podrás continuar</mat-hint> -->
+                                </mat-form-field>
+                            </div>
+                            
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Respuesta Correcta</mat-label>
+                                    <input matInput aria-label="r_correcta" formControlName="r_correcta">
+                                    <!-- <mat-error *ngIf="surname.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                            
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Respuesta falsa 1</mat-label>
+                                    <input matInput aria-label="r_falsa_1" formControlName="r_falsa_1">
+                                    <!-- <mat-error *ngIf="telefono.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Respuesta falsa 2</mat-label>
+                                    <input matInput aria-label="r_falsa_2" formControlName="r_falsa_2">
+                                    <!-- <mat-error *ngIf="telefono.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Respuesta falsa 3</mat-label>
+                                    <input matInput aria-label="r_falsa_3" formControlName="r_falsa_3">
+                                    <!-- <mat-error *ngIf="telefono.invalid">Sin estos campos no podrás continuar</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <md-input-container>
+                                    <input matInput type="number" min="1" max="3" placeholder="Dificultad" formControlName="dificultad" aria-label="dificultad">
+                                    <!-- <md-error>Please enter a value between 0 and 100</md-error> -->
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <button class="btn btn-info" (click)="addPreguntaQuizz()">Añadir</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
+</div>
+
+<!-- RESPUESTAS DE CANCIONES -->
+<div class="container mt-4 collapse" id="songs">
+    <div class="card">
+        <div class="card-body">
+            <h1>Respuestas de canciones</h1>
+            <div class="container d-flex">
+                <ul class="container">
+                    <li class="container"*ngFor="let song of canciones; index as i;">
+                        <div class="d-flex flex-column">
+                            <span>Canción {{ i }}: {{ song.titulo }}</span>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>{{ song.invitadosQueLaVotaron.length }} votos</span>
+                                <button class="btn btn-info" (click)="openModalCancion(i)" data-toggle="modal" data-target="#container_modal_canciones_invitados">Ver Personas</button>
+                            </div>
+                        </div>
+                        <hr>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL CANCIONES DE INVITADOS -->
+<div class="modal fade" id="container_modal_canciones_invitados" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">{{ tituloCancionModal }}</h2>
+                <button class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body d-flex">
+                <!-- <p><span>{{ usuariosCancionModal[1] }}</span></p> -->
+                <!-- <div class="d-flex justify-content-between align-items-center" *ngFor="let inv of usuariosCancionModal; index as i;">
+                    <span *ngIf="i%2==0">
+                        {{ usuariosCancionModal[i] }}
+                    </span>
+                    <span *ngIf="i%2!=0">
+                        => {{ usuariosCancionModal[i] }}
+                    </span>
+                </div> -->
+                <div class="col-md-6">
+                    <div *ngFor="let inv of usuariosCancionModal | slice:0:usuariosCancionModal.length/2+1">
+                      {{inv}}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div *ngFor="let inv of usuariosCancionModal | slice:usuariosCancionModal.length/2+1:9">
+                      {{ inv }}
+                    </div>
+                  </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
 </div>
