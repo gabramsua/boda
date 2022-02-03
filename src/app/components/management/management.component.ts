@@ -6,6 +6,11 @@ import constants from 'src/app/constants';
 import Swal from 'sweetalert2';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
+export interface Bus {
+  tipo: string;
+  personas: number;
+  invitadosQueVan: string[];
+}
 @Component({
   selector: 'app-management',
   templateUrl: './management.component.html',
@@ -24,25 +29,12 @@ export class ManagementComponent implements OnInit {
   editandoInvitado: User;
   filtrador = '';
   constants = constants;
-  canciones = [
-    {
-    titulo: 'Cancion 1!',
-    votos: 41,
-    invitadosQueLaVotaron: ['Juan Adolfo Velarde', 'Ángel Fuentes', 'David Palomar']
-    },
-    {
-    titulo: 'Cancion 2!',
-    votos: 36,
-    invitadosQueLaVotaron: ['Tino Tovar', 'Jose Otero', 'David Catalán']
-    },
-    {
-    titulo: 'Cancion 3!',
-    votos: 19,
-    invitadosQueLaVotaron: ['Kanouté', 'Rafa Mir', 'Andrés Palop']
-    },
-  ]
+  canciones = []
   tituloCancionModal: string = '';
   usuariosCancionModal: string[] = [];
+  autobuses = []
+  tituloBusModal: string = '';
+  usuariosBusModal: string[] = [];
   
   itemsList = [
     {name: 'Todos', value: 'all'},
@@ -61,9 +53,6 @@ export class ManagementComponent implements OnInit {
     this.invitados = [];
     this.getAll()
     this.invitadosCopy = [...this.invitados]
-
-    // GET ALL CANCIONES
-    this.getCanciones()
 
     // 
     this.usuariosForm = this._formBuilder.group({
@@ -193,7 +182,6 @@ export class ManagementComponent implements OnInit {
       }
     })
   }
-
   translateAsistencia(bool) {
     return bool ? 'Sí' : 'No'
   }
@@ -233,7 +221,7 @@ export class ManagementComponent implements OnInit {
         this.errorAlert(error)
       })
   }
-  getCanciones(){
+  getCancionesInfo() {
     this.canciones = []
     for (let i = 1; i < 7; i++) {
       const song = {
@@ -252,10 +240,43 @@ export class ManagementComponent implements OnInit {
       this.canciones.push(song)
     }
   }
+  getBusesInfo(){
+    const autobusIdaVuelta: Bus = {tipo: constants.VALUES.TIPO_BUS.BUS_IDA_VUELTA, personas: 0, invitadosQueVan: []};
+    const autobusIda: Bus =  {tipo: constants.VALUES.TIPO_BUS.BUS_IDA, personas: 0, invitadosQueVan: []};
+    const autobusVuelta: Bus =  {tipo: constants.VALUES.TIPO_BUS.BUS_VUELTA, personas: 0, invitadosQueVan: []};
+    const autobusNo: Bus =  {tipo: constants.VALUES.TIPO_BUS.BUS_NO, personas: 0, invitadosQueVan: []};
 
+    // Recorremos los usuarios y los vamos echando en uno u otro array
+    for(const inv of this.invitadosCopy){
+      if(inv.tipoBus === constants.VALUES.TIPO_BUS.BUS_IDA_VUELTA) {
+        autobusIdaVuelta.personas++;
+        autobusIdaVuelta.invitadosQueVan.push(this.getDatosFromPhone(inv.telefono))
+      }
+      if(inv.tipoBus === constants.VALUES.TIPO_BUS.BUS_IDA) {
+        autobusIda.personas++;
+        autobusIda.invitadosQueVan.push(this.getDatosFromPhone(inv.telefono))
+      }
+      if(inv.tipoBus === constants.VALUES.TIPO_BUS.BUS_VUELTA) {
+        autobusVuelta.personas++;
+        autobusVuelta.invitadosQueVan.push(this.getDatosFromPhone(inv.telefono))
+      }
+      if(inv.tipoBus === constants.VALUES.TIPO_BUS.BUS_NO) {
+        autobusNo.personas++;
+        autobusNo.invitadosQueVan.push(this.getDatosFromPhone(inv.telefono))
+      }
+    }
+    this.autobuses.push(autobusIdaVuelta)
+    this.autobuses.push(autobusIda)
+    this.autobuses.push(autobusVuelta)
+    this.autobuses.push(autobusNo)
+  }
   openModalCancion(index){
     this.tituloCancionModal = this.canciones[index].titulo;
     this.usuariosCancionModal = this.canciones[index].invitadosQueLaVotaron;
+  }
+  openModalBus(index){
+    this.tituloBusModal = this.autobuses[index].tipo;
+    this.usuariosBusModal = this.autobuses[index].invitadosQueVan;
   }
 
   getDatosFromPhone(phone){
