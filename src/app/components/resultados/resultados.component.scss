@@ -8,11 +8,14 @@ h2 {
 // .card-body{
 //     margin-top: 5rem;
 // }
+@media only screen and (min-width: 629px) {
 
-.no-se-ve{
-    // visibility: hidden;
-    display: none !important
+    .no-se-ve{
+        // visibility: hidden;
+        display: none !important
+    }
 }
+
 @media only screen and (max-width: 629px) {
     .graph {
     //   max-width: none;
