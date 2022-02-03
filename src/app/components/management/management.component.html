@@ -11,8 +11,12 @@
         <button class="btn btn-primary collapse-button" data-toggle="collapse" data-target="#songs" (click)="getCancionesInfo()">Respuestas Canciones</button>
     </div>
     <div class="d-flex justify-content-around flex-wrap">
-        <button class="btn btn-primary collapse-button" data-toggle="collapse" data-target="#buses"(click)="getBusesInfo()">Autobuses</button>
-        <button class="btn btn-primary collapse-button" data-toggle="collapse" data-target="#guestList">Bebidas</button>
+        <button class="btn btn-primary collapse-button" data-toggle="collapse" data-target="#buses" (click)="getBusesInfo()">Autobuses</button>
+        <button class="btn btn-primary collapse-button" data-toggle="collapse" data-target="#requerimientos" (click)="getRequerimientosInfo()">Requerimientos Alimenticios</button>
+    </div>
+    <div class="d-flex justify-content-around flex-wrap">
+        <button class="btn btn-primary collapse-button" data-toggle="collapse" data-target="#bebidas" (click)="getBebidasInfo()">Bebidas</button>
+        <!-- <button class="btn btn-primary collapse-button" data-toggle="collapse" data-target="#buses" (click)="getBusesInfo()">Autobuses</button> -->
     </div>
 </div>
 
@@ -91,7 +95,6 @@
                     </div>
                 </div>
                 
-
 
                 <div class="table-responsive">
                     <table class="table table-striped mt-5">
@@ -223,7 +226,7 @@
                 <ul class="container">
                     <li class="container"*ngFor="let bus of autobuses; index as i;">
                         <div class="d-flex flex-column">
-                            <span>{{ bus.tipo }}: </span>
+                            <span>{{ translateBus(bus.tipo) }}: </span>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span>{{ bus.invitadosQueVan.length }} personas que irán</span>
                                 <button class="btn btn-info" (click)="openModalBus(i)" data-toggle="modal" data-target="#container_modal_autobuses">Ver Personas</button>
@@ -237,8 +240,69 @@
     </div>
 </div>
 
+<!-- ALÉRGICOS -->
+<div id="requerimientos" class="collapse">    
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h1>Requerimientos Alimenticios</h1>
 
+                <div class="table-responsive">
+                    <table class="table table-striped mt-5">
+                        <thead>
+                            <tr>
+                                <th>Teléfono</th>
+                                <th>Nombre</th>
+                                <th>Apellildos</th>
+                                <th>Alergias</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of invitadosRequerimientos" (click)="clickInvitado(item)" data-toggle="modal" data-target="#container_modal_info_invitado">
+                                <td>{{ item.telefono }}</td>
+                                <td>{{ item.nombre }}</td>
+                                <td>{{ item.apellidos }}</td>
+                                <td>{{ item.alergias }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- BEBIDAS -->
+<div id="bebidas" class="collapse">    
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h1>Bebidas</h1>
+
+                <div class="table-responsive">
+                    <table class="table table-striped mt-5">
+                        <thead>
+                            <tr>
+                                <th>Teléfono</th>
+                                <th>Nombre</th>
+                                <th>Apellildos</th>
+                                <th>Bebidas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of invitadosBebidas" (click)="clickInvitado(item)" data-toggle="modal" data-target="#container_modal_info_invitado">
+                                <td>{{ item.telefono }}</td>
+                                <td>{{ item.nombre }}</td>
+                                <td>{{ item.apellidos }}</td>
+                                <td>{{ item.bebida }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 
@@ -292,12 +356,12 @@
             <div class="modal-body d-flex">
                 <div class="col-md-6">
                     <div *ngFor="let inv of usuariosCancionModal | slice:0:usuariosCancionModal.length/2+1">
-                      {{inv}}..
+                      {{inv}}
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div *ngFor="let inv of usuariosCancionModal | slice:usuariosCancionModal.length/2+1:usuariosCancionModal.length">
-                      =>{{ inv }}
+                      {{ inv }}
                     </div>
                   </div>
 

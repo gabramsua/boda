@@ -17,6 +17,8 @@ export class ManagementComponent implements OnInit {
   quizzForm: FormGroup;
   invitados: User[];
   invitadosCopy: User[];
+  invitadosRequerimientos: User[] = [];
+  invitadosBebidas: User[] = [];
   isEdit = false;
   editandoInvitado: User;
   filtrador = '';
@@ -175,6 +177,18 @@ export class ManagementComponent implements OnInit {
   translateAsistencia(bool) {
     return bool ? 'Sí' : 'No'
   }
+  translateBus(string){
+    switch(string) {
+      case constants.VALUES.TIPO_BUS.BUS_IDA_VUELTA: 
+        return 'Ida y Vuelta'
+      case constants.VALUES.TIPO_BUS.BUS_IDA: 
+        return 'Ida'
+      case constants.VALUES.TIPO_BUS.BUS_VUELTA: 
+        return 'Vuelta'
+      case constants.VALUES.TIPO_BUS.BUS_NO: 
+        return 'Sin bus'
+    }
+  }
   onRadioAsistenciaChange(item){
     switch(item.value) {
       case true:
@@ -274,5 +288,23 @@ export class ManagementComponent implements OnInit {
     return invitado?.nombre + ' ' + invitado?.apellidos;
 
 
+  }
+
+  getRequerimientosInfo() {
+    // Recorremos los usuarios y los vamos echando 
+    for(const inv of this.invitadosCopy){
+      if(inv.alergias != null) {
+        this.invitadosRequerimientos.push(inv)
+      }
+    }
+  }
+
+  getBebidasInfo() {
+    // Recorremos los usuarios y los vamos echando 
+    for(const inv of this.invitadosCopy){
+      if(inv.bebida != null) {
+        this.invitadosBebidas.push(inv)
+      }
+    }
   }
 }
