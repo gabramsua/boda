@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Quizz, User } from 'src/app/models/models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import constants from 'src/app/constants';
 import Swal from 'sweetalert2';
-import { state } from '@angular/animations';
-import { config } from 'process';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-management',
@@ -13,6 +12,8 @@ import { config } from 'process';
   styleUrls: ['./management.component.scss']
 })
 export class ManagementComponent implements OnInit {
+  // @ViewChild('container_modal_info_invitado') public modal1: ElementRef;
+  modal1 : NgbModalRef;
 
   currentUser: User;
   usuariosForm: FormGroup;
@@ -42,8 +43,6 @@ export class ManagementComponent implements OnInit {
   ]
   tituloCancionModal: string = '';
   usuariosCancionModal: string[] = [];
-
-
   
   itemsList = [
     {name: 'Todos', value: 'all'},
@@ -168,8 +167,13 @@ export class ManagementComponent implements OnInit {
       'error'
     )
   }
+  clickInvitado(item){
+    this.editandoInvitado = item
+  }
   editInvitado(item){
     this.editandoInvitado = item
+    // this.modal1.nativeElement.click();
+    this.modal1.close()
   }
   deleteInvitado(item){
     Swal.fire({

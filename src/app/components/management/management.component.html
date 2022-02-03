@@ -103,40 +103,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of invitadosCopy | filterPipeInvitados: filtrador">
+                            <tr *ngFor="let item of invitadosCopy | filterPipeInvitados: filtrador" (click)="clickInvitado(item)" data-toggle="modal" data-target="#container_modal_info_invitado">
                                 <td>{{ item.telefono }}</td>
                                 <td>{{ item.nombre }}</td>
                                 <td>{{ item.apellidos }}</td>
                                 <td>{{ translateAsistencia(item.asistencia) }}</td>
                                 <td>{{ item.alergias }}</td>
                                 <td>{{ item.bebida }}</td>
-                                <td>
-                                    <i class="fas fa-edit fa-lg text-info mr-2" (click)="editInvitado(item)" data-toggle="modal" data-target="#container_modal_edit"></i>
-                                    <i class="fas fa-trash-alt fa-lg text-danger" (click)="deleteInvitado(item)"></i>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- MODAL EDITAR INVITADO -->
-<div class="modal fade" id="container_modal_edit" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Editando a *{{editandoInvitado.nombre}}*</h2>
-                <button class="close" data-dismiss="modal"><span>&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <p><span>Aquí va el formulario de edición.</span></p>
-
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -228,6 +205,49 @@
                         <hr>
                     </li>
                 </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+<!-- MODAL INFO DE INVITADO -->
+<div class="modal fade" id="container_modal_info_invitado" tabindex="-1" #container_modal_info_invitado>
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h2 class="modal-title">{{ editandoInvitado.nombre }}</h2> -->
+                <button class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body d-flex">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Nombre: <span>{{ editandoInvitado.nombre }} {{ editandoInvitado.apellidos }}</span></li>
+                    <li class="list-group-item">Asitencia: <span *ngIf="editandoInvitado.asistencia === 'true'; else nop">Sí</span><ng-template #nop><span>No</span></ng-template></li>
+                    <li class="list-group-item">Teléfono: <span>{{ editandoInvitado.telefono }}</span></li>
+                    <li class="list-group-item">Bus: 
+                        <span [ngSwitch]="editandoInvitado.tipoBus">
+                            <span *ngSwitchCase="'bus_ida_vuelta'">Sí, ida y vuelta</span>
+                            <span *ngSwitchCase="'bus_ida'">Sólo la ida</span>
+                            <span *ngSwitchCase="'bus_vuelta'">Sólo la vuelta</span>
+                            <span *ngSwitchCase="'bus_no'">No quiero bus</span>
+                            <span *ngSwitchDefault>(No eligió operación)</span>
+                        </span>
+                    </li>
+                    <li class="list-group-item">Alergias: <span>{{ editandoInvitado.alergias }}</span></li>
+                    <li class="list-group-item">Bebida: <span>{{ editandoInvitado.bebida }}</span></li>
+                    <li class="list-group-item">Cancion: <span>{{ editandoInvitado.cancion }}</span></li>
+                    <li class="list-group-item">PuntuacionQuizz: <span>{{ editandoInvitado.puntuacionQuizz }}</span></li>
+                    <li class="list-group-item">Acompañantes: <span>{{ editandoInvitado.acompanantes | json}}</span></li>
+                  </ul>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <i class="fas fa-trash-alt fa-lg text-danger" (click)="deleteInvitado(editandoInvitado)"></i>
+                <button class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
