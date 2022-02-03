@@ -1,24 +1,16 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Quizz, User } from 'src/app/models/models';
+import { Component, OnInit } from '@angular/core';
+import { Bus, Quizz, User } from 'src/app/models/models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import constants from 'src/app/constants';
 import Swal from 'sweetalert2';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
-export interface Bus {
-  tipo: string;
-  personas: number;
-  invitadosQueVan: string[];
-}
 @Component({
   selector: 'app-management',
   templateUrl: './management.component.html',
   styleUrls: ['./management.component.scss']
 })
 export class ManagementComponent implements OnInit {
-  // @ViewChild('container_modal_info_invitado') public modal1: ElementRef;
-  modal1 : NgbModalRef;
 
   currentUser: User;
   usuariosForm: FormGroup;
@@ -161,8 +153,6 @@ export class ManagementComponent implements OnInit {
   }
   editInvitado(item){
     this.editandoInvitado = item
-    // this.modal1.nativeElement.click();
-    this.modal1.close()
   }
   deleteInvitado(item){
     Swal.fire({
