@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Quizz, User } from 'src/app/models/models';
+import { Bus, Quizz, User } from 'src/app/models/models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import constants from 'src/app/constants';
 import Swal from 'sweetalert2';
-import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-management',
@@ -18,9 +17,18 @@ export class ManagementComponent implements OnInit {
   quizzForm: FormGroup;
   invitados: User[];
   invitadosCopy: User[];
+  invitadosRequerimientos: User[] = [];
+  invitadosBebidas: User[] = [];
   isEdit = false;
   editandoInvitado: User;
   filtrador = '';
+  constants = constants;
+  canciones = []
+  tituloCancionModal: string = '';
+  usuariosCancionModal: string[] = [];
+  autobuses = []
+  tituloBusModal: string = '';
+  usuariosBusModal: string[] = [];
   
   itemsList = [
     {name: 'Todos', value: 'all'},
@@ -142,6 +150,9 @@ export class ManagementComponent implements OnInit {
       'error'
     )
   }
+  clickInvitado(item){
+    this.editandoInvitado = item
+  }
   editInvitado(item){
     this.editandoInvitado = item
   }
@@ -163,9 +174,20 @@ export class ManagementComponent implements OnInit {
       }
     })
   }
-
   translateAsistencia(bool) {
     return bool ? 'Sí' : 'No'
+  }
+  translateBus(string){
+    switch(string) {
+      case constants.VALUES.TIPO_BUS.BUS_IDA_VUELTA: 
+        return 'Ida y Vuelta'
+      case constants.VALUES.TIPO_BUS.BUS_IDA: 
+        return 'Ida'
+      case constants.VALUES.TIPO_BUS.BUS_VUELTA: 
+        return 'Vuelta'
+      case constants.VALUES.TIPO_BUS.BUS_NO: 
+        return 'Sin bus'
+    }
   }
   onRadioAsistenciaChange(item){
     switch(item.value) {
@@ -202,5 +224,87 @@ export class ManagementComponent implements OnInit {
       }, error => {
         this.errorAlert(error)
       })
+  }
+  getCancionesInfo() {
+    this.canciones = []
+    for (let i = 1; i < 7; i++) {
+      const song = {
+        titulo: '',
+        votos: 0,
+        invitadosQueLaVotaron: []
+      }
+
+      this._service.getAllRanking('cancion_'+i).subscribe(data => {
+        song.titulo = constants.VALUES.TITULOS_CANCIONES['CANCION_'+i]
+        song.votos = data.length - 1
+        data.forEach((element: any) => {
+          if(element.id != 0) song.invitadosQueLaVotaron.push(this.getDatosFromPhone(element.id))
+        })
+      })
+      this.canciones.push(song)
+    }
+  }
+  getBusesInfo(){
+    const autobusIdaVuelta: Bus = {tipo: constants.VALUES.TIPO_BUS.BUS_IDA_VUELTA, personas: 0, invitadosQueVan: []};
+    const autobusIda: Bus =  {tipo: constants.VALUES.TIPO_BUS.BUS_IDA, personas: 0, invitadosQueVan: []};
+    const autobusVuelta: Bus =  {tipo: constants.VALUES.TIPO_BUS.BUS_VUELTA, personas: 0, invitadosQueVan: []};
+    const autobusNo: Bus =  {tipo: constants.VALUES.TIPO_BUS.BUS_NO, personas: 0, invitadosQueVan: []};
+
+    // Recorremos los usuarios y los vamos echando en uno u otro array
+    for(const inv of this.invitadosCopy){
+      if(inv.tipoBus === constants.VALUES.TIPO_BUS.BUS_IDA_VUELTA) {
+        autobusIdaVuelta.personas++;
+        autobusIdaVuelta.invitadosQueVan.push(this.getDatosFromPhone(inv.telefono))
+      }
+      if(inv.tipoBus === constants.VALUES.TIPO_BUS.BUS_IDA) {
+        autobusIda.personas++;
+        autobusIda.invitadosQueVan.push(this.getDatosFromPhone(inv.telefono))
+      }
+      if(inv.tipoBus === constants.VALUES.TIPO_BUS.BUS_VUELTA) {
+        autobusVuelta.personas++;
+        autobusVuelta.invitadosQueVan.push(this.getDatosFromPhone(inv.telefono))
+      }
+      if(inv.tipoBus === constants.VALUES.TIPO_BUS.BUS_NO) {
+        autobusNo.personas++;
+        autobusNo.invitadosQueVan.push(this.getDatosFromPhone(inv.telefono))
+      }
+    }
+    this.autobuses.push(autobusIdaVuelta)
+    this.autobuses.push(autobusIda)
+    this.autobuses.push(autobusVuelta)
+    this.autobuses.push(autobusNo)
+  }
+  openModalCancion(index){
+    this.tituloCancionModal = this.canciones[index].titulo;
+    this.usuariosCancionModal = this.canciones[index].invitadosQueLaVotaron;
+  }
+  openModalBus(index){
+    this.tituloBusModal = this.autobuses[index].tipo;
+    this.usuariosBusModal = this.autobuses[index].invitadosQueVan;
+  }
+
+  getDatosFromPhone(phone){
+    const invitado = this.invitados.find(elem => elem.telefono == phone)
+    return invitado?.nombre + ' ' + invitado?.apellidos;
+
+
+  }
+
+  getRequerimientosInfo() {
+    // Recorremos los usuarios y los vamos echando 
+    for(const inv of this.invitadosCopy){
+      if(inv.alergias != null) {
+        this.invitadosRequerimientos.push(inv)
+      }
+    }
+  }
+
+  getBebidasInfo() {
+    // Recorremos los usuarios y los vamos echando 
+    for(const inv of this.invitadosCopy){
+      if(inv.bebida != null) {
+        this.invitadosBebidas.push(inv)
+      }
+    }
   }
 }

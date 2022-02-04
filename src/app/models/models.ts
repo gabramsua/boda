@@ -31,3 +31,8 @@ export interface ResultadoQuizz {
     // fecha: string;
     // hora: string;
 }
+export interface Bus {
+    tipo: string;
+    personas: number;
+    invitadosQueVan: string[];
+  }
