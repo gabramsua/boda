@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CuestionarioComponent } from './componentes/Quizz/cuestionario/cuestionario.component';
 import { QuizzComponent } from './componentes/Quizz/quizz/quizz.component';
 import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
+import { GaleriaComponent } from './components/galeria/galeria.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListaBodasComponent } from './components/lista-bodas/lista-bodas.component';
 import { LoginComponent } from './components/login/login.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
     {path: 'quizz', component: QuizzComponent, canActivate: [AuthGuardService]},
     {path: 'cuestionario', component: CuestionarioComponent, canActivate: [AuthGuardService]},
     {path: 'management', component: ManagementComponent, canActivate: [AuthGuardService]},
+    {path: 'gallery', component: GaleriaComponent, canActivate: [AuthGuardService]},
     {path: '**', component: PaginaNoEncontradaComponent}
 ];
 

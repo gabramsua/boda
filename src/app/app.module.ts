@@ -50,6 +50,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { CutApellidosPipePipe } from './shared/cut-apellidos-pipe.pipe';
 import { CutPhonePipePipe } from './shared/cut-phone-pipe.pipe';
 import { CountdownComponent } from './components/countdown/countdown.component';
+import { GaleriaComponent } from './components/galeria/galeria.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { CountdownComponent } from './components/countdown/countdown.component';
     SpinnerComponent,
     CutApellidosPipePipe,
     CutPhonePipePipe,
-    CountdownComponent
+    CountdownComponent,
+    GaleriaComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [
@@ -111,7 +113,7 @@ import { CountdownComponent } from './components/countdown/countdown.component';
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS , useValue: { color: '#336E7B' } },
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}},
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000} },
     AuthGuardService,
   ],
   bootstrap: [AppComponent], 
