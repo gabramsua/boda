@@ -111,6 +111,11 @@ const Constants = {
         BIENVENIDA: 'bienvenida',
         PREGUNTANDO: 'preguntando',
         RESULTADOS: 'resultados'
+    },
+    ESTADOS_MANOS: {
+        BIENVENIDA: 'bienvenida',
+        JUGANDO: 'jugando',
+        RESULTADOS: 'resultados'
     }
 }
 

@@ -1,0 +1,58 @@
+<div *ngIf="estadoManos === 'bienvenida' || estadoManos === 'jugando'">
+    <div class="container d-flex justify-content-center">
+        <h1>PIEDRA, PAPEL O TIJERAS</h1>
+    </div>
+
+    <p class="mb-4"><span>¿Cuántas veces eres capaz de jugar sin perder? 
+        Las victorias suman 3 puntos y los empates 1 punto. Cuando pierdas será el fin del juego
+    </span></p>
+
+
+    <div class="container d-flex justify-content-around">
+        <button type="button" class="btn btn-info" (click)="empezar()" >Jugar</button>
+        <button type="button" class="btn btn-outline-info" (click)="verRanking()">VER RANKING</button>
+    </div>
+</div>
+
+<div *ngIf="estadoManos === 'jugando'" [@fadeIn] >    
+    <div class="d-flex justify-content-center mt-4 mb-2">
+        <p><span>Puntuación Actual: {{ puntuacionTotal }}</span></p>
+    </div>
+    <div class="d-flex justify-content-around mb-2" [ngClass]="isLoading ? 'isLoading' : null">
+        <img class="img-fluid" src="../../../../assets/imgs/manos/paper.png" (click)="jugar('papel')" alt="papel">
+        <img class="img-fluid" src="../../../../assets/imgs/manos/puñor.png" (click)="jugar('piedra')" alt="piedra">
+        <img class="img-fluid" src="../../../../assets/imgs/manos/tijerar.png" (click)="jugar('tijera')" alt="tejeras">
+    </div>
+    <div id="fadeout">
+        <!-- <p>{{ jugada }}</p> -->
+        <div class="d-flex justify-content-around mb-2">
+            <span *ngIf="marcador">TÚ</span>
+            <span *ngIf="marcador">Los Novios</span>
+        </div>
+        <div class="d-flex justify-content-around mb-2">
+            <img class="img-fluid" src="../../../../assets/imgs/manos/paper.png" *ngIf="selecciona == 'papel'" alt="papel">
+            <img class="img-fluid" src="../../../../assets/imgs/manos/puñor.png" *ngIf="selecciona == 'piedra'" alt="piedra">
+            <img class="img-fluid" src="../../../../assets/imgs/manos/tijerar.png" *ngIf="selecciona == 'tijera'" alt="tejeras">
+            
+            <img class="img-fluid" src="../../../../assets/imgs/manos/izq_paper.png" *ngIf="jugamos == 'papel'" alt="papel">
+            <img class="img-fluid" src="../../../../assets/imgs/manos/izq_piedra.png" *ngIf="jugamos == 'piedra'" alt="piedra">
+            <img class="img-fluid" src="../../../../assets/imgs/manos/izq_tijeras.png" *ngIf="jugamos == 'tijera'" alt="tejeras">
+        </div>
+        <div class="d-flex justify-content-center mb-2">
+            <span class="marcador">{{ marcador }}</span> {{ sigue }}
+        </div>
+    </div>
+    <!-- <div><span class="marcador">{{ marcador }}</span> {{ sigue }}<p>{{ jugada }}</p></div> -->
+</div>
+
+<div *ngIf="estadoManos === 'resultados'">
+    <div *ngIf="hasPlayedFlag">
+        <app-fin [puntuacionFinal]="puntuacionTotal" [tuMejorPuntuacion]="tuMejorPuntuacion"></app-fin>
+    </div>
+    <button type="button" class="btn btn-link volver" (click)="goToBienvenida()">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-chevron-left"></i>&nbsp;Atrás
+        </div>
+    </button>
+    <app-ranking [clasificacion]="clasificacion"></app-ranking>
+</div>

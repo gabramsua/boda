@@ -1,0 +1,24 @@
+@import '../../../variables.scss';
+
+
+h1 {
+    // color: #67B8BC;
+    color: $verde-letra;
+    font-family: "Julius Sans One";
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+}
+
+.isLoading {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.marcador {
+    font-weight: bold;
+}

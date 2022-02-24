@@ -10,6 +10,7 @@ import { ManagementComponent } from './components/management/management.componen
 import { MesasComponent } from './components/mesas/mesas.component';
 import { MinutaComponent } from './components/minuta/minuta.component';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
+import { GameComponent } from './components/PPT/game/game.component';
 import { RecomiendaCancionComponent } from './components/recomienda-cancion/recomienda-cancion.component';
 import { ResultadosComponent } from './components/resultados/resultados.component';
 import { TrasladosComponent } from './components/traslados/traslados.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
     {path: 'quizz', component: QuizzComponent, canActivate: [AuthGuardService]},
     {path: 'cuestionario', component: CuestionarioComponent, canActivate: [AuthGuardService]},
     {path: 'management', component: ManagementComponent, canActivate: [AuthGuardService]},
+    {path: 'manos', component: GameComponent, canActivate: [AuthGuardService]},
     {path: '**', component: PaginaNoEncontradaComponent}
 ];
 

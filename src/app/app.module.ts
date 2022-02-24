@@ -50,6 +50,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { CutApellidosPipePipe } from './shared/cut-apellidos-pipe.pipe';
 import { CutPhonePipePipe } from './shared/cut-phone-pipe.pipe';
 import { CountdownComponent } from './components/countdown/countdown.component';
+import { GameComponent } from './components/PPT/game/game.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { CountdownComponent } from './components/countdown/countdown.component';
     SpinnerComponent,
     CutApellidosPipePipe,
     CutPhonePipePipe,
-    CountdownComponent
+    CountdownComponent,
+    GameComponent
   ],
   entryComponents: [CustomSnackBarComponent],
   imports: [
