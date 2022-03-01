@@ -22,3 +22,25 @@ img {
 .marcador {
     font-weight: bold;
 }
+
+#fadeout {
+    background-color: #FBFBFB; // transparent; // 
+    border: 2px solid #B7DFF0;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/*
+opacity: 0;
+-webkit-transition: all 0.5s ease;
+transition: all 0.5s ease;
+
+
+opacity: 1;
+
+
+  transition: opacity 300ms 300ms ease, transform 300ms 300ms ease, background-color 250ms linear, color 250ms linear;
+  opacity: 1;
+  
+
+*/

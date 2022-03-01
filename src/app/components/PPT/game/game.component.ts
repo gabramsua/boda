@@ -12,7 +12,19 @@ import { trigger, style, animate, transition } from '@angular/animations';
       'fadeIn', [
         transition(':enter', [
             style({ height: 0, opacity: 0 }),
-            animate('1s ease-out', style({ height: 300, opacity: 1 }))
+            animate('1s ease-out', style({ height: 190, opacity: 1 }))
+          ]),
+        transition(':leave', [
+            style({ height: 190, opacity: 1 }),
+            animate('500ms ease-in', style({ height: 0, opacity: 0 }))
+          ])
+      ]
+    ),    
+    trigger(
+      'fadeInResultados', [
+        transition(':enter', [
+            style({ height: 0, opacity: 0 }),
+            animate('500ms ease-out', style({ height: 300, opacity: 1 }))
           ]),
         // transition(':leave', [
         //     style({ height: 300, opacity: 1 }),
@@ -34,6 +46,7 @@ export class GameComponent implements OnInit {
 
   selecciona = '';
   jugamos = '';
+  isPlaying = false;
 
   constructor() { }
 
@@ -45,8 +58,10 @@ export class GameComponent implements OnInit {
     this.estadoManos = constants.ESTADOS_MANOS.JUGANDO;
     this.hasPlayedFlag = false;
     window.setTimeout(() => {
-      document.getElementById('fadeout').style.opacity = '0'
+    //   document.getElementById('fadeout').style.opacity = '0'
+      this.isPlaying = false;
     }, 2000);
+    
   }
 
   jugar(chosen: string) {
@@ -61,7 +76,9 @@ export class GameComponent implements OnInit {
     this.jugamos = respuesta;
 
     // this.jugada = 'Elegiste ' + chosen + ' y los novios eligieron ' + respuesta;
-    document.getElementById('fadeout').style.opacity = '1';
+    // document.getElementById('fadeout').style.opacity = '1';
+    this.isPlaying = true;
+    
 
     // Ver quién gana
     const result = this.comparacion(chosen, respuesta)
@@ -69,7 +86,7 @@ export class GameComponent implements OnInit {
     // Actualizar marcador
     switch(result){
       case 1:
-        this.marcador = '¡Has ganado!';
+        this.marcador = '¡Has ganado! ';
         this.sigue = ' Sigue hasta que pierdas.'
         this.puntuacionTotal+=3;
         this.showResultadoManos()
@@ -80,7 +97,7 @@ export class GameComponent implements OnInit {
         this.endOfGame();
         break;
       case 0:
-        this.marcador = '¡Empate!';
+        this.marcador = '¡Empate! ';
         this.sigue = ' Sigue hasta que pierdas.'
         this.puntuacionTotal++;
         this.showResultadoManos()
@@ -91,9 +108,11 @@ export class GameComponent implements OnInit {
 
   showResultadoManos(){
     window.setTimeout(() => {
-      document.getElementById('fadeout').style.opacity = '0';
+    //   document.getElementById('fadeout').style.opacity = '0';
       this.isLoading = false;
+      this.isPlaying = false;
     }, 2000);
+    
   }
 
   comparacion(user, pc) {
@@ -115,7 +134,9 @@ export class GameComponent implements OnInit {
 
   endOfGame() {
     window.setTimeout(() => {
-      document.getElementById('fadeout').style.opacity = '0';
+      // document.getElementById('fadeout').style.opacity = '0';
+      
+      this.isPlaying = false;
       this.isLoading = false;
       this.marcador = '';
       this.sigue = '';
@@ -127,7 +148,8 @@ export class GameComponent implements OnInit {
     // Enseñar Ranking
   }
 
-  verRanking() {}
+  verRanking() {
+  }
 
   goToBienvenida() {
     // document.getElementById('fadeout').style.opacity = '0';

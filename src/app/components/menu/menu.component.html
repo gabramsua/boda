@@ -26,7 +26,7 @@
         <li class="nav-item d-flex justify-content-center">
           <a class="nav-link" data-toggle="collapse" data-target="#navBarContent" routerLink="/quizz">¿Cuánto conoces a los novios?</a>
         </li>
-        <li class="nav-item d-flex justify-content-center">
+        <li class="nav-item d-flex justify-content-center" *ngIf="isAdmin">
           <a class="nav-link" data-toggle="collapse" data-target="#navBarContent" routerLink="/manos">Juegos de manos, de villanos</a>
         </li>
         <li class="nav-item d-flex justify-content-center">
