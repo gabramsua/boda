@@ -10,6 +10,7 @@ export interface User {
     puntuacionQuizz: number;
     acompananteDe: string;
     acompanantes: any[];
+    manos?: Manos[];
 }
 
 export interface Quizz {
@@ -30,6 +31,14 @@ export interface ResultadoQuizz {
     date: Date;
     // fecha: string;
     // hora: string;
+}
+export interface Manos {
+    puntos: number;
+    nombre: string;
+    apellidos: string;
+    telefono: string;
+    date: Date;
+    letra: string;
 }
 export interface Bus {
     tipo: string;
