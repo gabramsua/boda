@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import constants from 'src/app/constants';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/models';
+import { Manos } from '../../../models/models';
 // declare var showResultadoManos;
 
 @Component({
@@ -35,6 +38,7 @@ import { trigger, style, animate, transition } from '@angular/animations';
   ]
 })
 export class GameComponent implements OnInit {
+  currentUser: User;
   puntuacionTotal: number = 0;
   estadoManos = constants.ESTADOS_MANOS.BIENVENIDA;
   opciones = ['piedra', 'papel', 'tijera']
@@ -47,15 +51,21 @@ export class GameComponent implements OnInit {
   selecciona = '';
   jugamos = '';
   isPlaying = false;
+  
+  clasificacion:any[] = []
+  tuMejorPuntuacion: number = 0;
 
-  constructor() { }
+  constructor(private _service: AuthService) { }
 
   ngOnInit(): void {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
+    this.clasificacion = []
   }
 
   empezar() {
     this.puntuacionTotal = 0;
     this.estadoManos = constants.ESTADOS_MANOS.JUGANDO;
+    this.clasificacion = []
     this.hasPlayedFlag = false;
     window.setTimeout(() => {
     //   document.getElementById('fadeout').style.opacity = '0'
@@ -135,7 +145,9 @@ export class GameComponent implements OnInit {
   endOfGame() {
     window.setTimeout(() => {
       // document.getElementById('fadeout').style.opacity = '0';
-      
+      // Traer ranking
+      this.getAllRanking()
+
       this.isPlaying = false;
       this.isLoading = false;
       this.marcador = '';
@@ -148,7 +160,67 @@ export class GameComponent implements OnInit {
     // Enseñar Ranking
   }
 
-  verRanking() {
+  verRanking(){
+    this.getAllRanking()
+
+    this.isPlaying = false;
+    this.isLoading = false;
+    this.marcador = '';
+    this.sigue = '';
+    this.hasPlayedFlag = false;
+    this.estadoManos = constants.ESTADOS_MANOS.RESULTADOS;
+  }
+
+  getAllRanking() {    
+    this.clasificacion = []
+    this._service.getAllRanking(constants.END_POINTS.MANOS).subscribe(data => {
+      data.forEach((element: any) => {
+        this.clasificacion.push({
+          ...element.data()
+        })
+      });
+      // Ordenar clasificación
+      this.clasificacion.sort((a,b) => (a.puntos > b.puntos) ? 1 : ((b.puntos > a.puntos) ? -1 : (a.date < b.date ? 1 : (b.date < a.date) ? -1 : 0)))
+      this.clasificacion.reverse();
+
+      this.verSiEntroEnRanking()
+    })
+  }
+
+  verSiEntroEnRanking() {
+    // const found = this.clasificacion.findIndex(element => element.telefono == this.currentUser.telefono);
+    // this.tuMejorPuntuacion = found+1;
+    if(this.puntuacionTotal > this.clasificacion[9].puntos) {
+      // ENTRO EN EL RANKING
+      const result: Manos = {
+        nombre: this.currentUser.nombre,
+        apellidos: this.currentUser.apellidos,
+        telefono: this.currentUser.telefono,
+        puntos: this.puntuacionTotal,
+        date: new Date(),
+        letra: this.clasificacion[9].letra
+      }
+      this.save(this.clasificacion[9].letra, result)
+      this.clasificacion[9] = result;
+      // Ordenar clasificación
+      this.clasificacion.sort((a,b) => (a.puntos > b.puntos) ? 1 : ((b.puntos > a.puntos) ? -1 : (a.date < b.date ? 1 : (b.date < a.date) ? -1 : 0)))
+      this.clasificacion.reverse();
+    }
+    // Calcular el mejor resultado EN EL RANKING
+    this.personalBest()
+  }
+
+  personalBest() {
+    const found = this.clasificacion.findIndex(element => element.telefono == this.currentUser.telefono);
+    this.tuMejorPuntuacion = found+1;
+  }
+
+  save(clave, valor){
+    this._service.save(constants.END_POINTS.MANOS, clave, valor)
+      .then(()=>{
+      }, error => {
+        console.log(error)
+      })
   }
 
   goToBienvenida() {
