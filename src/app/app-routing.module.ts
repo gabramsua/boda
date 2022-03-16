@@ -13,6 +13,7 @@ import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/p
 import { GameComponent } from './components/PPT/game/game.component';
 import { RecomiendaCancionComponent } from './components/recomienda-cancion/recomienda-cancion.component';
 import { ResultadosComponent } from './components/resultados/resultados.component';
+import { SubirFotoComponent } from './components/subir-foto/subir-foto.component';
 import { TrasladosComponent } from './components/traslados/traslados.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
@@ -30,6 +31,7 @@ const routes: Routes = [
     {path: 'cuestionario', component: CuestionarioComponent, canActivate: [AuthGuardService]},
     {path: 'management', component: ManagementComponent, canActivate: [AuthGuardService]},
     {path: 'manos', component: GameComponent, canActivate: [AuthGuardService]},
+    {path: 'subir-foto', component: SubirFotoComponent, canActivate: [AuthGuardService]},
     {path: '**', component: PaginaNoEncontradaComponent}
 ];
 
