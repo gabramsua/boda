@@ -5,7 +5,8 @@ const Constants = {
         RESULTADOS_CANCIONES: 'resultados_canciones',
         PASS: 'isAdmin',
         RESULTADOS_QUIZZ: 'resultadosQuizz',
-        MANOS: 'manos'
+        MANOS: 'manos',
+        FOTOS: 'fotos'
     },
     VALUES: {
         ASISTENCIA: {
@@ -117,6 +118,24 @@ const Constants = {
         BIENVENIDA: 'bienvenida',
         JUGANDO: 'jugando',
         RESULTADOS: 'resultados'
+    },
+    ES_TSF: {
+        652523801: 'Ernesto',
+        661993736: 'Litro',
+        666845690: 'Alberto',
+        646848300: 'Alo',
+        615371619: 'Borrego',
+        647066682: 'Fernando Valencia',
+        635564929: 'Jaime',
+        661910042: 'Javi Poli',
+        665962749: 'Josan',
+        660191057: 'Moi',
+        619621427: 'Manolito',
+        676727930: 'Pablo Bejarano',
+        680765646: 'Pablo Osuna',
+        660796108: 'Pepelu',
+        610961209: 'Turi',
+        671443933: 'Turiki'
     }
 }
 
