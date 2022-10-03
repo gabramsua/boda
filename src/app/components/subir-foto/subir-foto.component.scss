@@ -13,3 +13,19 @@ p {text-align: justify;text-justify: inter-word;}
 .labelInputFile {
     box-shadow: 0 0 10px -1px gray;
 }
+
+.img-container {
+    width: 100%;
+    height: 100%;
+    border: 1px solid red;
+}
+
+.img-prev {
+    margin-top: 10px;
+}
+
+.img-slide {
+    display: inline-block;
+    width: 24%;
+    margin: 0 1px;
+}

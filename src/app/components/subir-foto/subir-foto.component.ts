@@ -30,9 +30,10 @@ export class SubirFotoComponent implements OnInit {
       data.forEach((element: any) => {
         console.log(element.data())
         
-        // this.imagenes.push({
-        //   ...element.data()
-        // })
+        this.imagenes.push({
+          ...element.data()
+        })
+        console.log(this.imagenes)
       });
     })
   }
